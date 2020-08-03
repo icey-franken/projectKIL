@@ -12,12 +12,21 @@
 
 ## Endpoints Needed
 
-* create new project: /editInstructable/new
-* edit your project: /editInstructable/edit/:id
-  * upload media from library
-  * upload media from local machine
+### create new project: /editInstructable/new
+
+### edit your project: /editInstructable/edit/:projectId
+* upload photos and files
+  * upload media from your own instructable library
+  * upload media to your own instructable library
+  * upload media to project from local machine (browse)
   * upload media with drag and drop
-  * embed videos
+* embed videos
+  * embed with with URL
+  * embed with drag and drop
+
+### edit project steps: /editInstructable/edit/:projectId/step/:stepId
+* same abilities to upload/embed media as main project edit page, except specifc to step
+* edit step page has three text boxes - one for step title, one for step contents, one for step supplies.
 
 ## Templates Needed
 
