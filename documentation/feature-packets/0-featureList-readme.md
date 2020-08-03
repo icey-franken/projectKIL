@@ -14,7 +14,7 @@ Our project: replicate instructables.com website functionality and appearance.
 Create a feature packet for each of the above features (features 1-4 at minimumin) in a new markdown document. Within that document include the following documentation:
 
 * models needed
-  * use <https://drawsql.app/> for constructing model relationships (and wire frames?)
+  * use <https://drawsql.app/> for constructing model relationships
 * endpoints needed
 * templates needed
 * wire frames or sketches
