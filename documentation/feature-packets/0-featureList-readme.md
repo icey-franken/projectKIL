@@ -11,7 +11,7 @@ Our project: replicate instructables.com website functionality and appearance.
 5. Bonus: Featured project channels
 6. Bonus: Categories
 
-Create a feature packet for each of the above features (features 1-4 at minimumin) in a single markdown document. Within that document include the following documentation:
+Create a feature packet for each of the above features (features 1-4 at minimumin) in a new markdown document. Within that document include the following documentation:
 
 * models needed
   * use <https://drawsql.app/> for constructing model relationships (and wire frames?)
