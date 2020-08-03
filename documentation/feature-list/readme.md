@@ -29,6 +29,7 @@ Feature list specific to instrutables project
 Create a feature packet for each of the above features in a single markdown document. Within that document include the following documentation:
 
 * models needed
+  * use https://drawsql.app/ for constructing model relationships (and wire frames?)
 * endpoints needed
 * templates needed
 * wire frames or sketches
