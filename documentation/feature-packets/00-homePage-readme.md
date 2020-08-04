@@ -2,9 +2,11 @@
 
 ## Models Needed
 
-Categories -- will have a seeded file
+Projects
 
 ## Endpoints Needed
+ '/'
+ '/projects/:sort'
 
 ### main home page: '/'
 
@@ -22,3 +24,15 @@ Categories -- will have a seeded file
 ## Wire Frames or Sketches
 
 * rough wireframe of homepage ![image](./wireframes/homepage-wireframe.png "Homepage Wireframe")
+
+
+## brainstorm
+
+we would see:
+
+* navbar
+  * homepage link
+  * login link
+  * sign up link
+  * keywords search bar
+* existing projects (optional sort)

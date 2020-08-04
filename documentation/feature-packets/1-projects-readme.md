@@ -24,12 +24,12 @@ READ/VIEW A PROJECT
 
 if there's a duplicated project with the same name, they'll add a dash and a number
 
-UPDATE A PROJECT
+UPDATE A PROJECT -- should this be on a separate/same page for users' landing page?
 "/editInstructable/edit/:projectId" shown after creating a new project and editing it
 
 projectId is automatically generated with weird numbers and letters
 
-DELETE A PROJECT
+DELETE A PROJECT -- same question as above
 
 ### create new project: /editInstructable/new
 

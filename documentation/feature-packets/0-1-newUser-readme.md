@@ -10,6 +10,9 @@
   * country (separate table - seeded)
   * third-party sign-in info (possibly N/A)
     * maybe include this info as a separate model that is linked to person through a foreign key?
+* country (foreign key on user)
+* about you (foreign key on user)
+
 
 ## Endpoints Needed
 
@@ -44,7 +47,12 @@
 ## Templates Needed
 
 * existing-user-sign-in.pug
-* new-user-registration.pug
+* new-user-registration-form.pug
 * user-profile.pug
 
 ## Wire Frames or Sketches
+
+## brainstorm
+* two options
+  * login for existing users
+  * sign up for new users
