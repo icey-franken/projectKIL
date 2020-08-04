@@ -14,11 +14,13 @@
 ## Endpoints Needed
 
 ### login page: /account/login/
+
 * login with facebook, google, twitter, autodesk
 * log in with destructables username/password
 * include a button for "login as guest"? Or just allow folks to browse website as a guest without any extra work - probably easiest/most user friendly way
 
 ### signup page: /account/register/
+
 * register with facebook, google, twitter, autodesk
 * register for destructables account
   * email
