@@ -80,6 +80,23 @@ stepId 0 is the intro
 
 Projects model thoughts
 
+* our models would be something like
+
+```CLI
+//generate Project model. userId is a foreign key that points to the author; categoryId is a foreign key that points to the category
+
+model:generate --name Project --attributes name:string,userId:integer,categoryId:integer;
+
+//generate Introduction model.
+
+.....
+
+//generate Destruction model. listOrder indicates the step number (this would have to be related to other existing destructions for a particular project - implementation might be tricky); title is the heading for that particular step; description is the text instructions themselves; projectId is a foreign key that points to the project that the destruction belongs to
+
+model:generate --name Destruction --attributes listOrder:integer,title:string,description:text,projectId:integer
+
+```
+
 * The way we could set up our model relationships is
 
 ```javascript
