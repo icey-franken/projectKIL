@@ -1,4 +1,4 @@
-# README for instructables project feature scoping
+# README for instructables project features
 
 Our project: replicate instructables.com website appearance and the functionality specified in feature list below.
 
