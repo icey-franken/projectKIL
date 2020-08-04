@@ -82,7 +82,7 @@ Team Lead - Isaac
 
 ## Feature Packets Overview
 
-Create a feature packet for each of the above features (features 1-4 at minimumin) in a new markdown document. Within that document include the following documentation (see documents 1-6 in feature-packets directory):
+Create a feature packet for each of the above features (features 1-4 at minimumin) in a new markdown document. Within that document include the following documentation (see documents 0-7 in feature-packets directory):
 
 * models needed
   * use <https://drawsql.app/> for constructing model relationships
