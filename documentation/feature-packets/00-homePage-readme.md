@@ -36,3 +36,9 @@ we would see:
   * sign up link
   * keywords search bar
 * existing projects (optional sort)
+
+non-users (not signed in) are redirected to registration page ('/account/register/') upon attempting to:
+
+* create a project
+* favorite a project
+* create a comment

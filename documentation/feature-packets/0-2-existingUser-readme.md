@@ -1,7 +1,7 @@
-# README - Feature 0: New Account Creation, Login, and Guest/Demo Login
+# README - Feature 0-2: Existing User Login (and Guest/Demo Login)
 
 ## Models Needed
-
+* Projects
 * Users
   * email (unique)
   * username (unique)
@@ -17,7 +17,6 @@
 ## Endpoints Needed
 
 "/account/login/"
-"/account/register/"
 "/member/:userName/"
 
 ### login page: '/account/login/'
@@ -26,19 +25,6 @@
 * log in with destructables username/password
 * include a button for "login as guest"? Or just allow folks to browse website as a guest without any extra work - probably easiest/most user friendly way
 
-### signup page: '/account/register/'
-
-* register with facebook, google, twitter, autodesk
-* register for destructables account
-  * email
-  * username
-  * password
-  * about you (dropdown with multi-select of general "occupation"--this is a seeded file)
-    * anarchist
-    * part-time destroyer
-    * destructive sympathizer
-    * master of destruction
-  * country
 
 ### view your profile page: '/member/:username/'
 
@@ -47,12 +33,19 @@
 ## Templates Needed
 
 * existing-user-sign-in.pug
-* new-user-registration-form.pug
 * user-profile.pug
 
 ## Wire Frames or Sketches
 
 ## brainstorm
-* two options
-  * login for existing users
-  * sign up for new users
+
+* Existing Users Can:
+  * Create new projects (owned by user)
+  * read projects (owned by anyone)
+  * Update/edit projects (owned by user)
+  * delete projects (owned by user)
+  * like projects
+  * create comments on projects
+
+* WEEDS - add functionality for signed-in users to create comments and create, update, and delete projects
+  * ALL users can read comments and "like" projects

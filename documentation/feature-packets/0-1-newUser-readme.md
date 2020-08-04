@@ -1,4 +1,4 @@
-# README - Feature 0: New Account Creation, Login, and Guest/Demo Login
+# README - Feature 0-1: New Account Creation
 
 ## Models Needed
 
@@ -13,18 +13,9 @@
 * country (foreign key on user)
 * about you (foreign key on user)
 
-
 ## Endpoints Needed
 
-"/account/login/"
 "/account/register/"
-"/member/:userName/"
-
-### login page: '/account/login/'
-
-* login with facebook, google, twitter, autodesk
-* log in with destructables username/password
-* include a button for "login as guest"? Or just allow folks to browse website as a guest without any extra work - probably easiest/most user friendly way
 
 ### signup page: '/account/register/'
 
@@ -40,19 +31,12 @@
     * master of destruction
   * country
 
-### view your profile page: '/member/:username/'
-
-### change account settings: '/member/:userName/settings/
-
 ## Templates Needed
 
-* existing-user-sign-in.pug
 * new-user-registration-form.pug
-* user-profile.pug
 
 ## Wire Frames or Sketches
 
 ## brainstorm
-* two options
-  * login for existing users
-  * sign up for new users
+
+* non-users (not signed in) can only read comments and read projects (no create, update, delete functionality)
