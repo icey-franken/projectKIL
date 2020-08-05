@@ -83,12 +83,13 @@ Projects model thoughts
 * our models would be something like
 
 ```CLI
-//generate Project model. userId is a foreign key that points to the author; categoryId is a foreign key that points to the category
+//generate Project model. name is the title of the project; userId is a foreign key that points to the author; categoryId is a foreign key that points to the category
 
 model:generate --name Project --attributes name:string,userId:integer,categoryId:integer;
+.....
+//generate Introduction model. title might be unnecessary but its the same idea as for Destruction model, description is the step itself, supplies is the supplies list (might be better to do as an array?), projectId is a foreign key that points to the project it belongs to
 
-//generate Introduction model.
-
+model:generate --name Introduction --attributes title:string,description:text,supplies:text,projectId:integer
 .....
 
 //generate Destruction model. listOrder indicates the step number (this would have to be related to other existing destructions for a particular project - implementation might be tricky); title is the heading for that particular step; description is the text instructions themselves; projectId is a foreign key that points to the project that the destruction belongs to
@@ -129,3 +130,6 @@ const steps = Destruction.findAll({
   orderBy: 'listOrder'
 });
 ```
+DAMN! YOU'VE BEEN WRITING A BUTT LOAD! (LB hehe)
+
+...and not paying attention to lecture - IF
