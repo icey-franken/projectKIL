@@ -34,7 +34,7 @@ Team Lead - Isaac
 
 * as a... person who enjoys destroying/destructuring things
 
-* I want... a central resource where I can find instructions for destruction in a clear, ordered manner
+* I want... a central resource where I can find instructions for destruction in a clear, ordered manner; to be able to create my own destructions so I can share with others; to be able to make changes to my destructions as I learn and improve; most importantly I would like the ability to destroy my destructions.
 
 * so that... I may spend less time searching for what I need and more time destroying
 
