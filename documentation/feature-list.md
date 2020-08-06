@@ -1,3 +1,11 @@
+# NOTES FROM ED:
+**Your features look good! Mainly, I want you to focus on broadening your feature-list definitions. There's only the one thing to check off. Let me know any questions that you might have after you have discussed this with your group!**
+
+FEATURE-LIST
+Projects
+
+ **Think about other CRUD functionalities that might be involved in projects. Right now, I'm seeing a description of viewing an index, but nothing about creation, or viewing individual projects.**
+
 # README for instructables project features
 
 Our project: replicate instructables.com website appearance and the functionality specified in feature list below.
