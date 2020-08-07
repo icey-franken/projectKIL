@@ -1,11 +1,3 @@
-# NOTES FROM ED:
-**Your features look good! Mainly, I want you to focus on broadening your feature-list definitions. There's only the one thing to check off. Let me know any questions that you might have after you have discussed this with your group!**
-
-FEATURE-LIST
-Projects
-
- **Think about other CRUD functionalities that might be involved in projects. Right now, I'm seeing a description of viewing an index, but nothing about creation, or viewing individual projects.**
-
 # README for instructables project features
 
 Our project: replicate instructables.com website appearance and the functionality specified in feature list below.
@@ -22,7 +14,7 @@ Team Lead - Isaac
 
 ### Minimum Viable Product
 
-#### 0. New Account Creation, Login, and Guest/Demo Login
+#### 0. New Account Creation, Login, and Guest/Demo Login (~6 hours)
 
 * as a... person interested in learning how to destructure/destroy things
 
@@ -30,7 +22,12 @@ Team Lead - Isaac
 
 * so that...I can have access to projects as well as create my own
 
-#### 1. Projects
+* notes: we will want to use JWT to authenticate users. This will allow us to identify who created a project/comment and give update/destroy powers only to those who own a particular resource.
+  * Ed says: **this is our focus for Monday** - goal is to finish projects and user auth on day one
+  * **do projects feature before auth**
+  * work on auth feature together - use S-M's walkthrough video
+
+#### 1. Projects (~14 hours - ~6 h backend; ~8 h frontend)
 
 * as a... person who enjoys destroying/destructuring things
 
@@ -38,7 +35,12 @@ Team Lead - Isaac
 
 * so that... I may spend less time searching for what I need and more time destroying
 
-#### 2. Commenting on projects
+* Ed says: do backend FIRST - use postman to test constantly. **"When you finish an algorithm - if you can test it, TEST IT!" - will save a lot of pain**
+  * style views as your create them - NOT all at the end (nightmare)
+
+* flow: make a branch for project feature; make AND test backend; make AND test frontend; merge branch to master; push updated master to gh.
+
+#### 2. Commenting on projects (~5 hours)
 
 * as a... person highly involved in the destructive community
 
@@ -46,15 +48,16 @@ Team Lead - Isaac
 
 * so that... we may all hone our skills and learn from one another
 
-#### 3. Adding photos and videos to projects
+#### 3. Adding photos and videos to projects (~7 hours)
 
 * as a... visually inclined human
 
-* I want... to be able to show off my destructions and see the destructions of others
+* I want... to be able to show off my destructions and see the destructions of others using a SWEET drag and drop function (along with browsing my local files and embedding video links)
+  * Ed says drag and drop and embedding videos are probably the hardest parts of this project - aA will set up an AWS buckets account for us to do video hosting from. Ed also has other resources for us. He says DON'T focus on this feature until AFTER Tuesday - for now use a div with a static placeholder image.
 
 * so that... we may all may bask in the visual glory, and also so we are able to see what is going on, and how to do it.
 
-#### 4. Searching projects by keyword
+#### 4. Searching projects by keyword (~6 hours)
 
 * as a... person searching for ways to destruct
 
@@ -64,7 +67,7 @@ Team Lead - Isaac
 
 ### Stretch Goals
 
-#### 5. Bonus: Featured project channels
+#### 5. Bonus: Featured project channels (~8 hours)
 
 * as an... avid destroyer
 
@@ -72,7 +75,7 @@ Team Lead - Isaac
 
 * so that... I may not fall into irrelevance
 
-#### 6. Bonus: Categories
+#### 6. Bonus: Categories (~6 hours)
 
 * as a... person with matured interests in rapid instantaneous deconstruction
 
@@ -80,7 +83,7 @@ Team Lead - Isaac
 
 * so that... I can browse destructions that are in my fields of interest
 
-#### 7. Bonus: Project History
+#### 7. Bonus: Project History (~6 hours)
 
 * as a... person known to make impulsive, questionable decisions
 
@@ -97,7 +100,6 @@ Create a feature packet for each of the above features (features 1-4 at minimumi
 * endpoints needed
 * templates needed
 * wire frames or sketches
-
 
 ## Other features/requirements that apply to ALL projects
 

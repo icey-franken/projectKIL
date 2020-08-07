@@ -10,4 +10,6 @@
 
 ## Templates Needed
 
+* comments.pug which is going to be a part of the read_project.pug template
+
 ## Wire Frames or Sketches

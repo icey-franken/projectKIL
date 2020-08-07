@@ -17,4 +17,6 @@
 
 ## Templates Needed
 
+* part of the edit_project template
+
 ## Wire Frames or Sketches

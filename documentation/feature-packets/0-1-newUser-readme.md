@@ -34,6 +34,7 @@
 ## Templates Needed
 
 * new-user-registration-form.pug
+* layout.pug (nav-bar, header, footer, background image, a content div)
 
 ## Wire Frames or Sketches
 

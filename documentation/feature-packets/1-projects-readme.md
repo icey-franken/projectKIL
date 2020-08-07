@@ -12,56 +12,78 @@
     * userId
     * categoryId
 
+----------------------------------------------------------------
+----------------------------------------------------------------
+
 ## Endpoints Needed
 
-### CREATE A PROJECT: '/create/'
+----------------------------------------------------------------
+
+### CREATE
+
+#### initialize creation of new project: '/create/'
 
 * shows a page about creation
 * has link to "/editInstructable/new"
+* stepId 0 is the intro
 
-### editing/updating a new project: '/editInstructable/new'
+#### create new project: /editInstructable/new
+
+#### publish project: /editInstructable/publish/:projectId
+
+----------------------------------------------------------------
+
+### READ/VIEW A PROJECT
+
+#### view a project by id: "/id/:projectName"
+
+* if there's a duplicated project with the same name, they'll add a dash and a number
+
+----------------------------------------------------------------
+
+### UPDATE A PROJECT (should this be on a separate/same page for users' landing page?)
+
+projectId is automatically generated with weird numbers and letters
+
+#### editing/updating a new project: '/editInstructable/new'
 
 * asks for the name of the project and confirmation to create
 * after confirming project creation you are redirected to "/editInstructable/edit/:projectId"
 
-### editing/updating an existing project: '/editInstructable/edit/:projectId'
+#### edit an existing project: /editInstructable/edit/:projectId
 
-* this is main project creation page
+* this is main project editing page
 
-### READ/VIEW A PROJECT
+#### edit specific project steps: /editInstructable/edit/:projectId/step/:stepId
 
-"/id/:projectName"
-
-if there's a duplicated project with the same name, they'll add a dash and a number
-
-### UPDATE A PROJECT -- should this be on a separate/same page for users' landing page?
-
-"/editInstructable/edit/:projectId" shown after creating a new project and editing it
-
-projectId is automatically generated with weird numbers and letters
-
-### DELETE A PROJECT -- same question as above
+* same abilities to upload/embed media as main project edit page, except specific to step
+* edit step page has three text boxes - one for step title, one for step contents, one for step supplies (supplies only if first step?).
 
 ----------------------------------------------------------------
 
-### create new project: /editInstructable/new
+### DESTROY A PROJECT (should this be on a separate/same page for users' landing page?)
 
-### edit your project: /editInstructable/edit/:projectId
+#### route after project deletion: /editInstructable/deleted
 
-### edit project steps: /editInstructable/edit/:projectId/step/:stepId
-
-### publish project: /editInstructable/publish/:projectId
-
-### after deletion: /editInstructable/deleted
-
-stepId 0 is the intro
-
-* same abilities to upload/embed media as main project edit page, except specifc to step
-* edit step page has three text boxes - one for step title, one for step contents, one for step supplies.
+----------------------------------------------------------------
+----------------------------------------------------------------
 
 ## Templates Needed
 
+READ
+* read_project.pug
+* layout.pug (nav-bar, header, footer, background image, a content div)
+
+EDIT
+* edit_project.pug
+
+----------------------------------------------------------------
+----------------------------------------------------------------
+
 ## Wire Frames or Sketches
+
+----------------------------------------------------------------
+----------------------------------------------------------------
 
 ## brainstorm
 

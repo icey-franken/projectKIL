@@ -21,10 +21,12 @@ Projects
 
 ## Templates Needed
 
+* index.pug
+* layout.pug (nav-bar, header, footer, background image, a content div)
+
 ## Wire Frames or Sketches
 
 * rough wireframe of homepage ![image](./wireframes/homepage-wireframe.png "Homepage Wireframe")
-
 
 ## brainstorm
 

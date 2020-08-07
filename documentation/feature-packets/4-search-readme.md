@@ -14,4 +14,6 @@
 
 ## Templates Needed
 
+* part of the layout template
+
 ## Wire Frames or Sketches
