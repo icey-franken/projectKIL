@@ -4,6 +4,7 @@ const { environment } = require('./config');
 const app = express();
 
 app.use(morgan("dev"));
+app.use(express.json());
 
 const projectsRouter = require('./routes/projects');
 app.use('/projects', projectsRouter);

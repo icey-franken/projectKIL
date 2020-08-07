@@ -57,7 +57,7 @@ router.get('/edit/:projectId(\\d+)', asyncHandler(async(req, res) => {
 // ];
 
 //I think since this is a post request we should have some validation things in here - using the check and validationHandler shit from the express-validator package or whatever.
-router.post('/edit/:projectId(\\d+)', checkProjectEdits, handleValidationErrors, asyncHandler(async(req, res) => {
+router.post('/edit/:projectId(\\d+)', asyncHandler(async(req, res) => { //add checkProjectEdits and handleValidationErrors middleware
     //destructure body of requst to get the shit the users want to edit about the project
     const { destructuredShit } = req.body
     const project = await Project.update({ destructuredShit })
@@ -85,4 +85,4 @@ router.post('/edit/:projectId(\\d+)/delete', asyncHandler(async(req, res) => {
 
 
 
-module.exports = { router };
+module.exports = router;
