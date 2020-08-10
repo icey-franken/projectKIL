@@ -10,8 +10,8 @@ Goals for Monday 8/10 from feature-list.md:
 
 Goals for the day (from S-M's walkthrough video)
 
-1. set up gitignore - DONE
-2. set up .env
+1. set up gitignore (DS_store, node_modules, and env) - DONE
+2. set up .env - DONE
    1. DB_USERNAME=projectKIL_app
    2. DB_PASSWORD=kilthemall
    3. DB_DATABASE=projectKIL_development
@@ -20,7 +20,7 @@ Goals for the day (from S-M's walkthrough video)
    6. JWT_SECRET - FROM node repl: require('crypto').randomBytes(32).toString('hex');
    7. JWT_EXPIRES_IN=604800
    8. make sure to create your database using the same user/pass as above
-3. set up .sequelizerc
+3. set up .sequelizerc - DONE
    1. without sequelizerc the default config setup will be wrong
 
 ```js
