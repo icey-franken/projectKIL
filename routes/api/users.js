@@ -17,17 +17,16 @@ const validateUsername = [
 ]
 
 const validateAuthFields = [
-    check('username', 'Please enter a username.')
+    check('username', 'Username must be between 5 and 50 characters long.')
     .isLength({ min: 5, max: 50 }),
-    check('email', 'Please enter a valid email address.')
+    check('email', 'Enter a valid email address.')
     .exists({ checkFalsy: true })
     .isEmail(),
-    check('password', 'Password must be 6 of more characters.')
+    check('password', 'Password must be 6 or more characters.')
     .exists({ checkFalsy: true })
     .isLength({ min: 6, max: 70 }),
-    check('password2', 'Confirm password field must have the same value as the password field')
+    check('password2', 'Confirm password field must have the same value as the password field.')
     .exists({ checkFalsy: true })
-    .isLength({ min: 6, max: 70 })
     .custom((value, { req }) => value === req.body.password),
 ]
 
@@ -36,13 +35,12 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', validateUsername, validateAuthFields, handleValidationErrors, routeHandler(async(req, res, next) => {
-    const { username, email, password, password2 } = req.body;
+    const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, email, hashedPassword });
     const token = getUserToken(user);
     res.cookie('token', token, { maxAge: expiresIn * 1000 });
     res.json({ id: user.id, token });
-    // if (password === password2) {} else {}
 }));
 
 router.post('/token', validateUsername, handleValidationErrors, routeHandler(async(req, res, next) => { //for signing in
