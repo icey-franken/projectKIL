@@ -1,0 +1,17 @@
+extends layout.pug
+
+include include/auth-input.pug
+
+block content
+	form#signup-form
+		<svg></svg>
+		h1 Sign up for Destruction!
+		+authInput("Email","email")
+			input(type='email' name='email' required)
+		+authInput("Username","username")
+			input(type='text' name='username' required)
+		+authInput("Password","password")
+			input(type='password' name='password' required)
+		+authInput("Confirm Password","password2")
+			input(type='password' name='password2' required)
+		button(type='submit') Sign Up

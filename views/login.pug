@@ -1,0 +1,13 @@
+extends layout.pug
+
+include include/auth-input.pug
+
+block content
+	form#login-form
+		<svg></svg>
+		h1 Log In
+		+authInput("Email or Username","username")
+			input(type='text' name='username' required)
+		+authInput("Password","password")
+			input(type='password' name='password' required)
+		button(type='submit') Log In
