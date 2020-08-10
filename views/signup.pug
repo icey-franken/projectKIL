@@ -2,10 +2,14 @@ extends layout.pug
 
 include include/auth-input.pug
 
+append head
+	script(src='/public/js/signup.js' type='module' defer)
+
 block content
 	form#signup-form
 		<svg></svg>
 		h1 Sign up for Destruction!
+		ul#errors-container
 		+authInput("Email","email")
 			input(type='email' name='email' required)
 		+authInput("Username","username")

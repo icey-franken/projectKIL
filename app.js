@@ -10,21 +10,11 @@ app.use(require('cookie-parser')());
 //remember to use csrfProtection as middleware on individual routes as needed!
 const csrfProtection = require('csurf')({ cookie: true });
 //serving up static assets from the public directory
-app.use('/public', express.static('public'));
-
-const apiRouter = require('./routes/api');
-const pagesRouter = require('./routes/pages');
-app.use('/', pagesRouter);
-app.use('/api', apiRouter);
-
-//following two lines may be unnecessary
-// const projectsRouter = require('./routes/projects');
-// app.use('/projects', projectsRouter);
 
 
-app.get("/", (req, res) => {
-    res.send("Welcome to the express-sequelize-starter!");
-});
+// app.get("/", (req, res) => {
+//     res.send("Welcome to the express-sequelize-starter!");
+// });
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
@@ -33,9 +23,9 @@ app.use((req, res, next) => {
     // res.render('error-page');
 
     //the following was from the express-sequelize-starter directory
-    // const err = new Error("The requested resource couldn't be found.");
-    // err.status = 404;
-    // next(err);
+    const err = new Error("The requested resource couldn't be found.");
+    err.status = 404;
+    next(err);
 });
 
 // Custom error handlers.
@@ -50,5 +40,15 @@ app.use((err, req, res, next) => {
         stack: isProduction ? null : err.stack,
     });
 });
+
+const apiRouter = require('./routes/api');
+const pagesRouter = require('./routes/pages');
+app.use('/public', express.static('public'));
+app.use('/api', apiRouter);
+app.use('/', pagesRouter);
+
+//following two lines may be unnecessary
+// const projectsRouter = require('./routes/projects');
+// app.use('/projects', projectsRouter);
 
 module.exports = app;

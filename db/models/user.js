@@ -1,14 +1,18 @@
 'use strict';
+const bcrypt = require('bcryptjs');
 const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class User extends Model {
-        /**
-         * Helper method for defining associations.
-         * This method is not a part of Sequelize lifecycle.
-         * The `models/index` file will call this method automatically.
-         */
+        validatePassword(password) {
+                return bcrypt.compareSync(password, this.hashedPassword.toString());
+            }
+            /**
+             * Helper method for defining associations.
+             * This method is not a part of Sequelize lifecycle.
+             * The `models/index` file will call this method automatically.
+             */
         static associate(models) {
                 // define association here
             }
@@ -20,8 +24,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: true,
             validate: { //~32 min in first auth vid
-                len: [5, 50],
-                msg: 'Username must be between 5 and 50 characters' //error message if input not within length constraints
+                len: {
+                    args: [5, 50],
+                    msg: 'Username must be between 5 and 50 characters' //error message if input not within length constraints
+                }
             }
         },
         email: {

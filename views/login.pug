@@ -2,10 +2,14 @@ extends layout.pug
 
 include include/auth-input.pug
 
+append head
+	script(src='/public/js/login.js' type='module' defer)
+
 block content
 	form#login-form
 		<svg></svg>
 		h1 Log In
+		#errors-container
 		+authInput("Email or Username","username")
 			input(type='text' name='username' required)
 		+authInput("Password","password")
