@@ -11,6 +11,16 @@ app.use(require('cookie-parser')());
 const csrfProtection = require('csurf')({ cookie: true });
 //serving up static assets from the public directory
 
+const apiRouter = require('./routes/api');
+const pagesRouter = require('./routes/pages');
+app.use('/public', express.static('public'));
+app.use('/api', apiRouter);
+app.use('/', pagesRouter);
+
+//following two lines may be unnecessary
+// const projectsRouter = require('./routes/projects');
+// app.use('/projects', projectsRouter);
+
 
 // app.get("/", (req, res) => {
 //     res.send("Welcome to the express-sequelize-starter!");
@@ -18,8 +28,8 @@ const csrfProtection = require('csurf')({ cookie: true });
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
-    req.setTimeout(1000);
-    res.setTimeout(1000);
+    // req.setTimeout(1000);
+    // res.setTimeout(1000);
     // res.render('error-page');
 
     //the following was from the express-sequelize-starter directory
@@ -41,14 +51,6 @@ app.use((err, req, res, next) => {
     });
 });
 
-const apiRouter = require('./routes/api');
-const pagesRouter = require('./routes/pages');
-app.use('/public', express.static('public'));
-app.use('/api', apiRouter);
-app.use('/', pagesRouter);
 
-//following two lines may be unnecessary
-// const projectsRouter = require('./routes/projects');
-// app.use('/projects', projectsRouter);
 
 module.exports = app;
