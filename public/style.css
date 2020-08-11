@@ -1,3 +1,16 @@
-body {
-  padding: 40px;
+body{
+  background-image: url("https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+}
+.auth-container{
+  padding: 50px;
+  margin-left: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-sizing: content-box;
+  width: 400px;
+  height: 800px;
+}
+
+.footer_top{
+  padding-left: 500px;
+  padding-right: 500px;
 }

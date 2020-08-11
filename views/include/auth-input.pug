@@ -2,3 +2,14 @@ mixin authInput(label, name)
 	.auth-input
 		label(for=name class="sr-only")= label
 		block
+
+mixin authButtons
+	.row
+		.col-md-5 mb-3
+			button O-Auth 1
+		.col-md-5 mb-3
+			button O-Auth 2
+		.col-md-5 mb-3
+			button O-Auth 3
+		.col-md-5 mb-3
+			button O-Auth 4
