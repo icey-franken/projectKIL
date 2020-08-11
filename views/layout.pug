@@ -9,8 +9,76 @@ html(lang='en')
 		link(rel='icon' href='/public/favicon.ico' type='image/ico')
 	body
 		header
-			div(class="header-top")
-				div(class="header-left")
+			div(class="navbar navbar-expand-md navbar-dark bg-dark")
+				ul(class="navbar-nav mr-auto")
+					li(class="nav-item active")
+						a(class="nav-link" href="/") Home
+					li(class="nav-item active")
+						a(class="nav-link" href="#") Cat 1
+					li(class="nav-item active")
+						a(class="nav-link" href="#") Cat 2
+					li(class="nav-item active")
+						a(class="nav-link" href="#") Cat 3
+					li(class="nav-item active")
+						a(class="nav-link" href="#") Cat 4
+					li(class="nav-item active")
+						a(class="nav-link" href="#") Cat 5
+				a(class="nav-link" href="/login") Login
+				a(class="nav-link" href="/signup") Sign Up
+			div(class="navbar  navbar-expand-md navbar-light bg-light")
+				a(class="navbar-brand" href="/") LOGO
+				ul(class="navbar-nav mr-auto")
+					li(class="nav-item active")
+						a(class="nav-link" href="#") Projects
+					li(class="nav-item active")
+						a(class="nav-link" href="#") Contest
+				form(class="form-inline my-2 my-lg-0")
+					input(class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search")
+					button(class="btn btn-outline-success my-2 my-sm-0" type="submit") Search
 		main
 			block content
-		footer
+		footer(class="pt-4 my-md-5 pt-md-5 border-top")
+			div(class="row")
+				div(class="col-12 col-md")
+					a(class="navbar-brand" href="/") LOGO
+				div(class="col-6 col-md")
+					h5 Categories
+					ul(class="list-unstyled text-small")
+						li
+							a(class="nav-link" href="#") Cat 1
+						li
+							a(class="nav-link" href="#") Cat 2
+						li
+							a(class="nav-link" href="#") Cat 3
+						li
+							a(class="nav-link" href="#") Cat 4
+				div(class="col-6 col-md")
+					ul(class="list-unstyled text-small")
+						li
+							a(class="nav-link" href="#") Cat 5
+						li
+							a(class="nav-link" href="#") Cat 6
+						li
+							a(class="nav-link" href="#") Cat 7
+				div(class="col-6 col-md")
+					h5 About us
+					ul(class="list-unstyled text-small")
+						li
+							a(class="nav-link" href="#") Who Are We?
+						li
+							a(class="nav-link" href="#") Why Publish?
+						li
+							a(class="nav-link" href="#") Jobs
+				div(class="col-6 col-md")
+					h5 Resources
+					ul(class="list-unstyled text-small")
+						li
+							a(class="nav-link" href="#") Site Map
+						li
+							a(class="nav-link" href="#") Help
+						li
+							a(class="nav-link" href="#") Contact
+				div(class="col-6 col-md")
+					h5 Find Us
+							a(class="nav-link" href="#") Instagram
+							a(class="nav-link" href="#") Twitter
