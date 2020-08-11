@@ -11,6 +11,8 @@
     * destructions
     * userId
     * categoryId
+    * pageViews - STRETCH GOAL
+    * likes - STRETCH GOAL
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -64,6 +66,8 @@ projectId is automatically generated with weird numbers and letters
 ### DESTROY A PROJECT (should this be on a separate/same page for users' landing page?)
 
 #### route after project deletion: /editInstructable/deleted
+
+* delete option in dropdown menu on /editInstructable/:projectId page. When you click delete a pop up appears for confimation - after confirming you are directed to /editInstructable/deleted which is basically a blank page.
 
 ----------------------------------------------------------------
 ----------------------------------------------------------------

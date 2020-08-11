@@ -12,8 +12,9 @@ Projects
 
 ### projects homepage: '/projects/:sort'
 
-* default projects sort is by featured (:sort not specified)
-* other sort values:
+* STRETCH GOAL - default projects sort is by featured (:sort not specified)
+  * for now our default sort will be creation date (most recent)
+* other sort values - Ed says ALL sort options should be STRETCH GOALS
   * sort by recent (_:sort = recent/_)
   * sort by popularity (_:sort = popular/_)
   * sort by views (_:sort = views/_)
@@ -26,7 +27,9 @@ Projects
 
 ## Wire Frames or Sketches
 
-* rough wireframe of homepage ![image](./wireframes/homepage-wireframe.png "Homepage Wireframe")
+* rough wireframe of homepage ![homepage](./wireframes/homepage-wireframe.png "Homepage Wireframe")
+* create new project page ![Create new project](./wireframes/create-new-project-pug.png "Create new project")
+
 
 ## brainstorm
 
