@@ -6,5 +6,5 @@ exports.getUserToken = async(user) => {
             id: user.id,
             username: user.username
         },
-        secret, { expiresIn });
+        secret, { expiresIn: parseInt(expiresIn, 10) });
 }
