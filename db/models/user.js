@@ -15,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
              */
         static associate(models) {
                 // define association here
+                User.belongsTo(models.AboutYou, {
+                    foreignKey: 'aboutYouId'
+                });
+                User.belongsTo(models.Country, {
+                    foreignKey: 'countryId'
+                });
             }
             //note that since we're using sequelize v6 we do NOT need to define instance methods on the prototype - we define them in the usual manner for JS classes
     };
@@ -40,7 +46,17 @@ module.exports = (sequelize, DataTypes) => {
         },
         hashedPassword: {
             type: DataTypes.STRING.BINARY
-        }
+        },
+        countryId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: { model: 'Countries' }
+        },
+        aboutYouId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: { model: 'AboutYous' }
+        },
     }, {
         sequelize,
         modelName: 'User',

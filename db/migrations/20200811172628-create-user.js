@@ -22,6 +22,16 @@ module.exports = {
                 type: Sequelize.STRING.BINARY,
                 allowNull: false
             },
+            countryId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: { model: 'Countries' }
+            },
+            aboutYouId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: { model: 'AboutYous' }
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
