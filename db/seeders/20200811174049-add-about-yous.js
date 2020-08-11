@@ -3,13 +3,34 @@
 module.exports = {
     up: async(queryInterface, Sequelize) => {
         await queryInterface.bulkInsert('AboutYous', [{
-                description: 'Teacher'
+                description: 'Hobbyist'
             },
             {
                 description: 'Student'
             },
             {
-                description: 'Hobbyist'
+                description: 'Teacher (Ages 5-7 yrs.)'
+            },
+            {
+                description: 'Teacher (Ages 8-10 yrs.)'
+            },
+            {
+                description: 'Teacher (Ages 11-13 yrs.)'
+            },
+            {
+                description: 'Teacher (Ages 14-17 yrs.)'
+            },
+            {
+                description: 'Teacher (Ages 18+ yrs.)'
+            },
+            {
+                description: 'Parent'
+            },
+            {
+                description: 'Professional'
+            },
+            {
+                description: 'Robot'
             },
         ], {});
         /**

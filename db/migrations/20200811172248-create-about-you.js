@@ -9,7 +9,7 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             description: {
-                type: Sequelize.ENUM('Teacher', 'Student', 'Hobbyist')
+                type: Sequelize.STRING(50)
             },
         });
     },

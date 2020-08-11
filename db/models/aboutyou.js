@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     AboutYou.init({
-        description: DataTypes.ENUM('Teacher', 'Student', 'Hobbyist')
+        description: DataTypes.STRING(50)
     }, {
         sequelize,
         modelName: 'AboutYou',
