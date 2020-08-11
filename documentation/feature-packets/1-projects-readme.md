@@ -86,6 +86,10 @@ EDIT
 
 ## Wire Frames or Sketches
 
+* Create new project page ![Create new project](./wireframes/create-new-project-pug.png "Create new project")
+* Edit project page ![Edit project](./wireframes/edit-project-pug.png "Edit project")
+* Read project page ![Read project](./wireframes/read-project-pug.png "Read project")
+
 ----------------------------------------------------------------
 ----------------------------------------------------------------
 

@@ -17,3 +17,5 @@
 * part of the layout template
 
 ## Wire Frames or Sketches
+
+* Search project page ![Search](./wireframes/search-pug.png "Search")

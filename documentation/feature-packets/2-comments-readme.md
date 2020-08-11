@@ -13,3 +13,5 @@
 * comments.pug which is going to be a part of the read_project.pug template
 
 ## Wire Frames or Sketches
+
+* Comment on project page ![Comment on project](./wireframes/comment-project-pug.png "Comment on project")

@@ -28,8 +28,8 @@ Projects
 ## Wire Frames or Sketches
 
 * rough wireframe of homepage ![homepage](./wireframes/homepage-wireframe.png "Homepage Wireframe")
-* create new project page ![Create new project](./wireframes/create-new-project-pug.png "Create new project")
-
+* Home page ![Home page](./wireframes/index-pug.png "Home page")
+* Header and footer layout ![Header and Footer Layout](./wireframes/read-project-pug.png "Header and Footer Layout")
 
 ## brainstorm
 

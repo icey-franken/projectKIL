@@ -20,3 +20,6 @@
 * part of the edit_project template
 
 ## Wire Frames or Sketches
+
+* Embed video page ![Embed video](./wireframes/embed-video.png "Embed video")
+* Upload file/photo ![Upload file/photo](./wireframes/upload-photo-or-file.png "Upload file/photo")

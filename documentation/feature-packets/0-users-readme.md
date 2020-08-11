@@ -57,6 +57,9 @@
 
 ## Wire Frames or Sketches
 
+* Login page ![Login Page](./wireframes/login-pug.png "Login Page")
+* Signup page ![Signup Page](./wireframes/sign-up-pug.png "Signup Page")
+
 ## brainstorm
 
 * non-users (not signed in) can only read comments and read projects (no create, update, delete functionality)
