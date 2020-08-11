@@ -14,6 +14,14 @@ module.exports = {
             comment: 'Actually..',
             projectId: 1,
             userId: 3
+        }, {
+            comment: 'HOW DO I DELETE THE FACEBOOK',
+            projectId: 2,
+            userId: 1
+        }, {
+            comment: 'I can see Russia from my house',
+            projectId: 3,
+            userId: 2
         }], {});
         /**
          * Add seed commands here.
