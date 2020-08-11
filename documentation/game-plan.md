@@ -10,9 +10,9 @@ Goals for Monday 8/10 from feature-list.md:
 
 Goals for Tuesday 8/11
 
-* add fields relevant to destructables for user info (refine today's progress)
-  * update user model to destr.
-* add project model
+* DONE add fields relevant to destructables for user info (refine today's progress)
+  * DONE update user model to destr.
+* DONE add project model
   * model/migration validations
   * seeder files
   * ...
