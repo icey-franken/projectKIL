@@ -6,16 +6,16 @@ append head
 	script(src='/public/js/signup.js' type='module' defer)
 
 block content
-	form(class="form-signin" id="signup-form")
-		<svg></svg>
-		h1 Sign up for Destruction!
-		ul#errors-container
-		+authInput("Email","email")
-			input(class="form-control" type='email' name='email' placeholder='Email' required)
-		+authInput("Username","username")
-			input(class="form-control" type='text' name='username' placeholder='Username' required)
-		+authInput("Password","password")
-			input(class="form-control" type='password' name='password' placeholder='Password'  required)
-		+authInput("Confirm Password","password2")
-			input(class='form-control' type='password' name='password2' placeholder='Confirm Password'  required)
-		button(class="btn btn-lg btn-primary btn-block" type='submit') Sign Up
+	div(class="auth-container")
+		form(class="form-signin" id="signup-form")
+			div(class="text-center mb-4")
+				ul#errors-container
+				+authInput("Email","email")
+					input(class="form-control" type='email' name='email' placeholder='Email' required)
+				+authInput("Username","username")
+					input(class="form-control" type='text' name='username' placeholder='Username' required)
+				+authInput("Password","password")
+					input(class="form-control" type='password' name='password' placeholder='Password'  required)
+				+authInput("Confirm Password","password2")
+					input(class='form-control' type='password' name='password2' placeholder='Confirm Password'  required)
+				button(class="btn btn-lg btn-primary btn-block" type='submit') Sign Up

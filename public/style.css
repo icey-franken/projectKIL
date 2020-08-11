@@ -1,3 +1,7 @@
-body {
-  padding: 40px;
+.auth-container{
+  padding: 100px;
+  background-color: black;
+  border: solid 30px;
+  box-sizing: content-box;
+  width: 400px;
 }
