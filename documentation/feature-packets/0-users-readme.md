@@ -2,17 +2,17 @@
 
 ## Models Needed
 
-* Projects
-* Users
+* User
   * email (unique)
   * username (unique)
-  * password
-  * about you (separate table - seeded)
-  * country (separate table - seeded)
-  * third-party sign-in info (possibly N/A)
-    * maybe include this info as a separate model that is linked to person through a foreign key?
-* country (foreign key on user)
-* about you (foreign key on user)
+  * hashedPassword
+  * aboutYouId (fk)
+  * countryId (fk)
+* Country (foreign key on user)
+* AboutYou (foreign key on user)
+
+* STRETCH GOAL - third-party sign-in info (possibly N/A)
+  * maybe include this info as a separate model that is linked to person through a foreign key?
 
 ## Endpoints Needed
 

@@ -2,6 +2,9 @@
 
 ## Models Needed
 
+* Project
+* User
+
 ## Endpoints Needed
 
 ### search all categories by keyword: '/howto/:keyword/'

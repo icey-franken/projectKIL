@@ -3,7 +3,7 @@
 ## Models Needed
 
 * comment
-  * content (the actual content)
+  * content (the actual comment)
   * projectId (fk - comments are tied to a project)
   * userId (fk - comments are tied to a user)
   * id (added automatically)
