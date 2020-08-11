@@ -7,7 +7,8 @@ module.exports = {
             },
             {
                 description: 'Student'
-            }, {
+            },
+            {
                 description: 'Hobbyist'
             },
         ], {});

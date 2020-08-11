@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     Country.init({
-        name: DataTypes.ENUM('USA', 'China', 'Russia')
+        name: DataTypes.STRING(50),
+        code: DataTypes.STRING(5)
     }, {
         sequelize,
         modelName: 'Country',

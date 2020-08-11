@@ -9,8 +9,11 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             name: {
-                type: Sequelize.ENUM('USA', 'China', 'Russia')
+                type: Sequelize.STRING(50),
             },
+            code: {
+                type: Sequelize.STRING(50),
+            }
         });
     },
     down: async(queryInterface, Sequelize) => {
