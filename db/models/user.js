@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
                 User.belongsTo(models.Country, {
                     foreignKey: 'countryId'
                 });
+                User.hasMany(models.Project, {
+                    foreignKey: 'userId'
+                });
+                User.hasMany(models.Comment, {
+                    foreignKey: 'userId'
+                })
             }
             //note that since we're using sequelize v6 we do NOT need to define instance methods on the prototype - we define them in the usual manner for JS classes
     };
