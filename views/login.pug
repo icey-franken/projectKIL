@@ -9,7 +9,8 @@ block content
 	div(class="auth-container")
 		form(class="form-signin" id="login-form")
 			div(class="text-center mb-4 ")
-				#errors-container
+				ul#errors-container
+				+authButtons()
 				+authInput("Email or Username","username")
 					input(class='form-control' type='text' name='username' placeholder='Username or Email' required)
 				+authInput("Password","password")

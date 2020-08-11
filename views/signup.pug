@@ -20,10 +20,12 @@ block content
 				+authInput("Confirm Password","password2")
 					input(class='form-control' type='password' name='password2' placeholder='Confirm Password'  required)
 				.row
-					.col-md-5 mb-3
-						select(class="custom-select d-block w-100")
-							option 1
-					.col-md-5 mb-3
-						select(class="custom-select d-block w-100")
-							option 1
+					div(class="col-md-5 mb-3")
+						select(class="custom-select d-block w-100" name='countryId')
+							each country in countries
+								option= country.name
+					div(class="col-md-5 mb-3")
+						select(class="custom-select d-block w-100" value=aboutYou.id name='aboutYouId')
+							each aboutYou in aboutYous
+								option= aboutYou.description
 				button(class="btn btn-lg btn-primary btn-block" type='submit') Sign Up

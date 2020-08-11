@@ -1,0 +1,9 @@
+extends layout.pug
+
+append head
+	script(src='/public/js/projects-home-page.js' type='module' defer)
+
+
+block content
+	.project-container
+		each project in projects

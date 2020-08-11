@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, handleValidationErrors } = require('../utils');
-const { Project } = require('../db/models');
+const { asyncHandler, handleValidationErrors } = require('../../utils');
+const { Project, User } = require('../../db/models');
 const { check } = require('express-validator');
 
 //I think we will need to add some validations (at least for post requests, for sure) and some error handling. Error handling may be taken care of by global error handler - not sure.
@@ -17,10 +17,11 @@ const { check } = require('express-validator');
 // /projects/ this is the projects homepage - we will display a limited number of various different projects, maybe sorted by popularity or views or whatever
 router.get('/', asyncHandler(async(req, res) => {
     const projectsArr = await Project.findAll({
-        include: [], //eager loading - eventually we'll want user and comments and views and channel and all that shit to come with;
+        include: [{ model: User }], //eager loading - eventually we'll want user and comments and views and channel and all that shit to come with;
         limit: 25, //can be whatever - this is however many we want on a page. We could have this be a variable submitted by user so that can choose in a dropdown, for example, to see 10 projects per page, 25 per page, 50, 100, etc.
     }); //we have a generic error handler in app.js that should take care of most things. I think validations are more important for resource creating/updating/deleting
-    res.render('projects-home-page', { projectsArr }); //something like this
+    // res.render('projects-home-page', { projectsArr }); //something like this
+    res.json({ projects: projectsArr });
 }))
 
 // /projects/id/:projectName -- I think projects/id should point to the desired project - I think adding :projectName is for user clarity. Basically based on project id we will know the exact project, and using that we grab the projectName and put it in url so user knows the name? This is a GET request for a specific project id

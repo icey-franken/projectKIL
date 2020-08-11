@@ -32,7 +32,9 @@ module.exports = {
             {
                 description: 'Robot'
             },
-        ], {});
+        ], {
+            fields: ['description']
+        });
         /**
          * Add seed commands here.
          *

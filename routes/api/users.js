@@ -35,9 +35,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', validateUsername, validateAuthFields, handleValidationErrors, routeHandler(async(req, res, next) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, countryId, aboutYouId } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ username, email, hashedPassword });
+    const user = await User.create({ username, email, hashedPassword, countryId, aboutYouId });
     const token = getUserToken(user);
     res.cookie('token', token, { maxAge: expiresIn * 1000 });
     res.json({ id: user.id, token });

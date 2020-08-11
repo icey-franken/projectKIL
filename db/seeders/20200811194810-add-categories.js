@@ -10,7 +10,9 @@ module.exports = {
             { name: 'Living' },
             { name: 'Outside' },
             { name: 'Teachers' },
-        ], {});
+        ], {
+            fields: ['name']
+        });
         /**
          * Add seed commands here.
          *

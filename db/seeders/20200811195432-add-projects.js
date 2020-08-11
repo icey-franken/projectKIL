@@ -29,7 +29,9 @@ module.exports = {
                 categoryId: 5,
                 userId: 3
             }
-        ], {});
+        ], {
+            fields: ['name', 'intro', 'supplies', 'destructions', 'images', 'categoryId', 'userId']
+        });
         /**
          * Add seed commands here.
          *

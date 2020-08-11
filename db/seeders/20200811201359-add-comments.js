@@ -22,7 +22,9 @@ module.exports = {
             comment: 'I can see Russia from my house',
             projectId: 3,
             userId: 2
-        }], {});
+        }], {
+            fields: ['comment', 'projectId', 'userId']
+        });
         /**
          * Add seed commands here.
          *

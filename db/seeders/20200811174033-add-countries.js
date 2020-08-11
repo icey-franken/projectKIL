@@ -246,7 +246,9 @@ module.exports = {
             { name: 'Yemen', code: 'YE' },
             { name: 'Zambia', code: 'ZM' },
             { name: 'Zimbabwe', code: 'ZW' }
-        ], {});
+        ], {
+            fields: ['name', 'code']
+        });
         /**
          * Add seed commands here.
          *
