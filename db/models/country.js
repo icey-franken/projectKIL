@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'Country',
-        // timestamps: false -- we may need to uncomment this
+        timestamps: false,
+        createdAt: false,
+        updatedAt: false
     });
     return Country;
 };
