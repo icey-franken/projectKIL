@@ -12,10 +12,6 @@ router.get('/login', asyncHandler(async(req, res) => {
     res.render('login');
 }));
 
-// router.get('/logout', asyncHandler(async(req, res) => {
-//     res.render('logout');
-// }));
-
 //member routes------------------------------------------------
 router.get('/member/:userId', asyncHandler(async(req, res) => {
     res.render('user-page');
@@ -39,6 +35,7 @@ router.get('/projects/:id', asyncHandler(async(req, res) => {
 router.get('/create/', asyncHandler(async(req, res) => {
     res.render('project-new-form');
 }));
+
 //all other routes------------------------------------------------
 router.use((req, res) => {
     res.render('error-page');
