@@ -13,24 +13,29 @@ const { check } = require('express-validator');
 
 const validateUsername = [
     check('username', 'Please enter a username.')
-    .exists({ checkFalsy: true })
+        .exists({ checkFalsy: true })
 ]
 
 const validateAuthFields = [
     check('username', 'Username must be between 5 and 50 characters long.')
-    .isLength({ min: 5, max: 50 }),
+        .isLength({ min: 5, max: 50 }),
     check('email', 'Enter a valid email address.')
-    .exists({ checkFalsy: true })
-    .isEmail(),
+        .exists({ checkFalsy: true })
+        .isEmail(),
     check('password', 'Password must be 6 or more characters.')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 6, max: 70 }),
+        .exists({ checkFalsy: true })
+        .isLength({ min: 6, max: 70 }),
     check('password2', 'Confirm password field must have the same value as the password field.')
-    .exists({ checkFalsy: true })
-    .custom((value, { req }) => value === req.body.password),
+        .exists({ checkFalsy: true })
+        .custom((value, { req }) => value === req.body.password),
 ]
 
-router.get('/', (req, res) => {
+router.get('/', routeHandler(async (req, res) => {
+    const users = await User.findAll();
+    res.json({ users });
+}))
+
+//router.get('/', (req, res) => {//delete this route?
     //check if token exists in cookies
     //if so, check that it is a valid token
     //jwt.decode(token) returns payload if valid
@@ -40,7 +45,7 @@ router.get('/', (req, res) => {
     res.send('from users router');
 })
 
-router.post('/', validateUsername, validateAuthFields, handleValidationErrors, routeHandler(async(req, res, next) => {
+router.post('/', validateUsername, validateAuthFields, handleValidationErrors, routeHandler(async (req, res, next) => {
     const { username, email, password, countryId, aboutYouId } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, email, hashedPassword, countryId, aboutYouId });
@@ -50,7 +55,7 @@ router.post('/', validateUsername, validateAuthFields, handleValidationErrors, r
     res.json({ id: user.id, token });
 }));
 
-router.post('/token', validateUsername, handleValidationErrors, routeHandler(async(req, res, next) => { //for signing in
+router.post('/token', validateUsername, handleValidationErrors, routeHandler(async (req, res, next) => { //for signing in
     const { username, password } = req.body;
     const user = await User.findOne({
         where: {
