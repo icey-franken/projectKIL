@@ -16,3 +16,7 @@ body {
     padding-left: 500px;
     padding-right: 500px;
 }
+
+.hidden {
+    display: none;
+}

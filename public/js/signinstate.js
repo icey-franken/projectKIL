@@ -3,19 +3,25 @@ document.addEventListener('DOMContentLoaded', async() => {
     const signUpLink = document.querySelector('#signUpLink');
     const logoutLink = document.querySelector('#logoutLink');
 
-    const tokens = document.cookie.split(';').filter(cookie => cookie.slice(0, 6) === 'token=').map(token => token.slice(6));
-    console.log(tokens);
-    // tokenArr.forEach()
-    // console.log(tokens);
-
-    //how to find if user is logged in? Set as boolean
-    // if (userSignedIn) {
-    //     loginLink.classList.add('hidden');
-    //     signUpLink.classList.add('hidden');
-    //     logoutLink.classList.remove('hidden');
-    // } else {
-    //     loginLink.classList.remove('hidden');
-    //     signUpLink.classList.remove('hidden');
-    //     logoutLink.classList.add('hidden');
-    // }
+    logoutLink.addEventListener('click', async(e) => {
+        await fetch(`/api/users/logout`);
+    })
+    const cookies = document.cookie;
+    const res = await fetch(`/api/users/signinstate`, {
+        method: 'post',
+        body: JSON.stringify({ cookies }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const { userSignedIn } = await res.json();
+    if (userSignedIn) {
+        loginLink.classList.add('hidden');
+        signUpLink.classList.add('hidden');
+        logoutLink.classList.remove('hidden');
+    } else {
+        loginLink.classList.remove('hidden');
+        signUpLink.classList.remove('hidden');
+        logoutLink.classList.add('hidden');
+    }
 })

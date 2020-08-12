@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
 	head
-		script(src='/public/js/signinstate.js' type='module')
+		script(src='/public/js/signinstate.js' type='module' defer)
 		block head
 		title DESTRUCTABLES
 		meta(charset='utf-8')
@@ -24,9 +24,9 @@ html(lang='en')
 						a(class="nav-link" href="#") Cat 4
 					li(class="nav-item active")
 						a(class="nav-link" href="#") Cat 5
-				a(class="nav-link" href="/login" id='loginLink') Login
-				a(class="nav-link" href="/signup" id='signUpLink') Sign Up
-				a(class="nav-link hidden" href="/logout" id='logoutLink') Logout
+				a(class="nav-link hidden" href="/login" id='loginLink') Login
+				a(class="nav-link hidden" href="/signup" id='signUpLink') Sign Up
+				a(class="nav-link hidden" href='/projects' id='logoutLink') Logout
 			div(class="navbar  navbar-expand-md navbar-light bg-light")
 				a(class="navbar-brand" href="/") LOGO
 				ul(class="navbar-nav mr-auto")
