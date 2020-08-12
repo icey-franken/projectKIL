@@ -11,15 +11,12 @@ const getUserToken = async(user) => {
 
 const checkUserToken = async(tokens) => {
     return tokens.some(async(token) => {
-        try {
-            const data = await jwt.verify(token, secret);
-            console.log('----------------', data);
-            if (data.id && data.username && data.iat && data.exp) return true;
-            else return false;
-        } catch (e) {
-            console.log('inner e', e)
-            return false;
-        }
+        await jwt.verify(token, secret);
+        // try {
+        //     // return (data.id && data.username && data.iat && data.exp)
+        // } catch (e) {
+        //     return false;
+        // }
     })
 }
 

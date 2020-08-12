@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', async() => {
     const loginLink = document.querySelector('#loginLink');
     const signUpLink = document.querySelector('#signUpLink');
     const logoutLink = document.querySelector('#logoutLink');
+
+    logoutLink.addEventListener('click', async(e) => {
+        await fetch(`/api/users/logout`);
+    })
     const cookies = document.cookie;
     const res = await fetch(`/api/users/signinstate`, {
         method: 'post',
@@ -11,8 +15,6 @@ document.addEventListener('DOMContentLoaded', async() => {
         }
     });
     const { userSignedIn } = await res.json();
-    console.log(userSignedIn);
-    console.log(cookies);
     if (userSignedIn) {
         loginLink.classList.add('hidden');
         signUpLink.classList.add('hidden');

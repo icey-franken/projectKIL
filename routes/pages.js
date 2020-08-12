@@ -12,9 +12,9 @@ router.get('/login', asyncHandler(async(req, res) => {
     res.render('login');
 }));
 
-router.get('/logout', asyncHandler(async(req, res) => {
-    res.render('logout');
-}));
+// router.get('/logout', asyncHandler(async(req, res) => {
+//     res.render('logout');
+// }));
 
 //member routes------------------------------------------------
 router.get('/member/:userId', asyncHandler(async(req, res) => {
