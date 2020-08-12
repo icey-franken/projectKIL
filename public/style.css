@@ -28,3 +28,8 @@ body {
 #discussion-box_buttons-inputs{
     min-height: 200px;
 }
+
+.hidden {
+    display: none;
+}
+

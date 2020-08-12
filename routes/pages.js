@@ -1,47 +1,57 @@
 const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('../utils')
-const { Country, AboutYou, Project, User } = require("../db/models")
 
-router.get('/login', (req, res) => {
-    res.render('login');
-})
-
+//consider adding account before signup, login, and logout so we can have a single route handler the those three routes.
+//'account' routes------------------------------------------------
 router.get('/signup', asyncHandler(async(req, res) => {
-    //!!!!!move these fetches to a public/js/signup.js file that will render these on the page.
-    // Will have to make changes to signup.pug file as well.
-    // const countries = await Country.findAll();
-    // const aboutYous = await AboutYou.findAll();
-    // console.log('countries', countries[0].id);
-    // console.log('aboutYous', aboutYous[0]);
-    // //
-    res.render('signup')
+    res.render('signup');
 }));
 
+router.get('/login', asyncHandler(async(req, res) => {
+    res.render('login');
+}));
 
+// router.get('/logout', asyncHandler(async(req, res) => {
+//     res.render('logout');
+// }));
+
+//member routes------------------------------------------------
+router.get('/member/:userId', asyncHandler(async(req, res) => {
+    res.render('user-page');
+}));
+
+//!!!STRETCH
+router.get('/member/:id/settings', asyncHandler(async(req, res) => {
+    res.render('user-settings-page');
+}));
+
+//projects routes------------------------------------------------
 router.get('/projects', asyncHandler(async(req, res) => {
-    // const projects = await Project.findAll({
-    //     include: User
-    // })
     res.render('projects-home-page');
 }));
 
-router.get('/projects/:id', asyncHandler(async(req, res) => {
-
-    // const project = await fetch('/api/projects/:id');
-    // console.log(project);
-    // const project = await Project.findOne({
-    //     where: {
-    //         id: projectId
-    //     },
-    //     include: User
-    // })
-    // const projectId = parseInt(req.params.id, 10);
-    const projectId = parseInt(req.params.id, 10);
+router.get('/projects/:projectId', asyncHandler(async(req, res) => {
+    const projectId = parseInt(req.params.projectId, 10);
     res.render('project-view-page', { projectId });
 }));
 
+router.get('/editDestructable/new/', asyncHandler(async(req, res) => {
+    res.render('project-new-form')
+}))
+
+router.get('/editDestructable/:projectId/', asyncHandler(async(req, res) => {
+    res.render('project-edit-form')
+}))
+
+//all other routes------------------------------------------------
 router.use((req, res) => {
     res.render('error-page');
 });
+
+
+
+
+
+
 module.exports = router;

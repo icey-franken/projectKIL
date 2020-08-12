@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 const jwt = require('jsonwebtoken');
 const { secret, expiresIn } = require('../../config').jwtConfig
 const { routeHandler, handleValidationErrors } = require('../utils');
-const { getUserToken } = require('../utils/auth')
+const { getUserToken, checkUserToken } = require('../utils/auth')
 
 const { check } = require('express-validator');
 
@@ -35,11 +35,22 @@ router.get('/', routeHandler(async (req, res) => {
     res.json({ users });
 }))
 
+//router.get('/', (req, res) => {//delete this route?
+    //check if token exists in cookies
+    //if so, check that it is a valid token
+    //jwt.decode(token) returns payload if valid
+    //take user id from payload and verify it exists
+    //if it exists, return true or something
+    // const user = await User.fin
+    res.send('from users router');
+})
+
 router.post('/', validateUsername, validateAuthFields, handleValidationErrors, routeHandler(async (req, res, next) => {
     const { username, email, password, countryId, aboutYouId } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, email, hashedPassword, countryId, aboutYouId });
-    const token = getUserToken(user);
+    const token = await getUserToken(user);
+    console.log('token from users.js', token);
     res.cookie('token', token, { maxAge: expiresIn * 1000 });
     res.json({ id: user.id, token });
 }));
@@ -63,6 +74,18 @@ router.post('/token', validateUsername, handleValidationErrors, routeHandler(asy
     const token = await getUserToken(user);
     res.cookie('token', token, { maxAge: expiresIn * 1000 });
     res.json({ id: user.id, token });
+}));
+
+router.post('/signinstate', routeHandler(async(req, res) => {
+    const { cookies } = req.body;
+    const tokens = cookies.split(';').filter(cookie => cookie.slice(0, 6) === 'token=').map(token => token.slice(6));
+    const signInState = await checkUserToken(tokens);
+    res.json({ userSignedIn: signInState });
+}))
+
+//this route should destroy the token belonging to signed in user
+router.get('/logout', routeHandler(async(req, res) => {
+    res.clearCookie('token').end();
 }));
 
 router.post('/', (req, res, next) => { //for signing up

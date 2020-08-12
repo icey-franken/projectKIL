@@ -11,6 +11,12 @@ const { check } = require('express-validator');
 //CREATE
 // /projects/create -- this route leads to project creation page (leads to new project form)
 // /projects/edit/publish/:projectId -- this route adds a newly created project to our database (on 'submit' of new project form)
+router.post('/new', asyncHandler(async(req, res) => {
+    const { name } = req.body;
+    console.log(name);
+    const project = await Project.create({ name });
+    res.json({ project })
+}))
 
 //READ
 router.get('/', asyncHandler(async(req, res) => {
