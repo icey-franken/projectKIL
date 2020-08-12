@@ -4,3 +4,11 @@ append head
     script(src='/public/js/projects-new-form.js' type='module')
 
 block content
+    div.new-project-container
+        #errors-container
+        h1 What do you want to destroy?
+        form(class="new-project-form")
+            label I Destroyed This:
+            input(type="text" name="title" placeholder="title")
+            button submit
+

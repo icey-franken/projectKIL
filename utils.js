@@ -8,5 +8,4 @@ const asyncHandler = (handler) => (req, res, next) => {
 
 
 
-
 module.exports = { asyncHandler, }; //add handleValidationErrors
