@@ -5,5 +5,10 @@ append head
 
 
 block content
-	.project-container
+	.projects-container
 		each project in projects
+			a(style='color:inherit;text-decoration:none' href=`/projects/${project.id}`)
+				p.project-container
+					.project-user(style='color:white')= project.User.username
+					.project-name(style='color:white')= project.name
+					.project-createdAt(style='color:white')=project.createdAt

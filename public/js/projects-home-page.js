@@ -1,9 +1,15 @@
-const projectContainer = document.querySelector('.project-container');
+document.addEventListener('DOMContentLoaded', async() => {
 
-const projects = async() => {
+    const projectContainer = document.querySelector('.project-container');
     const res = await fetch('/api/projects');
     const { projects } = await res.json();
     console.log(projects);
     console.log(projects[0].User.username)
-}
-projects();
+
+
+
+
+
+
+
+});

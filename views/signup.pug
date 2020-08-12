@@ -21,13 +21,7 @@ block content
 					input(class='form-control' type='password' name='password2' placeholder='Confirm Password'  required)
 				.row
 					div(class="col-md-5 mb-3")
-						select(class="custom-select d-block w-100" name='aboutYouId')
-							option(value=null) About You
-							each aboutYou in aboutYous
-								option(name='aboutYouId' value=aboutYou.id)= aboutYou.description
+						select(class="custom-select d-block w-100" name='aboutYouId' id='about-you-dropdown')
 					div(class="col-md-5 mb-3")
-						select(class="custom-select d-block w-100" name='countryId')
-							option(value=null) Country
-							each country in countries
-								option(value=country.id) #{country.name} (#{country.code})
+						select(class="custom-select d-block w-100" name='countryId' id='country-dropdown')
 				button(class="btn btn-lg btn-primary btn-block" type='submit') Sign Up

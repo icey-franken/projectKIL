@@ -28,9 +28,9 @@ router.get('/', asyncHandler(async(req, res) => {
 router.get('/:projectId(\\d+)', asyncHandler(async(req, res) => {
     const projectId = parseInt(req.params.projectId, 10);
     const project = await Project.findByPk(projectId, {
-        include: [], //other bullshit for eager loading
+        include: [{ model: 'User' }], //other bullshit for eager loading
     });
-    res.render('project-view-page', { project, title: project.name }); //specify the title (in the tab) to be the project name
+    res.json({ project }); //specify the title (in the tab) to be the project name
 }))
 
 
