@@ -13,9 +13,12 @@ const csrfProtection = require('csurf')({ cookie: true });
 
 const apiRouter = require('./routes/api');
 const pagesRouter = require('./routes/pages');
+const commentsRouter = require('./routes/comments');
 app.use('/public', express.static('public'));
 app.use('/api', apiRouter);
+app.use('/comments', commentsRouter);
 app.use('/', pagesRouter);
+
 
 //following two lines may be unnecessary
 // const projectsRouter = require('./routes/projects');

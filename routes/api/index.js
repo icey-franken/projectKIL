@@ -11,6 +11,8 @@ const countriesRouter = require('./countries');
 router.use('/countries', countriesRouter);
 const aboutYousRouter = require('./aboutyous');
 router.use('/aboutYous', aboutYousRouter);
+const commentsRouter = require('./comments');
+router.use('/comments', commentsRouter);
 
 router.use((err, req, res, next) => {
     if (err instanceof ValidationError) {

@@ -1,0 +1,9 @@
+extends layout
+
+append head
+    script(src='/public/js/comments.js' type='module' defer)
+
+block content
+    div(class="my-3 p-3 bg-white rounded box-shadow" id="display-comments-container")
+        div(class="text-center mb-4")
+            h2#display-comments_number-of-comments LOADING
