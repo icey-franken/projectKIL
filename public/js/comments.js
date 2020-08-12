@@ -79,7 +79,6 @@ async function discussionElementInteractions() {
         if (res.ok) console.log('success');
         else console.log('failed')
         discussionBoxButtonsInputs.innerHTML = '<div class="text-center"><button class="btn btn-secondary w-25 m-3 py-5" id="button_add-tip">Add Tip</button><button class="btn btn-secondary w-25 m-3 py-5" id="button_ask-question">Ask Question</button><button class="btn btn-secondary w-25 m-3 py-5" id="button_post-comment">Post Comment</button></div>'
-        const discusionBoxTextArea = document.getElementById('discussion-box_text-area');
 
         commentsDisplayContainer.innerHTML = '';
         createCommentElements();

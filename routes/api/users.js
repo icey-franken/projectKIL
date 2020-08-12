@@ -36,14 +36,14 @@ router.get('/', routeHandler(async (req, res) => {
 }))
 
 //router.get('/', (req, res) => {//delete this route?
-    //check if token exists in cookies
-    //if so, check that it is a valid token
-    //jwt.decode(token) returns payload if valid
-    //take user id from payload and verify it exists
-    //if it exists, return true or something
-    // const user = await User.fin
-    res.send('from users router');
-})
+//check if token exists in cookies
+//if so, check that it is a valid token
+//jwt.decode(token) returns payload if valid
+//take user id from payload and verify it exists
+//if it exists, return true or something
+// const user = await User.fin
+//     res.send('from users router');
+// })
 
 router.post('/', validateUsername, validateAuthFields, handleValidationErrors, routeHandler(async (req, res, next) => {
     const { username, email, password, countryId, aboutYouId } = req.body;
@@ -76,7 +76,7 @@ router.post('/token', validateUsername, handleValidationErrors, routeHandler(asy
     res.json({ id: user.id, token });
 }));
 
-router.post('/signinstate', routeHandler(async(req, res) => {
+router.post('/signinstate', routeHandler(async (req, res) => {
     const { cookies } = req.body;
     const tokens = cookies.split(';').filter(cookie => cookie.slice(0, 6) === 'token=').map(token => token.slice(6));
     const signInState = await checkUserToken(tokens);
@@ -84,7 +84,7 @@ router.post('/signinstate', routeHandler(async(req, res) => {
 }))
 
 //this route should destroy the token belonging to signed in user
-router.get('/logout', routeHandler(async(req, res) => {
+router.get('/logout', routeHandler(async (req, res) => {
     res.clearCookie('token').end();
 }));
 
