@@ -28,7 +28,17 @@ module.exports = {
                 images: ['blank stare3'],
                 categoryId: 5,
                 userId: 3
+            },
+            {
+                name: 'Argh She BLOWS',
+                intro: 'We are learning how to blow some things up...pirate style',
+                supplies: ['fuse', 'lighter', 'ear muffs'],
+                destructions: ['get lit', 'do things', 'fire in the hole'],
+                images: ['pirate ship'],
+                categoryId: 4,
+                userId: 2
             }
+
         ], {
             fields: ['name', 'intro', 'supplies', 'destructions', 'images', 'categoryId', 'userId']
         });

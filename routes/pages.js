@@ -31,11 +31,18 @@ router.get('/projects', asyncHandler(async(req, res) => {
     res.render('projects-home-page');
 }));
 
-router.get('/projects/:id', asyncHandler(async(req, res) => {
-    const projectId = parseInt(req.params.id, 10);
+router.get('/projects/:projectId', asyncHandler(async(req, res) => {
+    const projectId = parseInt(req.params.projectId, 10);
     res.render('project-view-page', { projectId });
 }));
 
+router.get('/editDestructable/new/', asyncHandler(async(req, res) => {
+    res.render('project-new-form')
+}))
+
+router.get('/editDestructable/:projectId/', asyncHandler(async(req, res) => {
+    res.render('project-edit-form')
+}))
 
 //all other routes------------------------------------------------
 router.use((req, res) => {

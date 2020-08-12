@@ -20,7 +20,7 @@ module.exports = {
             },
             destructions: {
                 type: Sequelize.ARRAY(Sequelize.TEXT),
-                allowNull: false
+                // allowNull: false
             },
             images: {
                 type: Sequelize.ARRAY(Sequelize.TEXT)
