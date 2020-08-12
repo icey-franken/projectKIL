@@ -31,6 +31,12 @@ const validateAuthFields = [
 ]
 
 router.get('/', (req, res) => {
+    //check if token exists in cookies
+    //if so, check that it is a valid token
+    //jwt.decode(token) returns payload if valid
+    //take user id from payload and verify it exists
+    //if it exists, return true or something
+    // const user = await User.fin
     res.send('from users router');
 })
 
