@@ -4,6 +4,19 @@ append head
     script(src='/public/js/comments.js' type='module' defer)
 
 block content
-    div(class="my-3 p-3 bg-white rounded box-shadow" id="display-comments-container")
-        div(class="text-center mb-4")
-            h2#display-comments_number-of-comments LOADING
+    div(class="container")
+        div(class="jumbotron mx-5")
+            div(class="d-flex justify-content-around" id="discussion-box")
+                img(class="poster" src="https://cdn1.vectorstock.com/i/thumb-large/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg")
+                div(class="bg-light p-3 mx-4 flex-grow-1" id="discussion-box_buttons-inputs")
+                    div(class="text-center")
+                        button(class="btn btn-secondary w-25 m-3 py-5" id="button_add-tip") Add Tip
+                        button(class="btn btn-secondary w-25 m-3 py-5" id="button_ask-question") Ask Question
+                        button(class="btn btn-secondary w-25 m-3 py-5" id="button_post-comment") Post Comment
+            div(class="text-right")
+                button(class="btn btn-secondary m-2") Add Images
+                button(class="btn btn-primary m-2" id="discussion-box_post-button") Post
+        div(class="px-5 bg-white rounded box-shadow ")
+            div(class="text-center p-5")
+                h2#display-comments_number-of-comments LOADING
+            div(id="display-comments-container")

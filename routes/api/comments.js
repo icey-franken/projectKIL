@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, handleValidationErrors } = require('../../utils');
+const { asyncHandler } = require('../../utils');
 const { Comment, User, Project } = require('../../db/models');
 const { check } = require('express-validator');
 
@@ -11,15 +11,31 @@ const { check } = require('express-validator');
 //CREATE
 // /projects/create -- this route leads to project creation page (leads to new project form)
 // /projects/edit/publish/:projectId -- this route adds a newly created project to our database (on 'submit' of new project form)
+const validateComment = check("comment").exists({ checkFalsy: true }).withMessage("Comment can't be empty.");
 
+router.post(
+    "/",
+    validateComment,
+    asyncHandler(async (req, res) => {
+        const message = req.body.comment;
+        const { projectId } = req.body;
+        const comment = await Comment.create({ comment: message, projectId, userId: 1 });
+        res.json({ comment });
+    })
+);
 //READ
 router.get('/', asyncHandler(async (req, res) => {
-    const comment = await Comment.findAll();
-    res.json({ comment });
+    const comments = await Comment.findAll();
+    res.json({ comments });
 }))
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
-    const comment = await Comment.findByPk(req.params.id);
+    const { id } = req.params;
+    const comment = await Comment.findAll({
+        where: {
+            id
+        }
+    });
     res.json({ comment });
 }))
 
@@ -27,8 +43,7 @@ router.get('/project/:id(\\d+)', asyncHandler(async (req, res) => {
     const { id } = req.params;
     const comments = await Comment.findAll({
         include: [{ model: Project }],
-        where: { projectId: id },
-        limit: 25,
+        where: { projectId: id }
     });
     res.json({ comments });
 }))
@@ -50,12 +65,12 @@ router.get('/user/:id(\\d+)', asyncHandler(async (req, res) => {
 // /projects/:projectId/:projectName -- editing an existing project. Unsure about this - should projectId be aliased to a projectName instead, or should we provide both for clarity?
 
 //this route simply gets the form in which users can edit their project.
-router.get('/edit/:projectId(\\d+)', asyncHandler(async (req, res) => {
-    const projectId = parstInt(req.params.projectId, 10);
-    const project = awaitProject.findByPk(projectId, {
+router.get('/edit/:id(\\d+)', asyncHandler(async (req, res) => {
+    const commentId = parstInt(req.params.id, 10);
+    const comment = await Comment.findByPk(commentId, {
         include: [], //eager loading
     });
-    res.render('project-edit-form', { project, title: `Edit ${project.name}` });
+    res.json({ comment });
 }))
 
 //When users make edits and save them they are 'submitting the project-edit-form' - it is a post request to the same route.
