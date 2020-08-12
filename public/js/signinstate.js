@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', async() => {
         }
     });
     const { userSignedIn } = await res.json();
+    console.log(userSignedIn);
+    console.log(cookies);
     if (userSignedIn) {
         loginLink.classList.add('hidden');
         signUpLink.classList.add('hidden');
