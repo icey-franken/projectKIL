@@ -1,13 +1,13 @@
 doctype html
 html(lang='en')
 	head
-		script(src='/public/js/signinstate.js' type='module')
+		script(src='/public/js/signinstate.js' type='module' defer)
 		block head
 		title DESTRUCTABLES
 		meta(charset='utf-8')
-		link(rel="stylesheet" href="../public/style.css")
 		link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
 		link(rel='icon' href='/public/favicon.ico' type='image/ico')
+		link(rel="stylesheet" href="../public/style.css")
 	body
 		header
 			div(class="navbar navbar-expand-md navbar-dark bg-dark")
@@ -24,8 +24,8 @@ html(lang='en')
 						a(class="nav-link" href="#") Cat 4
 					li(class="nav-item active")
 						a(class="nav-link" href="#") Cat 5
-				a(class="nav-link" href="/login" id='loginLink') Login
-				a(class="nav-link" href="/signup" id='signUpLink') Sign Up
+				a(class="nav-link hidden" href="/login" id='loginLink') Login
+				a(class="nav-link hidden" href="/signup" id='signUpLink') Sign Up
 				a(class="nav-link hidden" href="/logout" id='logoutLink') Logout
 			div(class="navbar  navbar-expand-md navbar-light bg-light")
 				a(class="navbar-brand" href="/") LOGO

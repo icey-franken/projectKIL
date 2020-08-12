@@ -75,7 +75,8 @@ router.post('/signinstate', routeHandler(async(req, res) => {
     const { cookies } = req.body;
     const tokens = cookies.split(';').filter(cookie => cookie.slice(0, 6) === 'token=').map(token => token.slice(6));
     const signInState = await checkUserToken(tokens);
-    res.json({ signInState });
+    console.log(signInState);
+    res.json({ userSignedIn: signInState });
 }))
 
 router.post('/', (req, res, next) => { //for signing up

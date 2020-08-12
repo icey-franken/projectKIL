@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', async() => {
     const loginLink = document.querySelector('#loginLink');
     const signUpLink = document.querySelector('#signUpLink');
     const logoutLink = document.querySelector('#logoutLink');
-
     const cookies = document.cookie;
     const res = await fetch(`/api/users/signinstate`, {
         method: 'post',
