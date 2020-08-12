@@ -7,6 +7,10 @@ const usersRouter = require('./users');
 router.use('/users', usersRouter);
 const projectsRouter = require('./projects');
 router.use('/projects', projectsRouter);
+const countriesRouter = require('./countries');
+router.use('/countries', countriesRouter);
+const aboutYousRouter = require('./aboutyous');
+router.use('/aboutYous', aboutYousRouter);
 
 router.use((err, req, res, next) => {
     if (err instanceof ValidationError) {

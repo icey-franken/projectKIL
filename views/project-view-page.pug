@@ -1,11 +1,8 @@
 extends layout.pug
 
 append head
-	script(src='/public/js/project-view-page.js' type='module' defer)
+	script(src='/public/js/project-view-page.js' type='module')
 
 
 block content
-	p.project-container
-		.project-user(style='color:white')= project.User.username
-		.project-name(style='color:white')= project.name
-		.project-createdAt(style='color:white')=project.createdAt
+	.project-container(id=`${projectId}`)

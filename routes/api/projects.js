@@ -13,24 +13,21 @@ const { check } = require('express-validator');
 // /projects/edit/publish/:projectId -- this route adds a newly created project to our database (on 'submit' of new project form)
 
 //READ
-
-// /projects/ this is the projects homepage - we will display a limited number of various different projects, maybe sorted by popularity or views or whatever
 router.get('/', asyncHandler(async(req, res) => {
-    const projectsArr = await Project.findAll({
-        include: [{ model: User }], //eager loading - eventually we'll want user and comments and views and channel and all that shit to come with;
-        limit: 25, //can be whatever - this is however many we want on a page. We could have this be a variable submitted by user so that can choose in a dropdown, for example, to see 10 projects per page, 25 per page, 50, 100, etc.
-    }); //we have a generic error handler in app.js that should take care of most things. I think validations are more important for resource creating/updating/deleting
-    // res.render('projects-home-page', { projectsArr }); //something like this
-    res.json({ projects: projectsArr });
+    const projects = await Project.findAll({
+        include: [{ model: User }],
+        limit: 25,
+    });
+    res.json({ projects });
 }))
 
-// /projects/id/:projectName -- I think projects/id should point to the desired project - I think adding :projectName is for user clarity. Basically based on project id we will know the exact project, and using that we grab the projectName and put it in url so user knows the name? This is a GET request for a specific project id
-router.get('/:projectId(\\d+)', asyncHandler(async(req, res) => {
-    const projectId = parseInt(req.params.projectId, 10);
+
+router.get('/:id(\\d+)', asyncHandler(async(req, res) => {
+    const projectId = parseInt(req.params.id, 10);
     const project = await Project.findByPk(projectId, {
-        include: [{ model: 'User' }], //other bullshit for eager loading
+        include: [{ model: User }],
     });
-    res.json({ project }); //specify the title (in the tab) to be the project name
+    res.json({ project });
 }))
 
 

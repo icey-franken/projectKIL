@@ -1,19 +1,26 @@
 //create demo user/password and prevent page refresh on login submission event
 document.addEventListener('DOMContentLoaded', async() => {
-
-    // const countries = await fetch('');
-    // const aboutYous = await AboutYou.findAll();
-    // console.log(aboutYous);
-    const countries = [{ name: 'USA', code: 'US' }, { name: 'China', code: 'CH' }]
-        //need to flesh this out so dropdowns work!
+    //update countries dropdown
+    const res1 = await fetch('/api/countries');
+    const { countries } = await res1.json();
     const countryDropdown = document.querySelector('#country-dropdown');
-    const aboutYouDropdown = document.querySelector('#about-you-dropdown');
     const countriesHtml = countries.map(country => {
         return `<option value=${country.id}>${country.name} (${country.code})</option>`
     });
     countriesHtml.unshift(`<option value=null>Country</option>`)
     countryDropdown.innerHTML = countriesHtml.join('');
 
+    //update aboutYous dropdown
+    const res2 = await fetch('/api/aboutYous');
+    const { aboutYous } = await res2.json();
+    const aboutYouDropdown = document.querySelector('#about-you-dropdown');
+    const aboutYousHtml = aboutYous.map(aboutYou => {
+        return `<option value=${aboutYou.id}>${aboutYou.description}</option>`
+    })
+    aboutYousHtml.unshift(`<option value=null>About You</option>`)
+    aboutYouDropdown.innerHTML = aboutYousHtml.join('');
+
+    //grab input from signup form
     const form = document.querySelector('#signup-form');
     form.addEventListener('submit', async(e) => {
         e.preventDefault();
