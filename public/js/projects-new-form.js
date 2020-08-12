@@ -14,15 +14,13 @@ document.addEventListener('DOMContentLoaded', async() => {
             }
         })
         const data = await res.json();
-        console.log(res.ok);
         if (!res.ok) {
             const { message } = data;
             const errorsContainer = document.querySelector('#errors-container');
             errorsContainer.innerHTML = message;
             return;
         }
-        const projectId = data.id;
-        console.log(projectId);
-        window.location.href = `/editDestructable/${projectId}`;
+        const { project } = data;
+        window.location.href = `/editDestructable/${project.id}`;
     })
 })
