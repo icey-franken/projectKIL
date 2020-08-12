@@ -13,7 +13,7 @@ const { check } = require('express-validator');
 // /projects/edit/publish/:projectId -- this route adds a newly created project to our database (on 'submit' of new project form)
 router.post('/new', asyncHandler(async(req, res) => {
     const { name } = req.body;
-    console.log(name);
+    console.log(name); //this is what the console.log is
     const project = await Project.create({ name });
     res.json({ project })
 }))
