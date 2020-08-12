@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 const jwt = require('jsonwebtoken');
 const { secret, expiresIn } = require('../../config').jwtConfig
 const { routeHandler, handleValidationErrors } = require('../utils');
-const { getUserToken } = require('../utils/auth')
+const { getUserToken, checkUserToken } = require('../utils/auth')
 
 const { check } = require('express-validator');
 
@@ -44,7 +44,8 @@ router.post('/', validateUsername, validateAuthFields, handleValidationErrors, r
     const { username, email, password, countryId, aboutYouId } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, email, hashedPassword, countryId, aboutYouId });
-    const token = getUserToken(user);
+    const token = await getUserToken(user);
+    console.log('token from users.js', token);
     res.cookie('token', token, { maxAge: expiresIn * 1000 });
     res.json({ id: user.id, token });
 }));
@@ -69,6 +70,13 @@ router.post('/token', validateUsername, handleValidationErrors, routeHandler(asy
     res.cookie('token', token, { maxAge: expiresIn * 1000 });
     res.json({ id: user.id, token });
 }));
+
+router.post('/signinstate', routeHandler(async(req, res) => {
+    const { cookies } = req.body;
+    const tokens = cookies.split(';').filter(cookie => cookie.slice(0, 6) === 'token=').map(token => token.slice(6));
+    const signInState = await checkUserToken(tokens);
+    res.json({ signInState });
+}))
 
 router.post('/', (req, res, next) => { //for signing up
 

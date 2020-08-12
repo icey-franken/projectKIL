@@ -36,7 +36,9 @@ router.get('/projects/:id', asyncHandler(async(req, res) => {
     res.render('project-view-page', { projectId });
 }));
 
-
+router.get('/create/', asyncHandler(async(req, res) => {
+    res.render('project-new-form');
+}));
 //all other routes------------------------------------------------
 router.use((req, res) => {
     res.render('error-page');
