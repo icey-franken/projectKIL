@@ -10,12 +10,25 @@ block content
                 img(class="poster" src="https://cdn1.vectorstock.com/i/thumb-large/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg")
                 div(class="bg-light p-3 mx-4 flex-grow-1" id="discussion-box_buttons-inputs")
                     div(class="text-center" id="discussion-box_buttons")
-                        button(class="btn btn-secondary w-25 m-3 py-5" id="button_add-tip") Add Tip
-                        button(class="btn btn-secondary w-25 m-3 py-5" id="button_ask-question") Ask Question
-                        button(class="btn btn-secondary w-25 m-3 py-5" id="button_post-comment") Post Comment
+                        button(class="btn btn-secondary w-25 m-3 py-4" id="button_add-tip") Add Tip
+                            div(class="m-2")
+                                svg.bi.bi-clipboard-plus(width='2em' height='2em' viewbox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                                    path(fill-rule='evenodd' d='M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z')
+                                    path(fill-rule='evenodd' d='M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3zM8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z')
+
+                        button(class="btn btn-secondary w-25 m-3 py-4" id="button_ask-question") Ask Question
+                            div(class="m-2")
+                                svg.bi.bi-question-circle(width='2em' height='2em' viewbox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                                    path(fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+                                    path(d='M5.25 6.033h1.32c0-.781.458-1.384 1.36-1.384.685 0 1.313.343 1.313 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.007.463h1.307v-.355c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.326 0-2.786.647-2.754 2.533zm1.562 5.516c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z')
+
+                        button(class="btn btn-secondary w-25 m-3 py-4" id="button_post-comment") Post Comment
+                            div(class="m-2")
+                                svg.bi.bi-chat-left-text-fill(width='2em' height='2em' viewbox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg')
+                                    path(fill-rule='evenodd' d='M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z')
                     textarea(class="w-100 h-100 hidden" id="discussion-box_text-area")
             div(class="text-right")
-                button(class="btn btn-primary m-4" id="discussion-box_post-button") Post
+                button(class="btn btn-primary m-4 btn-lg" id="discussion-box_post-button" disabled) Post
         div(class="px-5 bg-white rounded box-shadow ")
             div(class="text-center p-5")
                 h2#display-comments_number-of-comments LOADING

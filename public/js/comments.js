@@ -83,14 +83,12 @@ async function fetchAllUsers() {
 async function initialSetup() {
     users = await fetchAllUsers();
     comments = await fetchComments(currentRoute);
-    console.log(comments);
     numberOfCommentsDisplay.innerHTML = `${comments.length} Discussions`
     createCommentElements();
     discussionElementInteractions();
 }
 
 async function createCommentElements() {
-    console.log(comments)
     comments.forEach(function (comment) {
         const userId = comment.userId - 1;
         const username = users[userId].username;
@@ -209,11 +207,20 @@ async function discussionElementInteractions() {
         discussionBoxButtons.classList.add('hidden');
         discusionBoxTextArea.classList.remove('hidden');
         discusionBoxTextArea.focus();
+        if (discusionBoxTextArea.value) discussionBoxPostButton.disabled = false;
     });
 
     discusionBoxTextArea.addEventListener('blur', function (e) {
         discusionBoxTextArea.classList.add('hidden');
         discussionBoxButtons.classList.remove('hidden');
+
+        console.log("lost focus on text containter")
+        discussionBoxPostButton.disabled = true;
+    });
+    discusionBoxTextArea.addEventListener('input', function (e) {
+        if (discusionBoxTextArea.value) {
+            discussionBoxPostButton.disabled = false;
+        } else discussionBoxPostButton.disabled = true;
     });
     discussionBoxPostButton.addEventListener('click', async function (e) {
         const commentText = discusionBoxTextArea.value;
@@ -227,10 +234,11 @@ async function discussionElementInteractions() {
             if (res.ok) {
                 commentsDisplayContainer.innerHTML = '';
                 comments = await fetchComments(currentRoute);
+                discussionBoxPostButton.disabled = true;
                 numberOfCommentsDisplay.innerHTML = `${comments.length} Discussions`;
                 discusionBoxTextArea.value = '';
                 createCommentElements();
-                console.log('success');
+
             }
             else console.log('failed')
 
