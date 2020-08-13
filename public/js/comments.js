@@ -14,7 +14,7 @@ const discussionBoxButtons = document.getElementById("discussion-box_buttons");
 const currentPath = window.location.href;
 const currentRoute = currentPath.slice(31);
 const projectIdRoute = currentRoute.slice(8);
-
+console.log(currentRoute);
 //variables
 let comments;
 let users;
@@ -68,7 +68,7 @@ function timeDifference(current, previous) {
 }
 
 async function fetchComments(route) {
-    const res = await fetch(`/api/comments/${route}`);
+    const res = await fetch(`/api/comments/project/${route}`);
     const data = await res.json();
     const value = data.comments;
     return value;
