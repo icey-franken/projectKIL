@@ -73,6 +73,29 @@ main+.auth-container {
     min-height: 200px;
 }
 
+.btn-primary {
+    background-color: orange;
+    border: 1px solid orange;
+}
+
+.btn {
+    background-color: transparent;
+    border: 1px solid #ccc;
+}
+
+.btn,
+.btn-primary {
+    border-radius: 4px;
+    height: 40px;
+    transition: background-color 0.2s linear, border 0.2s linear;
+}
+
+.btn:hover,
+.btn-primary:hover {
+    background-color: darkorange;
+    border: 1px solid darkorange;
+}
+
 
 /* IDK HOW TO FIX THISS!!!!!!!!!!!!!! */
 
