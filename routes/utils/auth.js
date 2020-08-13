@@ -9,15 +9,41 @@ const getUserToken = async(user) => {
         secret, { expiresIn: parseInt(expiresIn, 10) });
 }
 
-const checkUserToken = async(tokens) => {
-    return tokens.some(async(token) => {
-        await jwt.verify(token, secret);
-        // try {
-        //     // return (data.id && data.username && data.iat && data.exp)
-        // } catch (e) {
-        //     return false;
-        // }
-    })
-}
+//this fn works - returns boolean of whether or not token is valid
+// const checkUserToken = async(tokens) => {
+//     return tokens.some(async(token) => {
+//         await jwt.verify(token, secret);
+//         // try {
+//         //     // return (data.id && data.username && data.iat && data.exp)
+//         // } catch (e) {
+//         //     return false;
+//         // }
+//     })
+// }
+
+//new checkUserToken that returns the token, with a helper function that tells who that token belongs to?
+//input is array of cookies, output is array of valid tokens
+async function checkUserToken(tokens) {
+    const validTokens = tokens.filter(async(token) => {
+        try {
+            return await jwt.verify(token, secret, err => {
+                if (err) throw err;
+                return true
+            });
+        } catch (err) { return false };
+    });
+    console.log('from jwt.decond', jwt.decode(validTokens[0]).id); //delete
+    // console.log('from get user id', getUserId(validTokens))
+    return validTokens[0];
+};
+
+// async function validateUserToken(token)
+
+async function getUserId(tokens) {
+    const userToken = checkUserToken(tokens);
+    const userId = jwt.decond(userToken).id;
+    return userId;
+};
+// const getUserId = async(tokens)
 
 module.exports = { getUserToken, checkUserToken }
