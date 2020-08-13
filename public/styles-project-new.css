@@ -37,7 +37,7 @@ div.new-project {
     /* background: black; */
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    color: white;
+    color: black;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     text-align: center;
     width: 500px;

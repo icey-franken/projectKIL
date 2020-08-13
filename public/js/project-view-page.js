@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', async() => {
     projectContainer.prepend(createdAtDiv);
     projectContainer.prepend(creatorDiv);
     projectContainer.prepend(titleDiv);
-    projectContainer.setAttribute('style', 'color:white');
 
     const editButton = document.querySelector('#edit');
     editButton.addEventListener('click', () => {
