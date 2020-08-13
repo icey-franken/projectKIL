@@ -20,22 +20,12 @@ app.use('/comments', commentsRouter);
 app.use('/', pagesRouter);
 
 
-//following two lines may be unnecessary
-// const projectsRouter = require('./routes/projects');
-// app.use('/projects', projectsRouter);
-
-
 // app.get("/", (req, res) => {
 //     res.send("Welcome to the express-sequelize-starter!");
 // });
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
-    // req.setTimeout(1000);
-    // res.setTimeout(1000);
-    // res.render('error-page');
-
-    //the following was from the express-sequelize-starter directory
     const err = new Error("The requested resource couldn't be found.");
     err.status = 404;
     next(err);

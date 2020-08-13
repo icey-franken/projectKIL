@@ -42,10 +42,8 @@ document.addEventListener('DOMContentLoaded', async() => {
             }
         })
         const data = await res.json();
-        console.log('data---------------------', data);
         if (!res.ok) {
             const { message, errors } = data;
-            console.log('message------------', message);
             const errorsContainer = document.querySelector('#errors-container');
             errorsContainer.innerHTML = '';
             for (let error of errors) {
