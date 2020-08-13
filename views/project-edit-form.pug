@@ -1,14 +1,32 @@
 extends layout.pug
 
 append head
-    script(src='/public/js/projects-edit-form.js' type='module')
+	script(src='/public/js/projects-edit-form.js' type='module')
+	link(rel='stylesheet' href='/public/styles-project-edit.css')
 
 block content
-    div.project-container
-        #errors-container
-        h1 What do you want to destroy?
-        form(class="edit-project-form" id=`${projectId}`)
-            label(for='name') I Destroyed This:
-            input(type="text" name="name" placeholder="Project Title")
-            label(for='')
-            button submit
+	.edit-container
+		#errors-container
+		#edit-header-container
+			#edit-header
+				button#edit-header__add-images + Click To Add Images
+			#edit-nav
+				#edit-nav__left-container
+					button#edit-nav__add Add
+					button#edit-nav__more More
+				#edit-nav__right-container
+					button#edit-nav__preview.ml-auto Full Preview
+					button#edit-nav__save.ml-auto Save
+					button#edit-nav__publish.ml-auto.btn-primary Publish
+		#edit-main
+			#edit-main__intro
+			h1 What do you want to destroy?
+			form(class="edit-project-form" id=`${projectId}`)
+				label(for='name') I Destroyed This:
+				input(type="text" name="name" placeholder="Project Title" id='edit-project-form__name')
+				label(for='')
+				button submit
+			#edit-main__step-1
+			#edit-main__step-2
+			#edit-main__footer
+				button#edit-main__add-step
