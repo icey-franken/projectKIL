@@ -8,81 +8,236 @@ const buttonAddTip = document.getElementById("button_add-tip");
 const buttonAskQuestion = document.getElementById("button_ask-question");
 const buttonPostComment = document.getElementById("button_post-comment");
 const discussionBoxPostButton = document.getElementById("discussion-box_post-button");
-
+const discusionBoxTextArea = document.getElementById('discussion-box_text-area');
+const discussionBoxButtons = document.getElementById("discussion-box_buttons");
 // Paths
 const currentPath = window.location.href;
 const currentRoute = currentPath.slice(31);
 const projectIdRoute = currentRoute.slice(8);
-console.log(projectIdRoute)
+
+//variables
+let comments;
+let users;
+
+function getTimestampFromDate(dateAndTime) {
+    const year = dateAndTime.slice(0, 4);
+    const month = dateAndTime.slice(5, 7);
+    const day = dateAndTime.slice(8, 10);
+    const hours = dateAndTime.slice(11, 13);
+    const minutes = dateAndTime.slice(14, 16);
+    const seconds = dateAndTime.slice(17, 19);
+    const milliseconds = dateAndTime.slice(20, 23);
+
+    // return milliseconds + (seconds * 1000) + (minutes * 60000) + (hours * 3600000) + (day * 86400000) + (month * 2592000000) + ((year - 1970) * 31536000000)
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}:${milliseconds}Z`
+}
+
+function timeDifference(current, previous) {
+
+    let msPerMinute = 60 * 1000;
+    let msPerHour = msPerMinute * 60;
+    let msPerDay = msPerHour * 24;
+    let msPerMonth = msPerDay * 30;
+    let msPerYear = msPerDay * 365;
+
+    let elapsed = current - previous;
+
+    if (elapsed < msPerMinute) {
+        return Math.round(elapsed / 1000) + ' seconds ago';
+    }
+
+    else if (elapsed < msPerHour) {
+        return Math.round(elapsed / msPerMinute) + ' minutes ago';
+    }
+
+    else if (elapsed < msPerDay) {
+        return Math.round(elapsed / msPerHour) + ' hours ago';
+    }
+
+    else if (elapsed < msPerMonth) {
+        return 'approximately ' + Math.round(elapsed / msPerDay) + ' days ago';
+    }
+
+    else if (elapsed < msPerYear) {
+        return 'approximately ' + Math.round(elapsed / msPerMonth) + ' months ago';
+    }
+
+    else {
+        return 'approximately ' + Math.round(elapsed / msPerYear) + ' years ago';
+    }
+}
 
 async function fetchComments(route) {
     const res = await fetch(`/api/comments/${route}`);
     const data = await res.json();
-    const { comments } = data;
-    return comments;
+    const value = data.comments;
+    return value;
 }
 
-async function createCommentElements() {
-    const comments = await fetchComments(currentRoute);
-
+async function fetchAllUsers() {
     const res = await fetch('/api/users');
     const data = await res.json();
     const { users } = data;
-
+    return users;
+}
+async function initialSetup() {
+    users = await fetchAllUsers();
+    comments = await fetchComments(currentRoute);
+    console.log(comments);
     numberOfCommentsDisplay.innerHTML = `${comments.length} Discussions`
+    createCommentElements();
+    discussionElementInteractions();
+}
+
+async function createCommentElements() {
+    console.log(comments)
     comments.forEach(function (comment) {
         const userId = comment.userId - 1;
         const username = users[userId].username;
         const commentDiv = document.createElement('div');
         const small = document.createElement('small');
+
+        const currentTimestamp = Date.now();
+        const commentTimestamp = new Date(comment.updatedAt).getTime();
+        const timeAgo = timeDifference(currentTimestamp, commentTimestamp)
         commentDiv.classList.add('media');
         commentDiv.classList.add('pt-3');
         commentDiv.classList.add("border-top");
+        commentDiv.id = (`comment-container-${comment.id}`)
         small.classList.add("text-left")
         small.classList.add("mt-3")
         commentDiv.innerHTML = `
-        <div class="media pt-3">
-            <a href="member/${username}">
-            <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_173e31f9c60%20text%20%7B%20fill%3A%23007bff%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A2pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_173e31f9c60%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23007bff%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2211.5390625%22%20y%3D%2216.9%22%3E32x32%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
-            </a>
-            <p class="media-body pb-3 mb-0">
-                <a href="member/${username}">
-                    <strong class="d-block text-gray-dark">${username}</strong>
-                </a>
-                ${comment.comment}
-            </p>
-        </div>
+            <article class="w-100">
+                <div class="post-header">
+                    <div class="d-flex align-items-center w-100">
+                        <div class="avatar">
+                            <a href="/member/${username}/">
+                                <img class="poster lazyloaded" src="https://cdn1.vectorstock.com/i/thumb-large/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg">
+                            </a>
+                        </div>
+                        <div class="px-5">
+                            <a class="author" href="/member/${username}/">${username}</a>
+                            <p class="posted-date">
+                                ${timeAgo}
+                            </p>
+                            <button type="button" class="btn btn-dark" id="comment-button_edit">Edit</button>
+                            <button type="button" class="btn btn-dark" id="comment-button_delete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-break my-3">
+                    <p class="quarantine-message js-quarantine-message" id="comment-${comment.id}">${comment.comment}</p>
+                    <div class="hidden" id="comment_text-area-container-${comment.id}">
+                        <textarea class="w-100 h-100" id="comment_text-area-container_text-area-${comment.id}"></textarea>
+                        <button class="btn btn-primary my-2" id="comment_text-area_update-button-${comment.id}">Update</button>
+                    </div>
+                </div>
+                <div class="js-edit-container"></div>
+                <div class="photos js-photos"></div>
+                <div class="attachments js-attachments"></div>
+            </article>
         `
-        // small.innerHTML = `<a href="#">Replies</a>`
         commentsDisplayContainer.prepend(commentDiv);
-        // commentsDisplayContainer.appendChild(small);
+        const commentContainer = document.getElementById(`comment-container-${comment.id}`);
+        const commentId = document.getElementById(`comment-${comment.id}`);
+        const commentTextAreaContainer = document.getElementById(`comment_text-area-container-${comment.id}`);
+        const commentTextAreaContainerTextArea = document.getElementById(`comment_text-area-container_text-area-${comment.id}`);
+        commentTextAreaContainerTextArea.value = comment.comment;
+        const commentButtonEdit = document.getElementById("comment-button_edit");
+        const commentButtonDelete = document.getElementById("comment-button_delete");
+        const commentTextAreaUpdateButton = document.getElementById(`comment_text-area_update-button-${comment.id}`)
+
+        commentButtonEdit.addEventListener('click', async function (e) {
+            commentButtonEdit.classList.add('hidden');
+            commentId.classList.add('hidden');
+            commentTextAreaContainer.classList.remove('hidden');
+            commentTextAreaContainerTextArea.focus();
+        });
+
+        commentTextAreaUpdateButton.addEventListener('click', async function (e) {
+            const updateCommentTextAreaValue = commentTextAreaContainerTextArea.value;
+            if (updateCommentTextAreaValue) {
+                const res = await fetch(`/api/comments/${comment.id}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ updatedComment: updateCommentTextAreaValue })
+                });
+                console.log(res);
+                if (res.ok) {
+                    commentButtonEdit.classList.remove('hidden');
+                    commentId.classList.remove('hidden');
+                    commentTextAreaContainer.classList.add('hidden');
+                    commentId.innerText = updateCommentTextAreaValue;
+                }
+                else console.log('failed')
+            }
+            else {
+                alert('Must enter something to update')
+                commentTextAreaContainerTextArea.value = comment.comment;
+                commentTextAreaContainerTextArea.focus();
+            }
+        });
+        commentTextAreaContainerTextArea.addEventListener('blur', function (e) {
+            console.log(e.relatedTarget)
+            if (!e.relatedTarget) {
+                commentButtonEdit.classList.remove('hidden');
+                commentId.classList.remove('hidden');
+                commentTextAreaContainer.classList.add('hidden');
+            }
+
+        });
+        commentButtonDelete.addEventListener('click', async function (e) {
+            const res = await fetch(`/api/comments/${comment.id}`, {
+                method: "DELETE",
+            });
+            console.log(res);
+            if (res.ok) {
+                commentContainer.outerHTML = '';
+                comments = await fetchComments(currentRoute);
+                numberOfCommentsDisplay.innerHTML = `${comments.length} Discussions`;
+            }
+            else console.log('failed')
+        })
     });
     // commentsDisplayContainer.appendChild(commentsDisplayDiv);
 }
+
 async function discussionElementInteractions() {
 
 
-    buttonPostComment.addEventListener('click', function (e) {
-        discussionBoxButtonsInputs.innerHTML = '<textarea class="w-100 h-100" id="discussion-box_text-area"></textarea>'
+    discussionBoxButtons.addEventListener('click', function (e) {
+        discussionBoxButtons.classList.add('hidden');
+        discusionBoxTextArea.classList.remove('hidden');
+        discusionBoxTextArea.focus();
     });
 
+    discusionBoxTextArea.addEventListener('blur', function (e) {
+        discusionBoxTextArea.classList.add('hidden');
+        discussionBoxButtons.classList.remove('hidden');
+    });
     discussionBoxPostButton.addEventListener('click', async function (e) {
-        const discusionBoxTextArea = document.getElementById('discussion-box_text-area');
         const commentText = discusionBoxTextArea.value;
-        console.log(commentText)
-        const res = await fetch("/api/comments", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ comment: commentText, userId: 1, projectId: Number.parseInt(projectIdRoute) })
-        });
-        console.log(res);
-        if (res.ok) console.log('success');
-        else console.log('failed')
-        discussionBoxButtonsInputs.innerHTML = '<div class="text-center"><button class="btn btn-secondary w-25 m-3 py-5" id="button_add-tip">Add Tip</button><button class="btn btn-secondary w-25 m-3 py-5" id="button_ask-question">Ask Question</button><button class="btn btn-secondary w-25 m-3 py-5" id="button_post-comment">Post Comment</button></div>'
+        // const commentText = commentValue.replace(/\n\r?/g, '<br />');
+        if (commentText) {
+            const res = await fetch("/api/comments", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ comment: commentText, userId: 1, projectId: Number.parseInt(projectIdRoute) })
+            });
+            if (res.ok) {
+                commentsDisplayContainer.innerHTML = '';
+                comments = await fetchComments(currentRoute);
+                numberOfCommentsDisplay.innerHTML = `${comments.length} Discussions`;
+                discusionBoxTextArea.value = '';
+                createCommentElements();
+                console.log('success');
+            }
+            else console.log('failed')
 
-        commentsDisplayContainer.innerHTML = '';
-        createCommentElements();
+        }
+        else alert('Please enter a comment')
+        discusionBoxTextArea.classList.add('hidden');
+        discussionBoxButtons.classList.remove('hidden');
     })
 }
-createCommentElements();
-discussionElementInteractions();
+initialSetup();
