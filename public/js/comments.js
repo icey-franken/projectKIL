@@ -215,7 +215,7 @@ async function discussionElementInteractions() {
         discussionBoxButtons.classList.remove('hidden');
 
         console.log("lost focus on text containter")
-        discussionBoxPostButton.disabled = true;
+        if (!e.relatedTarget) discussionBoxPostButton.disabled = true;
     });
     discusionBoxTextArea.addEventListener('input', function (e) {
         if (discusionBoxTextArea.value) {
