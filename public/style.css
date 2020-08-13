@@ -3,6 +3,10 @@ main + .auth-container{
     -webkit-filter: blur(15px);
 }
 
+.background-div{
+    background-image: url("./images/loginSignup.png") ;
+}
+
 .btn-primary{
     background-color: orange;
 }
@@ -69,6 +73,6 @@ main + .auth-container{
 @media(max-width: 800px){
     .row{
         width: 250px;
-        
+
     }
 }
