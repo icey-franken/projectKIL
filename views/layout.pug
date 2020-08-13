@@ -13,27 +13,43 @@ html(lang='en')
 			div(class="navbar navbar-expand-md navbar-dark bg-dark")
 				ul(class="navbar-nav mr-auto")
 					li(class="nav-item active")
-						a(class="nav-link btn btn-outline-primary" href="/") Home
+						a(class="nav-link" href="/")
+							svg(width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
+								path(fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z")
+								path(fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z")
 					li(class="nav-item active")
-						a(class="nav-link" href="#") Cat 1
+						a(class="nav-link" href="#") Circuits
 					li(class="nav-item active")
-						a(class="nav-link" href="#") Cat 2
+						a(class="nav-link" href="#") Workshop
 					li(class="nav-item active")
-						a(class="nav-link" href="#") Cat 3
+						a(class="nav-link" href="#") Craft
 					li(class="nav-item active")
-						a(class="nav-link" href="#") Cat 4
+						a(class="nav-link" href="#") Cooking
 					li(class="nav-item active")
-						a(class="nav-link" href="#") Cat 5
-				a(class="nav-link hidden" href="/login" id='loginLink') Login
-				a(class="nav-link hidden" href="/signup" id='signUpLink') Sign Up
-				a(class="nav-link hidden" href='/projects' id='logoutLink') Logout
+						a(class="nav-link" href="#") Living
+					li(class="nav-item active")
+						a(class="nav-link" href="#") Outside
+					li(class="nav-item active")
+						a(class="nav-link" href="#") Teachers
+				a(class="nav-link text-white hidden" href="/login" id='loginLink') Login
+				a(class="nav-link text-white hidden" href="/signup" id='signUpLink') Sign Up
+				a(class="nav-link text-white hidden" href='/projects' id='logoutLink') Logout
 			div(class="navbar  navbar-expand-md navbar-light bg-light")
-				a(class="navbar-brand" href="/") LOGO
+				a(class="navbar-brand" href="/")
+					svg#Capa_1(width="100" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' viewbox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve')
+						rect(x='194.189' y='193.602' style='fill:#FF9570;' width='61.811' height='309.054')
+						rect(x='256' y='193.602' style='fill:#FF7240;' width='61.811' height='309.054')
+						rect(x='232.821' y='193.602' style='fill:#FFB9A0;' width='46.358' height='309.054')
+						path(style='fill:#FF7240;' d='M445.033,115.458c-0.137-0.246-0.268-0.494-0.407-0.74c8.47-23.801,0.999-51.307-20.279-67.25  c-15.151-11.352-33.964-14.345-50.932-9.785l29.386,195.138h30.905c32.714,0,59.235-26.521,59.235-59.237  C492.942,144.745,472.325,120.747,445.033,115.458z')
+						path(style='fill:#FEA228;' d='M462.036,173.584c0-28.839-20.617-52.837-47.909-58.126c-0.137-0.246-0.268-0.494-0.407-0.74  c8.47-23.801,0.999-51.307-20.279-67.25c-6.189-4.637-12.991-7.881-20.027-9.785c-4.536,1.219-8.942,2.972-13.109,5.256  c-0.234-0.103-0.468-0.205-0.703-0.307C353.503,21.79,336.127,5.094,313.3,0.956c-21.969-3.974-43.296,4.719-56.484,20.865  c-0.273-0.001-0.543-0.008-0.816-0.008c-0.279,0-0.556,0.007-0.835,0.008C241.977,5.676,220.639-3.017,198.671,0.967  c-22.816,4.137-40.191,20.843-46.293,41.675c-0.235,0.103-0.47,0.205-0.705,0.308c-19.755-10.829-44.841-9.857-64.04,4.539  C72.114,59.128,63.92,76.919,63.92,94.937c0,6.676,1.14,13.381,3.435,19.817c-0.132,0.234-0.258,0.47-0.387,0.705  c-27.292,5.289-47.909,29.287-47.909,58.126c0,32.716,26.521,59.237,59.235,59.237h324.507  C435.515,232.821,462.036,206.3,462.036,173.584z')
+						path(style='fill:#E52C20;' d='M410.527,465.642L425.98,512h30.905C456.885,486.397,436.13,465.642,410.527,465.642z')
+						path(style='fill:#F25031;' d='M410.527,465.642c-16.129,0-30.328,8.24-38.632,20.737c-8.304-12.496-22.503-20.737-38.632-20.737  c-16.129,0-30.328,8.24-38.632,20.737c-8.304-12.496-22.503-20.737-38.632-20.737s-30.327,8.24-38.632,20.737  c-8.304-12.496-22.503-20.737-38.632-20.737s-30.327,8.24-38.632,20.737c-8.304-12.496-22.503-20.737-38.632-20.737  c-25.603,0-46.358,20.755-46.358,46.358H425.98C425.98,486.397,419.061,465.642,410.527,465.642z')
+						path(style='fill:#FFB9A0;' d='M411.214,294.632l-20.604,30.905l20.604,30.905c17.068,0,30.905-13.836,30.905-30.905  C442.12,308.469,428.283,294.632,411.214,294.632z')
+						path(style='fill:#FFDCCF;' d='M385.116,308.992c-5.482-8.629-15.118-14.36-26.098-14.36c-10.752,0-20.218,5.494-25.755,13.824  c-5.536-8.331-15.003-13.824-25.755-13.824s-20.218,5.494-25.755,13.824c-5.536-8.331-15.003-13.824-25.755-13.824  c-10.752,0-20.218,5.494-25.755,13.824c-5.536-8.331-15.003-13.824-25.755-13.824s-20.218,5.494-25.755,13.824  c-5.536-8.331-15.003-13.824-25.755-13.824c-10.981,0-20.616,5.731-26.098,14.36c-5.483-8.629-15.118-14.36-26.099-14.36  c-17.069,0-30.905,13.836-30.905,30.905c0,17.069,13.836,30.905,30.905,30.905c10.981,0,20.616-5.731,26.098-14.36  c5.483,8.629,15.119,14.36,26.099,14.36c10.752,0,20.218-5.494,25.755-13.824c5.536,8.331,15.003,13.824,25.755,13.824  s20.218-5.494,25.755-13.824c5.536,8.331,15.003,13.824,25.755,13.824c10.752,0,20.218-5.494,25.755-13.824  c5.536,8.331,15.003,13.824,25.755,13.824s20.218-5.494,25.755-13.824c5.536,8.331,15.003,13.824,25.755,13.824  c10.98,0,20.616-5.731,26.098-14.36c5.483,8.629,15.118,14.36,26.098,14.36v-61.811  C400.234,294.632,390.598,300.363,385.116,308.992z')
+				h2.font-weight-bold DESTRUCTABLES
 				ul(class="navbar-nav mr-auto")
-					li(class="nav-item active")
+					li(class="nav-item active mx-4")
 						a(class="nav-link btn btn-outline-primary" href="/projects") Projects
-					li(class="nav-item active")
-						a(class="nav-link btn btn-outline-primary" href="#") Contest
 				ul(class="navbar-nav ml-auto")
 					li(class="nav-item active")
 						a(class="nav-link" href="#") COMMUNITY
@@ -42,36 +58,48 @@ html(lang='en')
 					li(class="nav-item active")
 						a(class="nav-link" href="/editDestructable/new") PUBLISH
 				form(class="form-inline my-2 my-lg-0")
-					input(class="form-control mr-sm-2" type="text"  aria-label="Search" placeholder="Search")
-					button(class="btn btn-primary" type="submit")
-						i(style='content:"\\e603"')
-						svg(class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="")
-						path(fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z")
+					input(class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search")
+					button(class="btn btn-primary" type="button")
+						svg(width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
 		main
 			block content
 		footer(class="pt-md-5 border-top bg-light footer-container")
+			block footer
 			div(class="row footer_top")
 				div(class="col-12 col-md")
-					a(class="navbar-brand" href="/") LOGO
+					a(class="navbar-brand" href="/")
+						svg#Capa_1(height="200" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' viewbox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve')
+							rect(x='194.189' y='193.602' style='fill:#FF9570;' width='61.811' height='309.054')
+							rect(x='256' y='193.602' style='fill:#FF7240;' width='61.811' height='309.054')
+							rect(x='232.821' y='193.602' style='fill:#FFB9A0;' width='46.358' height='309.054')
+							path(style='fill:#FF7240;' d='M445.033,115.458c-0.137-0.246-0.268-0.494-0.407-0.74c8.47-23.801,0.999-51.307-20.279-67.25  c-15.151-11.352-33.964-14.345-50.932-9.785l29.386,195.138h30.905c32.714,0,59.235-26.521,59.235-59.237  C492.942,144.745,472.325,120.747,445.033,115.458z')
+							path(style='fill:#FEA228;' d='M462.036,173.584c0-28.839-20.617-52.837-47.909-58.126c-0.137-0.246-0.268-0.494-0.407-0.74  c8.47-23.801,0.999-51.307-20.279-67.25c-6.189-4.637-12.991-7.881-20.027-9.785c-4.536,1.219-8.942,2.972-13.109,5.256  c-0.234-0.103-0.468-0.205-0.703-0.307C353.503,21.79,336.127,5.094,313.3,0.956c-21.969-3.974-43.296,4.719-56.484,20.865  c-0.273-0.001-0.543-0.008-0.816-0.008c-0.279,0-0.556,0.007-0.835,0.008C241.977,5.676,220.639-3.017,198.671,0.967  c-22.816,4.137-40.191,20.843-46.293,41.675c-0.235,0.103-0.47,0.205-0.705,0.308c-19.755-10.829-44.841-9.857-64.04,4.539  C72.114,59.128,63.92,76.919,63.92,94.937c0,6.676,1.14,13.381,3.435,19.817c-0.132,0.234-0.258,0.47-0.387,0.705  c-27.292,5.289-47.909,29.287-47.909,58.126c0,32.716,26.521,59.237,59.235,59.237h324.507  C435.515,232.821,462.036,206.3,462.036,173.584z')
+							path(style='fill:#E52C20;' d='M410.527,465.642L425.98,512h30.905C456.885,486.397,436.13,465.642,410.527,465.642z')
+							path(style='fill:#F25031;' d='M410.527,465.642c-16.129,0-30.328,8.24-38.632,20.737c-8.304-12.496-22.503-20.737-38.632-20.737  c-16.129,0-30.328,8.24-38.632,20.737c-8.304-12.496-22.503-20.737-38.632-20.737s-30.327,8.24-38.632,20.737  c-8.304-12.496-22.503-20.737-38.632-20.737s-30.327,8.24-38.632,20.737c-8.304-12.496-22.503-20.737-38.632-20.737  c-25.603,0-46.358,20.755-46.358,46.358H425.98C425.98,486.397,419.061,465.642,410.527,465.642z')
+							path(style='fill:#FFB9A0;' d='M411.214,294.632l-20.604,30.905l20.604,30.905c17.068,0,30.905-13.836,30.905-30.905  C442.12,308.469,428.283,294.632,411.214,294.632z')
+							path(style='fill:#FFDCCF;' d='M385.116,308.992c-5.482-8.629-15.118-14.36-26.098-14.36c-10.752,0-20.218,5.494-25.755,13.824  c-5.536-8.331-15.003-13.824-25.755-13.824s-20.218,5.494-25.755,13.824c-5.536-8.331-15.003-13.824-25.755-13.824  c-10.752,0-20.218,5.494-25.755,13.824c-5.536-8.331-15.003-13.824-25.755-13.824s-20.218,5.494-25.755,13.824  c-5.536-8.331-15.003-13.824-25.755-13.824c-10.981,0-20.616,5.731-26.098,14.36c-5.483-8.629-15.118-14.36-26.099-14.36  c-17.069,0-30.905,13.836-30.905,30.905c0,17.069,13.836,30.905,30.905,30.905c10.981,0,20.616-5.731,26.098-14.36  c5.483,8.629,15.119,14.36,26.099,14.36c10.752,0,20.218-5.494,25.755-13.824c5.536,8.331,15.003,13.824,25.755,13.824  s20.218-5.494,25.755-13.824c5.536,8.331,15.003,13.824,25.755,13.824c10.752,0,20.218-5.494,25.755-13.824  c5.536,8.331,15.003,13.824,25.755,13.824s20.218-5.494,25.755-13.824c5.536,8.331,15.003,13.824,25.755,13.824  c10.98,0,20.616-5.731,26.098-14.36c5.483,8.629,15.118,14.36,26.098,14.36v-61.811  C400.234,294.632,390.598,300.363,385.116,308.992z')
 				div(class="col-6 col-md")
 					h5 Categories
 					ul(class="list-unstyled text-small")
 						li
-							a(class="nav-link" href="#") Cat 1
+							a(class="nav-link" href="#") Circuits
 						li
-							a(class="nav-link" href="#") Cat 2
+							a(class="nav-link" href="#") Workshop
 						li
-							a(class="nav-link" href="#") Cat 3
+							a(class="nav-link" href="#") Craft
 						li
-							a(class="nav-link" href="#") Cat 4
+							a(class="nav-link" href="#") Cooking
 				div(class="col-6 col-md")
 					ul(class="list-unstyled text-small")
 						li
-							a(class="nav-link" href="#") Cat 5
+							h5
+								br
 						li
-							a(class="nav-link" href="#") Cat 6
+							a(class="nav-link" href="#") Living
 						li
-							a(class="nav-link" href="#") Cat 7
+							a(class="nav-link" href="#") Outside
+						li
+							a(class="nav-link" href="#") Teachers
 				div(class="col-6 col-md")
 					h5 About us
 					ul(class="list-unstyled text-small")
@@ -92,8 +120,28 @@ html(lang='en')
 							a(class="nav-link" href="#") Contact
 				div(class="col-6 col-md")
 					h5 Find Us
-							a(class="nav-link" href="#") Instagram
-							a(class="nav-link" href="#") Twitters
+					div(class="row d-flex justify-content-around")
+						a(class="m-3" href="#")
+							svg.instagram(fill='#000000' height='32' viewbox='2 2 20 20' xmlns='http://www.w3.org/2000/svg')
+								path(d='M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z')
+						a(class="m-3" href="#")
+							svg.twitter(fill='#3BA9EE' height='32' viewbox='328 355 335 276' xmlns='http://www.w3.org/2000/svg')
+								path(d='\
+								M 630, 425\
+								A 195, 195 0 0 1 331, 600\
+								A 142, 142 0 0 0 428, 570\
+								A  70,  70 0 0 1 370, 523\
+								A  70,  70 0 0 0 401, 521\
+								A  70,  70 0 0 1 344, 455\
+								A  70,  70 0 0 0 372, 460\
+								A  70,  70 0 0 1 354, 370\
+								A 195, 195 0 0 0 495, 442\
+								A  67,  67 0 0 1 611, 380\
+								A 117, 117 0 0 0 654, 363\
+								A  65,  65 0 0 1 623, 401\
+								A 117, 117 0 0 0 662, 390\
+								A  65,  65 0 0 1 630, 425\
+								Z')
 			hr
 			div(class="row")
 				a sadfs
