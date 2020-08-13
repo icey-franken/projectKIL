@@ -8,7 +8,8 @@ const buttonAddTip = document.getElementById("button_add-tip");
 const buttonAskQuestion = document.getElementById("button_ask-question");
 const buttonPostComment = document.getElementById("button_post-comment");
 const discussionBoxPostButton = document.getElementById("discussion-box_post-button");
-
+const discusionBoxTextArea = document.getElementById('discussion-box_text-area');
+const discussionBoxButtons = document.getElementById("discussion-box_buttons");
 // Paths
 const currentPath = window.location.href;
 const currentRoute = currentPath.slice(31);
@@ -51,11 +52,12 @@ async function createCommentElements() {
                 </a>
                 ${comment.comment}
             </p>
+            <small>
+                <a href="#">Delete</a>
+            </small>
         </div>
         `
-        // small.innerHTML = `<a href="#">Replies</a>`
         commentsDisplayContainer.prepend(commentDiv);
-        // commentsDisplayContainer.appendChild(small);
     });
     // commentsDisplayContainer.appendChild(commentsDisplayDiv);
 }
@@ -63,25 +65,29 @@ async function discussionElementInteractions() {
 
 
     buttonPostComment.addEventListener('click', function (e) {
-        discussionBoxButtonsInputs.innerHTML = '<textarea class="w-100 h-100" id="discussion-box_text-area"></textarea>'
+        discussionBoxButtons.classList.add('hidden');
+        discusionBoxTextArea.classList.remove('hidden');
     });
 
     discussionBoxPostButton.addEventListener('click', async function (e) {
-        const discusionBoxTextArea = document.getElementById('discussion-box_text-area');
         const commentText = discusionBoxTextArea.value;
-        console.log(commentText)
-        const res = await fetch("/api/comments", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ comment: commentText, userId: 1, projectId: Number.parseInt(projectIdRoute) })
-        });
-        console.log(res);
-        if (res.ok) console.log('success');
-        else console.log('failed')
-        discussionBoxButtonsInputs.innerHTML = '<div class="text-center"><button class="btn btn-secondary w-25 m-3 py-5" id="button_add-tip">Add Tip</button><button class="btn btn-secondary w-25 m-3 py-5" id="button_ask-question">Ask Question</button><button class="btn btn-secondary w-25 m-3 py-5" id="button_post-comment">Post Comment</button></div>'
+        if (commentText) {
+            const res = await fetch("/api/comments", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ comment: commentText, userId: 1, projectId: Number.parseInt(projectIdRoute) })
+            });
+            console.log(res);
+            if (res.ok) {
+                createCommentElements();
+                console.log('success');
+            }
+            else console.log('failed')
 
-        commentsDisplayContainer.innerHTML = '';
-        createCommentElements();
+        }
+        else console.log('Please enter a comment')
+        discusionBoxTextArea.classList.add('hidden');
+        discussionBoxButtons.classList.remove('hidden');
     })
 }
 createCommentElements();

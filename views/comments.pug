@@ -9,10 +9,11 @@ block content
             div(class="d-flex justify-content-around" id="discussion-box")
                 img(class="poster" src="https://cdn1.vectorstock.com/i/thumb-large/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg")
                 div(class="bg-light p-3 mx-4 flex-grow-1" id="discussion-box_buttons-inputs")
-                    div(class="text-center")
+                    div(class="text-center" id="discussion-box_buttons")
                         button(class="btn btn-secondary w-25 m-3 py-5" id="button_add-tip") Add Tip
                         button(class="btn btn-secondary w-25 m-3 py-5" id="button_ask-question") Ask Question
                         button(class="btn btn-secondary w-25 m-3 py-5" id="button_post-comment") Post Comment
+                    textarea(class="w-100 h-100 hidden" id="discussion-box_text-area")
             div(class="text-right")
                 button(class="btn btn-secondary m-2") Add Images
                 button(class="btn btn-primary m-2" id="discussion-box_post-button") Post

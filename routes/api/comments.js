@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler } = require('../../utils');
+const { asyncHandler} = require('../../utils');
 const { Comment, User, Project } = require('../../db/models');
 const { check } = require('express-validator');
 
@@ -37,6 +37,21 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
         }
     });
     res.json({ comment });
+}))
+
+router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const comment = await Comment.findAll({
+        where: {
+            id
+        }
+    });
+    console.log(comment);
+    if (comment) {
+        await comment[0].destroy();
+        res.json({ message: `Deleted comment with id of ${req.params.id}.` });
+    }
+    else next();
 }))
 
 router.get('/project/:id(\\d+)', asyncHandler(async (req, res) => {
