@@ -3,15 +3,16 @@ main+.auth-container {
     -webkit-filter: blur(15px);
 }
 
-.background-div{
-    background-image: url("./images/loginSignup.png") ;
+.background-div {
+    background-image: url("./images/loginSignup.png");
+    background-position: center;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: orange;
 }
 
-#errors-container{
+#errors-container {
     box-sizing: content-box;
     padding-right: 15px;
     background-color: rgba(200, 3, 3, .75);
