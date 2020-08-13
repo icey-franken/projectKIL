@@ -37,7 +37,8 @@ router.get('/editDestructable/new/', asyncHandler(async(req, res) => {
 }))
 
 router.get('/editDestructable/:projectId/', asyncHandler(async(req, res) => {
-    res.render('project-edit-form')
+    const projectId = parseInt(req.params.projectId, 10);
+    res.render('project-edit-form', { projectId })
 }))
 
 //all other routes------------------------------------------------

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     createProjectForm.addEventListener("submit", async(e) => {
         e.preventDefault();
         const formData = new FormData(createProjectForm);
-        const name = formData.get('title')
+        const name = formData.get('name')
         const body = { name };
         const res = await fetch('/api/projects/new', { //need to send over userId as well
             method: 'post',
