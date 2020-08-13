@@ -1,7 +1,15 @@
 body {
     background-image: url("https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 }
-
+#errors-container{
+    box-sizing: content-box;
+    padding-right: 15px;
+    border: 5px;
+    background-color:rgba(200, 3, 3, .75);
+    color: white;
+    list-style-type: none;
+   text-align: start;
+}
 .auth-container {
     padding: 50px;
     margin-left: 50px;
@@ -11,6 +19,10 @@ body {
     height: 800px;
     background-size: cover;
 }
+.auth-input{
+    padding: 10px;
+}
+
 
 .footer_top {
     padding-left: 500px;
