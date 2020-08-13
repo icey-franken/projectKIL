@@ -10,10 +10,10 @@ exports.routeHandler = (handler) => async(req, res, next) => {
 
 exports.handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
-
+    console.log('validationErrors---------------', validationErrors.array());
     if (!validationErrors.isEmpty()) {
         const errors = validationErrors.array().map((error) => error.msg);
-
+        console.log(errors);
         const err = Error('Bad request.');
         err.errors = errors;
         err.status = 400;

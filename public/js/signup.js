@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     const countriesHtml = countries.map(country => {
         return `<option value=${country.id}>${country.name} (${country.code})</option>`
     });
-    countriesHtml.unshift(`<option value=null>Country</option>`)
+    countriesHtml.unshift(`<option value=null>Country</option>`);
     countryDropdown.innerHTML = countriesHtml.join('');
 
     //update aboutYous dropdown
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     const aboutYousHtml = aboutYous.map(aboutYou => {
         return `<option value=${aboutYou.id}>${aboutYou.description}</option>`
     })
-    aboutYousHtml.unshift(`<option value=null>About You</option>`)
+    aboutYousHtml.unshift(`<option value=null>About You</option>`);
     aboutYouDropdown.innerHTML = aboutYousHtml.join('');
 
     //grab input from signup form
@@ -29,9 +29,10 @@ document.addEventListener('DOMContentLoaded', async() => {
         const email = formData.get('email');
         const password = formData.get('password');
         const password2 = formData.get('password2');
-        const aboutYouId = formData.get('aboutYouId');
-        const countryId = formData.get('countryId');
-
+        let aboutYouId = formData.get('aboutYouId');
+        let countryId = formData.get('countryId');
+        if (aboutYouId === 'null') aboutYouId = null;
+        if (countryId === 'null') countryId = null;
         const body = { username, email, password, password2, aboutYouId, countryId };
         const res = await fetch('/api/users/', {
             method: 'post',

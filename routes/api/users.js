@@ -28,11 +28,15 @@ const validateAuthFields = [
     check('password2', 'Confirm password field must have the same value as the password field.')
     .exists({ checkFalsy: true })
     .custom((value, { req }) => value === req.body.password),
-    check('countryId', 'Must select a country.')
-    .exists({ checkNull: true }),
-    check('aboutYouId', 'Must select an about you.')
-    .exists({ checkNull: true }),
 ]
+
+const validateUserInfoFields = [
+    check('countryId', 'Please include a country.')
+    .exists({ checkNull: true }),
+    check('aboutYouId', 'Please include an about you.')
+    .exists({ checkNull: true })
+];
+
 
 router.get('/', routeHandler(async(req, res) => {
     const users = await User.findAll();
@@ -49,12 +53,12 @@ router.get('/', routeHandler(async(req, res) => {
 //     res.send('from users router');
 // })
 
-router.post('/', validateUsername, validateAuthFields, handleValidationErrors, routeHandler(async(req, res, next) => {
+
+router.post('/', validateUsername, validateAuthFields, validateUserInfoFields, handleValidationErrors, routeHandler(async(req, res, next) => {
     const { username, email, password, countryId, aboutYouId } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, email, hashedPassword, countryId, aboutYouId });
     const token = await getUserToken(user);
-    // console.log('token from users.js', token);
     res.cookie('token', token, { maxAge: expiresIn * 1000 });
     res.json({ id: user.id, token });
 }));
@@ -80,7 +84,7 @@ router.post('/token', validateUsername, handleValidationErrors, routeHandler(asy
     res.json({ id: user.id, token });
 }));
 
-router.post('/signinstate', routeHandler(async(req, res) => {
+router.post('/signinstate', routeHandler(async (req, res) => {
     const { cookies } = req.body;
     const tokens = cookies.split(';').filter(cookie => cookie.slice(0, 6) === 'token=').map(token => token.slice(6));
     const signInState = await checkUserToken(tokens);
@@ -88,7 +92,7 @@ router.post('/signinstate', routeHandler(async(req, res) => {
 }))
 
 //this route should destroy the token belonging to signed in user
-router.get('/logout', routeHandler(async(req, res) => {
+router.get('/logout', routeHandler(async (req, res) => {
     res.clearCookie('token').end();
 }));
 
