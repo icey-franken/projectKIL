@@ -6,14 +6,15 @@ append head
 	script(src='/public/js/login.js' type='module' defer)
 
 block content
-	div(class="auth-container")
-		form(class="form-signin" id="login-form")
-			div(class="text-center mb-4 ")
-				ul#errors-container
-				+authInput("Email or Username","username")
-					input(class='form-control' type='text' name='username' placeholder='Username or Email' required)
-				+authInput("Password","password")
-					input(class='form-control' type='password' name='password' placeholder='Password'  required)
-				button(class="btn btn-lg btn-primary btn-block" type='submit') Log In
-				p.signup-redirect New to Destructables? 
-					a(href="/signup") Sign Up
+	div.background-div
+		div(class="auth-container")
+			form(class="form-signin" id="login-form")
+				div(class="text-center mb-4 ")
+					ul#errors-container
+					+authInput("Email or Username","username")
+						input(class='form-control' type='text' name='username' placeholder='Username or Email' required)
+					+authInput("Password","password")
+						input(class='form-control' type='password' name='password' placeholder='Password'  required)
+					button(class="btn btn-lg btn-primary btn-block" type='submit') Log In
+					p.signup-redirect New to Destructables?
+						a(href="/signup") Sign Up
