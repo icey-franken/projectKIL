@@ -25,9 +25,10 @@ body {
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -97px;
-    margin-left: -16px;
+    /* margin-right: -97px;
+    margin-left: -16px; */
     padding: 10px;
+    width: 515px;
 }
 
 
@@ -52,4 +53,11 @@ body {
 
 #discussion-box_buttons-inputs{
     min-height: 200px;
+}
+
+@media(max-width: 800px){
+    .row{
+        width: 250px;
+        
+    }
 }
