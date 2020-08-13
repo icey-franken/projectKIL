@@ -1,4 +1,4 @@
-main + .auth-container{
+main+.auth-container {
     filter: blur(15px);
     -webkit-filter: blur(15px);
 }
@@ -14,11 +14,12 @@ main + .auth-container{
 #errors-container{
     box-sizing: content-box;
     padding-right: 15px;
-    background-color:rgba(200, 3, 3, .75);
+    background-color: rgba(200, 3, 3, .75);
     color: white;
     list-style-type: none;
-   text-align: start;
+    text-align: start;
 }
+
 .auth-container {
     padding: 50px;
     margin-left: 50px;
@@ -28,7 +29,8 @@ main + .auth-container{
     height: 800px;
     background-size: cover;
 }
-.auth-input{
+
+.auth-input {
     padding: 10px;
 }
 
@@ -41,19 +43,20 @@ main + .auth-container{
     /* width: 515px; */
 }
 
-.login-redirect{
+.login-redirect {
     padding: 10px;
 }
-.signup-redirect{
+
+.signup-redirect {
     padding: 10px;
 }
 
 .footer_top {
-    padding-left: 500px;
-    padding-right: 500px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.poster{
+.poster {
     -webkit-flex: auto 0 0;
     flex: auto 0 0;
     width: 50px;
@@ -61,18 +64,19 @@ main + .auth-container{
     border-radius: 25px;
 }
 
-
 .hidden {
     display: none;
 }
 
-#discussion-box_buttons-inputs{
+#discussion-box_buttons-inputs {
     min-height: 200px;
 }
-/* IDK HOW TO FIX THISS!!!!!!!!!!!!!! */
-@media(max-width: 800px){
-    .row{
-        width: 250px;
 
+
+/* IDK HOW TO FIX THISS!!!!!!!!!!!!!! */
+
+@media(max-width: 800px) {
+    .row {
+        width: 250px;
     }
 }
