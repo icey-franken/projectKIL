@@ -2,12 +2,12 @@ doctype html
 html(lang='en')
 	head
 		script(src='/public/js/signinstate.js' type='module' defer)
-		block head
 		title DESTRUCTABLES
 		meta(charset='utf-8')
 		link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
 		link(rel='icon' href='/public/favicon.ico' type='image/ico')
 		link(rel="stylesheet" href="/public/style.css")
+		block head
 	body
 		header
 			div(class="navbar navbar-expand-md navbar-dark bg-dark")
@@ -50,13 +50,19 @@ html(lang='en')
 				ul(class="navbar-nav mr-auto")
 					li(class="nav-item active mx-4")
 						a(class="nav-link btn btn-outline-primary" href="/projects") Projects
+				ul(class="navbar-nav ml-auto")
+					li(class="nav-item active")
+						a(class="nav-link" href="#") COMMUNITY
+					li(class="nav-item active")
+						a(class="nav-link" href="#") CLASSES
+					li(class="nav-item active")
+						a(class="nav-link" href="/editDestructable/new") PUBLISH
 				form(class="form-inline my-2 my-lg-0")
 					input(class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search")
 					button(class="btn btn-primary" type="button")
 						svg(width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
-							path(fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z")
-							path(fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z")
-		block content
+		main
+			block content
 		footer(class="pt-md-5 border-top bg-light footer-container")
 			block footer
 			div(class="row footer_top")

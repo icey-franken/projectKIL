@@ -1,0 +1,16 @@
+extends layout.pug
+
+append head
+	script(src='/public/js/projects-new-form.js' type='module')
+	link(rel='stylesheet' href='/public/styles-project-new.css')
+
+block content
+	div.new-project-container
+		div.heading.new-project WHAT DO YOU WANT TO DESTROY?
+		div.new-project-form-container
+			#errors-container
+			form.new-project-form
+				label.new-project(for='title') I made a project called:
+				div.new-project-input-container
+					input.new-project(type="text" name="name")
+				button.btn.btn-primary.new-project Start Destructable &#187;
