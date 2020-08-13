@@ -25,10 +25,12 @@ body {
     border-radius: 25px;
 }
 
-#discussion-box_buttons-inputs {
-    min-height: 200px;
-}
 
 .hidden {
     display: none;
 }
+
+#discussion-box_buttons-inputs{
+    min-height: 200px;
+}
+

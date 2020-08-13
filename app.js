@@ -14,15 +14,15 @@ const csrfProtection = require('csurf')({ cookie: true });
 const apiRouter = require('./routes/api');
 const pagesRouter = require('./routes/pages');
 const commentsRouter = require('./routes/comments');
+
+app.get('/', function (req, res, next) {
+    res.render('index')
+});
+
 app.use('/public', express.static('public'));
 app.use('/api', apiRouter);
 app.use('/comments', commentsRouter);
 app.use('/', pagesRouter);
-
-
-//following two lines may be unnecessary
-// const projectsRouter = require('./routes/projects');
-// app.use('/projects', projectsRouter);
 
 
 // app.get("/", (req, res) => {
@@ -31,11 +31,6 @@ app.use('/', pagesRouter);
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
-    // req.setTimeout(1000);
-    // res.setTimeout(1000);
-    // res.render('error-page');
-
-    //the following was from the express-sequelize-starter directory
     const err = new Error("The requested resource couldn't be found.");
     err.status = 404;
     next(err);
