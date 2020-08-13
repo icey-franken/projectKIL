@@ -33,7 +33,7 @@ router.get('/projects/:projectId', asyncHandler(async(req, res) => {
 }));
 
 router.get('/editDestructable/new/', asyncHandler(async(req, res) => {
-    res.render('project-new-form')
+    res.render('projects-new-form')
 }))
 
 router.get('/editDestructable/:projectId/', asyncHandler(async(req, res) => {

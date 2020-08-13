@@ -1,0 +1,79 @@
+.new-project-container {
+    background: white;
+    border-radius: 6px;
+    width: 500px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    margin: 100px auto;
+}
+
+.new-project-form-container {
+    width: inherit;
+    height: 250px;
+    margin: auto;
+    width: 455px;
+    box-sizing: border-box;
+    padding: 40px;
+    text-align: center;
+}
+
+#errors-container {
+    color: red;
+    height: 0px;
+    position: relative;
+    bottom: 25px;
+}
+
+div.new-project {
+    background-image: url('./images/explosion.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background: black; */
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-align: center;
+    width: 500px;
+    height: 140px;
+    line-height: 140px;
+    font-size: 20pt;
+    font-weight: 450;
+}
+
+label.new-project {
+    font-size: larger;
+    font-weight: 500;
+}
+
+.new-project-input-container {
+    margin-bottom: 10px;
+}
+
+input.new-project {
+    margin: 20px auto;
+    padding: 10px;
+    width: 370px;
+    height: 41px;
+    box-sizing: border-box;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    background-color: #f9f9f9;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+button.new-project {
+    font-size: larger;
+    font-weight: 500;
+    height: 44px;
+    line-height: 20px;
+    padding: 11px 19px;
+}

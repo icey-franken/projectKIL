@@ -13,11 +13,11 @@ body {
 }
 
 .footer_top {
-    padding-left: 500px;
-    padding-right: 500px;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
-.poster{
+.poster {
     -webkit-flex: auto 0 0;
     flex: auto 0 0;
     width: 50px;
@@ -25,11 +25,10 @@ body {
     border-radius: 25px;
 }
 
-#discussion-box_buttons-inputs{
+#discussion-box_buttons-inputs {
     min-height: 200px;
 }
 
 .hidden {
     display: none;
 }
-
