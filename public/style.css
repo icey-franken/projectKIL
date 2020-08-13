@@ -8,10 +8,6 @@ main+.auth-container {
     background-position: center;
 }
 
-.btn-primary {
-    background-color: orange;
-}
-
 #errors-container {
     box-sizing: content-box;
     padding-right: 15px;

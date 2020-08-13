@@ -3,13 +3,23 @@ const router = express.Router();
 const { asyncHandler, handleValidationErrors } = require('../../utils');
 const { Project, User } = require('../../db/models');
 const { check } = require('express-validator');
+const { Op } = require('sequelize');
+const jwt = require('jsonwebtoken');
+const { secret, expiresIn } = require('../../config').jwtConfig
+const { routeHandler, handleValidationErrors } = require('../utils');
+const { getUserToken, checkUserToken } = require('../utils/auth')
 
 //I think we will need to add some validations (at least for post requests, for sure) and some error handling. Error handling may be taken care of by global error handler - not sure.
 
-//what routes will we have in here?
+const validateProjectCreation = [
+    check('name', 'Please provide a name for you destruction.')
+    .exists({ checkNull: true })
+    .exists({ checkFalsy: true })
+];
+
 
 //CREATE
-router.post('/new', asyncHandler(async(req, res) => {
+router.post('/new', validateProjectCreation, handleValidationErrors, asyncHandler(async(req, res) => {
     const { name } = req.body;
     const project = await Project.create({ name }); //need to add user as well
     res.json({ project })
