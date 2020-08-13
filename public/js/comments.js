@@ -151,23 +151,41 @@ async function createCommentElements() {
             commentButtonEdit.classList.add('hidden');
             commentId.classList.add('hidden');
             commentTextAreaContainer.classList.remove('hidden');
+            commentTextAreaContainerTextArea.focus();
         });
 
         commentTextAreaUpdateButton.addEventListener('click', async function (e) {
-            const res = await fetch(`/api/comments/${comment.id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ updatedComment: commentTextAreaContainerTextArea.value })
-            });
-            console.log(res);
-            if (res.ok) {
-                commentContainer.outerHTML = '';
-                comments = await fetchComments(currentRoute);
-                numberOfCommentsDisplay.innerHTML = `${comments.length} Discussions`;
+            const updateCommentTextAreaValue = commentTextAreaContainerTextArea.value;
+            if (updateCommentTextAreaValue) {
+                const res = await fetch(`/api/comments/${comment.id}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ updatedComment: updateCommentTextAreaValue })
+                });
+                console.log(res);
+                if (res.ok) {
+                    commentButtonEdit.classList.remove('hidden');
+                    commentId.classList.remove('hidden');
+                    commentTextAreaContainer.classList.add('hidden');
+                    commentId.innerText = updateCommentTextAreaValue;
+                }
+                else console.log('failed')
             }
-            else console.log('failed')
+            else {
+                alert('Must enter something to update')
+                commentTextAreaContainerTextArea.value = comment.comment;
+                commentTextAreaContainerTextArea.focus();
+            }
         });
+        commentTextAreaContainerTextArea.addEventListener('blur', function (e) {
+            console.log(e.relatedTarget)
+            if (!e.relatedTarget) {
+                commentButtonEdit.classList.remove('hidden');
+                commentId.classList.remove('hidden');
+                commentTextAreaContainer.classList.add('hidden');
+            }
 
+        });
         commentButtonDelete.addEventListener('click', async function (e) {
             const res = await fetch(`/api/comments/${comment.id}`, {
                 method: "DELETE",
@@ -190,11 +208,16 @@ async function discussionElementInteractions() {
     discussionBoxButtons.addEventListener('click', function (e) {
         discussionBoxButtons.classList.add('hidden');
         discusionBoxTextArea.classList.remove('hidden');
+        discusionBoxTextArea.focus();
     });
 
+    discusionBoxTextArea.addEventListener('blur', function (e) {
+        discusionBoxTextArea.classList.add('hidden');
+        discussionBoxButtons.classList.remove('hidden');
+    });
     discussionBoxPostButton.addEventListener('click', async function (e) {
-        const commentValue = discusionBoxTextArea.value;
-        const commentText = commentValue.replace(/\n\r?/g, '<br />');
+        const commentText = discusionBoxTextArea.value;
+        // const commentText = commentValue.replace(/\n\r?/g, '<br />');
         if (commentText) {
             const res = await fetch("/api/comments", {
                 method: "POST",
@@ -212,7 +235,7 @@ async function discussionElementInteractions() {
             else console.log('failed')
 
         }
-        else console.log('Please enter a comment')
+        else alert('Please enter a comment')
         discusionBoxTextArea.classList.add('hidden');
         discussionBoxButtons.classList.remove('hidden');
     })

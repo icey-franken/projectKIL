@@ -25,7 +25,7 @@ router.post(
 );
 //READ
 router.get('/', asyncHandler(async (req, res) => {
-    const comments = await Comment.findAll();
+    const comments = await Comment.findAll({ order: [['id', 'DESC']] })
     res.json({ comments });
 }))
 
