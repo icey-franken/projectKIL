@@ -18,7 +18,7 @@ module.exports = {
                 destructions: ['follow instructions to bake cake', 'decorate cake after cooling', 'place baby in front of cake', 'observe'],
                 images: ['happy baby'],
                 categoryId: 1,
-                userId: 8
+                userId: 2
             },
             {
                 name: 'Test Project3',
@@ -45,7 +45,7 @@ module.exports = {
                 destructions: ['get your head in the game', 'strap on your boots', 'search for pumpkins', 'stomp it like it is a roach!', 'run away'],
                 images: ['jack-o-lantern'],
                 categoryId: 3,
-                userId: 6
+                userId: 2
             },
             {
                 name: 'Destroy your liver',
@@ -53,8 +53,8 @@ module.exports = {
                 supplies: ['booze', 'more booze', 'maybe a hotel room?', 'party pants', 'favorite drinking cup', 'maybe a shot glass or two', 'friends...bc dont drink alone'],
                 destructions: ['pregame', 'clock in', 'cheers', 'bottoms up!', 'drink some more', 'dont stop now', 'keep going', 'power hour', 'rally'],
                 images: ['party pic'],
-                categoryId: 8,
-                userId: 4
+                categoryId: 7,
+                userId: 3
             }
         ], {
             fields: ['name', 'intro', 'supplies', 'destructions', 'images', 'categoryId', 'userId']
