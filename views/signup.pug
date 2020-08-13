@@ -10,7 +10,6 @@ block content
 		form(class="form-signin" id="signup-form")
 			div(class="text-center mb-4 ")
 				ul#errors-container
-				+authButtons()
 				+authInput("Email","email")
 					input(class="form-control" type='email' name='email' placeholder='Email' required)
 				+authInput("Username","username")
@@ -24,4 +23,5 @@ block content
 						select(class="custom-select d-block w-100" name='aboutYouId' id='about-you-dropdown')
 					div(class="col-md-5 mb-3")
 						select(class="custom-select d-block w-100" name='countryId' id='country-dropdown')
-				button(class="btn btn-lg btn-primary btn-block" type='submit') Sign Up
+				button(class="btn btn-lg btn-primary btn-block" type='submit') Sign Me Up!
+				

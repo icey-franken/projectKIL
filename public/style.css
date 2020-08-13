@@ -1,16 +1,37 @@
 body {
     background-image: url("https://images.pexels.com/photos/956981/milky-way-starry-sky-night-sky-star-956981.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 }
-
+#errors-container{
+    box-sizing: content-box;
+    padding-right: 15px;
+    background-color:rgba(200, 3, 3, .75);
+    color: white;
+    list-style-type: none;
+   text-align: start;
+}
 .auth-container {
     padding: 50px;
     margin-left: 50px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
     box-sizing: content-box;
     width: 400px;
     height: 800px;
     background-size: cover;
 }
+.auth-input{
+    padding: 10px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    /* margin-right: -97px;
+    margin-left: -16px; */
+    padding: 10px;
+    width: 515px;
+}
+
+
 
 .footer_top {
     padding-left: 10%;
@@ -34,3 +55,8 @@ body {
     min-height: 200px;
 }
 
+@media(max-width: 800px){
+    .row{
+        width: 250px;
+    }
+}
