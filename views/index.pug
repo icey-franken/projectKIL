@@ -1,17 +1,20 @@
 extends layout.pug
 
 append head
-  script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js", integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf", crossorigin="anonymous" type='module' defer)
-  script(src="js/index.js" type="module")
-
+  script(src="../public/js/index.js" type="module")
 
 block content
-  img(height='300em' width="100%" src='https://media.istockphoto.com/photos/blue-abstract-background-or-texture-picture-id1138395421?k=6&m=1138395421&s=612x612&w=0&h=bJ1SRWujCgg3QWzkGPgaRiArNYohPl7-Wc4p_Fa_cyA=' alt='Second slide')
-  .carousel-caption.m-5
-    h1 Another example headline.
-    p | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-    p
-      a.btn.btn-lg.btn-primary(href='#' role='button') Learn more
+  //slider
+  #carousel-example-2.carousel.slide.carousel-fade(data-ride='carousel')
+    // Slides
+    .carousel-inner(role='listbox')
+      .carousel-item.active
+        .view
+          img.d-block.w-100(height="300px" src='https://astronomy.com/-/media/Images/News%20and%20Observing/Sky%20this%20Week/STW%202018/05/stars1245902_1920.jpg?mw=1000&mh=800' alt='FIRE')
+          .mask.rgba-black-light
+        .carousel-caption
+          h3.h3-responsive Feel the desctruction!
+          p HAAHAHAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!
   //
     Marketing messaging and featurettes
     ==================================================
