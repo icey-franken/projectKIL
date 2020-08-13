@@ -9,16 +9,14 @@ const { check } = require('express-validator');
 //what routes will we have in here?
 
 //CREATE
-// /projects/create -- this route leads to project creation page (leads to new project form)
-// /projects/edit/publish/:projectId -- this route adds a newly created project to our database (on 'submit' of new project form)
 router.post('/new', asyncHandler(async(req, res) => {
     const { name } = req.body;
-    console.log(name); //this is what the console.log is
-    const project = await Project.create({ name });
+    const project = await Project.create({ name }); //need to add user as well
     res.json({ project })
 }))
 
 //READ
+//	read all projects
 router.get('/', asyncHandler(async(req, res) => {
     const projects = await Project.findAll({
         include: [{ model: User }],
@@ -27,7 +25,7 @@ router.get('/', asyncHandler(async(req, res) => {
     res.json({ projects });
 }))
 
-
+//	read single project
 router.get('/:id(\\d+)', asyncHandler(async(req, res) => {
     const projectId = parseInt(req.params.id, 10);
     const project = await Project.findByPk(projectId, {
@@ -38,19 +36,16 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res) => {
 
 
 //UPDATE
-// /projects/edit/new -- I think this is closely tied to /projects/create route. The 'new' implies that a projectId does not yet exist because the project hasn't been published (i.e. added to database, at which point projectId is generated)
-
-
-// /projects/:projectId/:projectName -- editing an existing project. Unsure about this - should projectId be aliased to a projectName instead, or should we provide both for clarity?
-
-//this route simply gets the form in which users can edit their project.
-router.get('/edit/:projectId(\\d+)', asyncHandler(async(req, res) => {
+//	add validations that submitted info from project edit form is ok
+router.post('/edit/:projectId(\\d+)', asyncHandler(async(req, res) => {
     const projectId = parstInt(req.params.projectId, 10);
-    const project = awaitProject.findByPk(projectId, {
-        include: [], //eager loading
+    const project = await Project.update({
+        where: {
+            id: projectId
+        },
     });
-    res.render('project-edit-form', { project, title: `Edit ${project.name}` });
-}))
+    res.json({ project });
+}));
 
 //When users make edits and save them they are 'submitting the project-edit-form' - it is a post request to the same route.
 

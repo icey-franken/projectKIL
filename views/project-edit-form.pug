@@ -1,0 +1,14 @@
+extends layout.pug
+
+append head
+    script(src='/public/js/projects-edit-form.js' type='module')
+
+block content
+    div.project-container
+        #errors-container
+        h1 What do you want to destroy?
+        form(class="edit-project-form" id=`${projectId}`)
+            label(for='name') I Destroyed This:
+            input(type="text" name="name" placeholder="Project Title")
+            label(for='')
+            button submit

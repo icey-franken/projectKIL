@@ -32,10 +32,11 @@ const validateAuthFields = [
 
 const validateUserInfoFields = [
     check('countryId', 'Please include a country.')
-    .exists({ checkFalsy: true }),
+    .exists({ checkNull: true }),
     check('aboutYouId', 'Please include an about you.')
-    .exists({ checkFalsy: true })
+    .exists({ checkNull: true })
 ];
+
 
 router.get('/', routeHandler(async(req, res) => {
     const users = await User.findAll();
@@ -51,6 +52,7 @@ router.get('/', routeHandler(async(req, res) => {
 // const user = await User.fin
 //     res.send('from users router');
 // })
+
 
 router.post('/', validateUsername, validateAuthFields, validateUserInfoFields, handleValidationErrors, routeHandler(async(req, res, next) => {
     const { username, email, password, countryId, aboutYouId } = req.body;

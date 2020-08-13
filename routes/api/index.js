@@ -15,8 +15,11 @@ const commentsRouter = require('./comments');
 router.use('/comments', commentsRouter);
 
 router.use((err, req, res, next) => {
+    console.log('before err instanceof----------------', err instanceof ValidationError);
     if (err instanceof ValidationError) {
+        console.log('err.errors before map-----------------', err.errors)
         err.errors = err.errors.map(e => e.message);
+        console.log('err.errors after map-----------------', err.errors)
     };
     next(err);
 });
