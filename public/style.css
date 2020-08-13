@@ -4,7 +4,6 @@ body {
 #errors-container{
     box-sizing: content-box;
     padding-right: 15px;
-    border: 5px;
     background-color:rgba(200, 3, 3, .75);
     color: white;
     list-style-type: none;
@@ -13,7 +12,7 @@ body {
 .auth-container {
     padding: 50px;
     margin-left: 50px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
     box-sizing: content-box;
     width: 400px;
     height: 800px;
@@ -22,6 +21,15 @@ body {
 .auth-input{
     padding: 10px;
 }
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -97px;
+    margin-left: -16px;
+    padding: 10px;
+}
+
 
 
 .footer_top {
