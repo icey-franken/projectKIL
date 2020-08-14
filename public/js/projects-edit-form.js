@@ -41,7 +41,10 @@ document.addEventListener('DOMContentLoaded', async() => {
         introDiv.setAttribute('class', 'edit-step');
         const introDivHtml = `
 						<div class='edit-step__image-container'>
-							<div class='edit-step__image-text'> (DOWN ARROW) Drag Images From Top Bar </div>
+							<div class='edit-step__image'>
+								<span class='edit-step__image-arrow'>&#129095;</span>
+								<span class='edit-step__image-text'> Drag Images From Top Bar</span>
+							</div>
 						</div>
 						<div class='edit-step__contents'>
 							<div class='edit-step__text'>
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 							<div class='edit-step__options-container'>
 								<div class='edit-step__reorder'>&#9776;</div>
 								<div class='edit-step__new'>&#62;</div>
-								<div class='edit-step__delete'></div>
+								<div class='edit-step__delete edit-step__delete--intro'></div>
 							</div>
 						</div>`;
         introDiv.innerHTML = introDivHtml;
@@ -65,7 +68,10 @@ document.addEventListener('DOMContentLoaded', async() => {
             stepDiv.setAttribute('class', 'edit-step');
             const stepDivHtml = `
 						<div class='edit-step__image-container'>
-							<div class='edit-step__image-text'> (DOWN ARROW) Drag Images From Top Bar </div>
+							<div class='edit-step__image'>
+								<span class='edit-step__image-arrow'>&#129095;</span>
+								<span class='edit-step__image-text'> Drag Images From Top Bar</span>
+							</div>
 						</div>
 						<div class='edit-step__contents'>
 							<div class='edit-step__text'>
