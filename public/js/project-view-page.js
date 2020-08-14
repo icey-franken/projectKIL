@@ -1,8 +1,9 @@
 const projectHeader = document.getElementById("project-header")
 const projectIntroImage = document.getElementById("project-intro_image")
 const projectIntroDestruction = document.getElementById("project-intro_destruction")
+const projectSupplies = document.getElementById("project-supplies")
 const projectStepsContainer = document.getElementById("project-steps-container")
-
+const editProjectButton = document.getElementById("edit");
 let project;
 function createCarousel() {
     return `
@@ -60,7 +61,7 @@ async function fetchProject() {
     return values;
 }
 
-async function createProjectHeader() {
+function createProjectHeader() {
     projectHeader.outerHTML = `
             <div class = "page-header">
             <h1>
@@ -80,8 +81,45 @@ async function createProjectHeader() {
         `
 };
 
-async function createProjectSteps() {
-    projectStepsContainer.innerHTML = project.destructions;
+function createSupplies() {
+    return `<h1>Supplies</h1>
+    <p>${project.supplies}</p>`
+}
+
+function createEndOfStepHTML() {
+    return `
+    <div class="container text-center py-4">
+        <button class="btn btn-primary btn-sm mx-3">Add</button><button class="btn btn-primary btn-sm mx-3">TipAsk</button><button class="btn btn-primary btn-sm mx-3">Question</button><button class="btn btn-primary btn-sm mx-3">Comment</button><button class="btn btn-primary btn-sm mx-3">Download</button>
+    </div>
+    <hr width="20%">`
+}
+
+function createProjectSteps() {
+    const destructions = project.destructions;
+    const destructionHeadings = project.destructionsHeadings;
+
+    for (let i = 0; i < destructions.length; i++) {
+        const stepDiv = document.createElement("div");
+        const imageDiv = document.createElement("div");
+        const stepNumberHeader = document.createElement("h1");
+        const stepDestruction = document.createElement("p");
+        const endOfStepSeperatorDiv = document.createElement('div');
+        const stepNumber = i + 1;
+        const destructionHeading = destructionHeadings[i];
+        endOfStepSeperatorDiv.innerHTML = createEndOfStepHTML();
+        stepDiv.classList.add('container');
+        stepNumberHeader.classList.add('text-center')
+        stepDestruction.classList.add('px-5', 'mx-5');
+        if (destructionHeading) stepNumberHeader.innerHTML = `Step ${stepNumber}: ${destructionHeading}`;
+        else stepNumberHeader.innerHTML = `Step ${stepNumber}`;
+        stepDiv.appendChild(stepNumberHeader);
+        imageDiv.innerHTML = createCarousel();
+        stepDestruction.innerHTML = `${destructions[i]}`;
+        stepDiv.appendChild(imageDiv);
+        stepDiv.appendChild(stepDestruction);
+        stepDiv.appendChild(endOfStepSeperatorDiv);
+        projectStepsContainer.appendChild(stepDiv);
+    };
 }
 
 async function initialSetup() {
@@ -89,8 +127,10 @@ async function initialSetup() {
     createProjectHeader();
     console.log(projectIntroImage)
     projectIntroImage.innerHTML = createCarousel();
+    projectSupplies.innerHTML = createSupplies();
     projectIntroDestruction.innerHTML = project.intro;
     createProjectSteps();
+    editProjectButton.href = `/editDestructable/${currentRoute}`;
 }
 
 initialSetup();
