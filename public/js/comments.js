@@ -117,8 +117,8 @@ async function createCommentElements() {
                             <p class="posted-date">
                                 ${timeAgo}
                             </p>
-                            <button type="button" class="btn btn-dark" id="comment-button_edit">Edit</button>
-                            <button type="button" class="btn btn-dark" id="comment-button_delete">Delete</button>
+                            <button type="button" class="btn btn-primary" id="comment-button_edit">Edit</button>
+                            <button type="button" class="btn btn-primary" id="comment-button_delete">Delete</button>
                         </div>
                     </div>
                 </div>

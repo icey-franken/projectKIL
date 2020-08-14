@@ -54,12 +54,13 @@ async function createProjectElements() {
         const currentTimestamp = Date.now();
         const projectTimestamp = new Date(project.updatedAt).getTime();
         const timeAgo = timeDifference(currentTimestamp, projectTimestamp)
-        projectDiv.classList.add("col-lg-4");
+        projectDiv.classList.add("col-lg-3");
         projectDiv.id = (`project-container-${project.id}`)
         projectDiv.innerHTML = `
             <div class="card mb-2">
-            <img class="card-img-top" src="public/images/loginSignup.png"
-                alt="Card image cap">
+            <a href="/projects/${project.id}/" class="overflow-hidden">
+                <img class="card-img-top" src="public/images/loginSignup.png" alt="Card image cap">
+            </a>
             <div class="card-body">
                 <h4 class="card-title font-weight-bold">${project.name}</h4>
                 <p class="card-text">${project.intro}</p>

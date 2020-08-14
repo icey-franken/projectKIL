@@ -22,6 +22,5 @@
 }
 
 .container{
-    padding-left: unset;
-    padding-right: unset;
+    width:80% !important;
 }

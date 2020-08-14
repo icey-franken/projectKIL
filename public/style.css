@@ -106,8 +106,18 @@ main+.auth-container {
     border: inherit;
     box-shadow: inherit;
 }
+#discussion-box_buttons button{
+    color:grey;
+}
 
-
+#discussion-box_buttons button:hover{
+    color:white !important;
+}
+.form-inline .btn{
+    right: 20%;
+    border:none;
+    padding: unset;
+}
 /* IDK HOW TO FIX THISS!!!!!!!!!!!!!! */
 
 @media(max-width: 800px) {
