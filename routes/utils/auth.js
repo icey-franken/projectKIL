@@ -35,11 +35,11 @@ async function checkUserToken(tokens) {
     return validTokens[0];
 };
 
-async function getUserId(tokens) {
-    const userToken = checkUserToken(tokens);
+async function getUserId(token) {
+    // const userToken = checkUserToken(tokens);
     let userId = null;
     try {
-        userId = jwt.decode(userToken).id;
+        userId = jwt.decode(token).id;
     } catch (e) { return null };
     return userId;
 };

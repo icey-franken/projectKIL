@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 const jwt = require('jsonwebtoken');
 const { secret, expiresIn } = require('../../config').jwtConfig
 const { routeHandler, handleValidationErrors } = require('../utils');
-const { getUserToken, checkUserToken } = require('../utils/auth')
+const { getUserToken, checkUserToken, getUserId } = require('../utils/auth')
 
 const { check } = require('express-validator');
 
@@ -86,7 +86,7 @@ router.post('/token', validateUsername, handleValidationErrors, routeHandler(asy
 
 router.post('/getUserId', routeHandler(async(req, res) => {
     const { token } = req.body;
-    const userId = getUserId(token);
+    const userId = await getUserId(token);
     res.json({ userId });
 }))
 
