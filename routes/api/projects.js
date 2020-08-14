@@ -31,7 +31,7 @@ router.post('/new', validateProjectCreation, handleValidationErrors, routeHandle
 //	read all projects
 router.get('/', routeHandler(async (req, res) => {
     const projects = await Project.findAll({
-        include: [{ model: User }],
+        include: [{ model: User }, { model: Category }],
         limit: 25,
     });
     res.json({ projects });
