@@ -19,7 +19,7 @@ module.exports = {
                 type: Sequelize.ARRAY(Sequelize.TEXT)
             },
             destructionsHeadings: {
-                type: Sequelize.Array(Sequelize.TEXT),
+                type: Sequelize.ARRAY(Sequelize.TEXT),
             },
             destructions: {
                 type: Sequelize.ARRAY(Sequelize.TEXT),

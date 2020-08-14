@@ -8,17 +8,17 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     //dynamically add inputs for destructions based on user clicking "add step" button
     //	question: how to have these dynamically added form inputs be picked up in formData variable? Need to dynamically navigate through formData class instance.
-    const projectNameInput = document.querySelector('#edit-project-form__name');
+    // const projectNameInput = document.querySelector('#edit-project-form__name');
 
     //this fills out the intro+supplies box - this box will always exist, so it is hard-coded into template.
-    const heading0 = document.querySelector('#heading-0');
-    heading0.innerHTML = `Intro and Supplies:&nbsp;${project.name}`
-    const text0 = document.querySelector('#text-0');
-    const supplies = project.supplies;
-    if (supplies) {
-        const suppliesText = supplies.map(supply => `${supply}<br>`);
-        text0.innerHTML = suppliesText;
-    }
+    // const heading0 = document.querySelector('#heading-0');
+    // heading0.innerHTML = `Intro and Supplies:&nbsp;${project.name}`
+    // const text0 = document.querySelector('#text-0');
+    // const supplies = project.supplies;
+    // if (supplies) {
+    //     const suppliesText = supplies.map(supply => `${supply}<br>`);
+    //     text0.innerHTML = suppliesText;
+    // }
 
     //steps beyond intro are not guaranteed. They are stored in project in an array called desturctions.
     const destructions = project.destructions;
@@ -33,6 +33,30 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     //need to add validation that destructions and destructionsHeadings are same length. If they leave it empty we should log an empty string so that page renders correctly.
     function _generateEditPage(project) {
+        //add intro and supplies
+        const introDiv = document.createElement('div');
+        //NO - supplies don't show on edit page - only show on edit step page!
+        // const projectSupplies = `complete me`;
+        introDiv.setAttribute('id', `step-0`);
+        introDiv.setAttribute('class', 'edit-step');
+        const introDivHtml = `
+						<div class='edit-step__image-container'>
+							<div class='edit-step__image-text'> (DOWN ARROW) Drag Images From Top Bar </div>
+						</div>
+						<div class='edit-step__contents'>
+							<div class='edit-step__text'>
+								<div class='edit-step__heading' id='heading-0'>Intro and Supplies: ${project.name}</div>
+								<div class='edit-step__description' id='text-0'>${project.intro}</div>
+							</div>
+							<div class='edit-step__options-container'>
+								<div class='edit-step__reorder'>&#9776;</div>
+								<div class='edit-step__new'>&#62;</div>
+								<div class='edit-step__delete'></div>
+							</div>
+						</div>`;
+        introDiv.innerHTML = introDivHtml;
+        editMainContainer.appendChild(introDiv);
+        //add steps
         const destructionsHeadings = project.destructionsHeadings;
         const destructions = project.destructions;
         for (let i = 1; i <= destructions.length; i++) {
@@ -40,22 +64,20 @@ document.addEventListener('DOMContentLoaded', async() => {
             stepDiv.setAttribute('id', `step-${i}`);
             stepDiv.setAttribute('class', 'edit-step');
             const stepDivHtml = `
-					<div class='edit-step' id='step-${i}'>
 						<div class='edit-step__image-container'>
 							<div class='edit-step__image-text'> (DOWN ARROW) Drag Images From Top Bar </div>
 						</div>
 						<div class='edit-step__contents'>
 							<div class='edit-step__text'>
-								<div class='edit-step__heading' id='heading-${i}'>${destructionsHeadings[i-1]}</div>
+								<div class='edit-step__heading' id='heading-${i}'>Step ${i}: ${destructionsHeadings[i-1]}</div>
 								<div class='edit-step__description' id='text-${i}'>${destructions[i-1]}</div>
 							</div>
 							<div class='edit-step__options-container'>
 								<div class='edit-step__reorder'>&#9776;</div>
-								<div class='edit-step__new'>&rsaquo;</div>
-								<div class='edit-step__delete'>&#x274C;</div>
+								<div class='edit-step__new'>&#62;</div>
+								<div class='edit-step__delete'>&#215;</div>
 							</div>
-						</div>
-					</div>`;
+						</div>`;
             stepDiv.innerHTML = stepDivHtml;
             editMainContainer.appendChild(stepDiv);
         }
