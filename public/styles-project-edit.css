@@ -29,28 +29,3 @@
 
 #edit-nav__add,
 #edit-nav__more {}
-
-.btn-primary {
-    background-color: orange;
-    border: 1px solid orange;
-}
-
-.btn {
-    background-color: transparent;
-    border: 1px solid #ccc;
-}
-
-.btn,
-.btn-primary {
-    border-radius: 4px;
-    height: 40px;
-    transition-property: background-color 2s linear, border 2s linear, height 2s ease;
-    transition-timing-function:
-}
-
-.btn:hover,
-.btn-primary:hover {
-    background-color: darkorange;
-    border: 1px solid darkorange;
-    height: 1.5em
-}

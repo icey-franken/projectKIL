@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', async() => {
     //get project data - will work for new and edit projects
     const res1 = await fetch(`/api/projects/${projectId}`);
     const { project } = await res1.json();
-    console.log(project.name);
 
     //dynamically add inputs for destructions based on user clicking a "add step" button
     //	question: how to have these dynamically added form inputs be picked up in formData variable? Need to dynamically navigate through formData class instance.

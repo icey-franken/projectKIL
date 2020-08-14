@@ -10,6 +10,8 @@
     justify-content: center;
     color: black;
     margin: 100px auto;
+    border: 1px solid orange;
+    border-top: none;
 }
 
 .new-project-form-container {
@@ -37,7 +39,7 @@ div.new-project {
     /* background: black; */
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    color: black;
+    color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     text-align: center;
     width: 500px;
@@ -71,9 +73,14 @@ input.new-project {
 }
 
 button.new-project {
-    font-size: larger;
-    font-weight: 500;
-    height: 44px;
-    line-height: 20px;
+    /* width: 200px; */
+    /* height: 44px; */
+    height: auto;
+    margin: 0 auto;
     padding: 11px 19px;
+    display: inline-block;
+    /* line-height: 44px; */
+    text-align: center;
+    font-weight: 500;
+    font-size: larger;
 }
