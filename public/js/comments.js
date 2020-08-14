@@ -12,8 +12,7 @@ const discusionBoxTextArea = document.getElementById('discussion-box_text-area')
 const discussionBoxButtons = document.getElementById("discussion-box_buttons");
 // Paths
 const currentPath = window.location.href;
-const currentRoute = currentPath.slice(31);
-console.log(currentRoute);
+const currentRoute = currentPath.slice(31, 32);
 //variables
 let comments;
 let users;
@@ -88,9 +87,8 @@ async function initialSetup() {
 }
 
 async function createCommentElements() {
-    comments.forEach(function (comment) {
-        const userId = comment.userId - 1;
-        const username = users[userId].username;
+    for (let comment of comments) {
+        const username = comment.User.username;
         const commentDiv = document.createElement('div');
         const small = document.createElement('small');
 
@@ -195,7 +193,7 @@ async function createCommentElements() {
             }
             else console.log('failed')
         })
-    });
+    };
     // commentsDisplayContainer.appendChild(commentsDisplayDiv);
 }
 

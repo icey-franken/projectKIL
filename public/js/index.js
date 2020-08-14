@@ -59,12 +59,11 @@ async function createProjectElements() {
         projectDiv.innerHTML = `
             <div class="card mb-2">
             <a href="/projects/${project.id}/" class="overflow-hidden">
-                <img class="card-img-top" src="public/images/loginSignup.png" alt="Card image cap">
+                <img class="card-img-top" src="/public/images/loginSignup.png" alt="Card image cap">
             </a>
             <div class="card-body">
-                <h4 class="card-title font-weight-bold">${project.name}</h4>
-                <p class="card-text">${project.intro}</p>
-                <a class="btn btn-primary btn-md btn-rounded">Button</a>
+                <a href="/projects/${project.id}/" class="card-title font-weight-bold">${project.name}</a>
+                by ${project.User.username}
             </div>
             </div>
         `

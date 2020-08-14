@@ -2,9 +2,20 @@ extends layout.pug
 
 append head
 	script(src='/public/js/project-view-page.js' type='module')
-
+	link(rel='stylesheet' href='/public/styles-project-view.css' defer)
 
 block content
 	.project-container(id=`${projectId}`)
 		button(id='edit') Edit Destruction
+	.container.text-center
+		#project-header
+	#project-intro_image
+	#project-intro_destruction.container
+	.container.text-center
+		button Add
+		button TipAsk
+		button Question
+		button Comment
+		button Download
+	#project-steps-container
 	include comments.pug
