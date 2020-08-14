@@ -19,8 +19,8 @@ const validateProjectCreation = [
 
 //CREATE
 router.post('/new', validateProjectCreation, handleValidationErrors, routeHandler(async(req, res) => {
-    const { name } = req.body;
-    const project = await Project.create({ name }); //need to add user as well
+    const { name, userId } = req.body;
+    const project = await Project.create({ name, userId });
     res.json({ project })
 }))
 

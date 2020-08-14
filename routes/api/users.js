@@ -84,13 +84,21 @@ router.post('/token', validateUsername, handleValidationErrors, routeHandler(asy
     res.json({ id: user.id, token });
 }));
 
+router.post('/getUserId', routeHandler(async(req, res) => {
+    const { token } = req.body;
+    const userId = getUserId(token);
+    res.json({ userId });
+}))
+
 router.post('/signinstate', routeHandler(async(req, res) => {
     const { cookies } = req.body;
     const tokens = cookies.split(';').filter(cookie => cookie.slice(0, 6) === 'token=').map(token => token.slice(6));
-    const token = await checkUserToken(tokens);
+    let token = await checkUserToken(tokens);
+    console.log(token);
     let signInState = false;
-    if (token.length) signInState = true;
-    res.json({ userSignedIn: signInState });
+    if (token) signInState = true;
+    else token = null;
+    res.json({ userSignedIn: signInState, token });
 }))
 
 //this route should destroy the token belonging to signed in user

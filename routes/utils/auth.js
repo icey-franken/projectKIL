@@ -32,18 +32,16 @@ async function checkUserToken(tokens) {
             });
         } catch (err) { return false };
     });
-    console.log('from jwt.decond', jwt.decode(validTokens[0]).id); //delete
-    // console.log('from get user id', getUserId(validTokens))
     return validTokens[0];
 };
 
-// async function validateUserToken(token)
-
 async function getUserId(tokens) {
     const userToken = checkUserToken(tokens);
-    const userId = jwt.decond(userToken).id;
+    let userId = null;
+    try {
+        userId = jwt.decode(userToken).id;
+    } catch (e) { return null };
     return userId;
 };
-// const getUserId = async(tokens)
 
-module.exports = { getUserToken, checkUserToken }
+module.exports = { getUserToken, checkUserToken, getUserId }
