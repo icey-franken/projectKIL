@@ -83,7 +83,7 @@ main+.auth-container {
 .btn-primary {
     border-radius: 4px;
     height: 40px;
-    transition: background-color 0.2s linear, border 0.2s linear;
+    transition: background-color 0.2s linear, border 0.2s linear, box-shadow 0.2s linear;
     height: auto;
     margin: 0 auto;
     padding: 11px 19px;
@@ -98,6 +98,13 @@ main+.auth-container {
 .btn-primary:hover {
     background-color: darkorange;
     border: 1px solid darkorange;
+    box-shadow: 0 0 0 0.2rem orangered;
+}
+
+.btn-primary:focus {
+    background-color: inherit;
+    border: inherit;
+    box-shadow: inherit;
 }
 
 
