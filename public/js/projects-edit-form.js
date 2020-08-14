@@ -1,19 +1,24 @@
 document.addEventListener('DOMContentLoaded', async() => {
+    const editMainContainer = document.querySelector('.edit-main-container');
+    const projectId = editMainContainer.getAttribute('id');
     const form = document.querySelector('.edit-project-form');
-    const projectId = form.getAttribute('id');
-
     //get project data - will work for new and edit projects
     const res1 = await fetch(`/api/projects/${projectId}`);
     const { project } = await res1.json();
 
-    //dynamically add inputs for destructions based on user clicking a "add step" button
+    //dynamically add inputs for destructions based on user clicking "add step" button
     //	question: how to have these dynamically added form inputs be picked up in formData variable? Need to dynamically navigate through formData class instance.
     const projectNameInput = document.querySelector('#edit-project-form__name');
-    if (project.name !== null) projectNameInput.setAttribute('value', project.name);
 
+    const heading0 = document.querySelector('#heading-0');
+    heading0.innerHTML = `Intro and Supplies:&nbsp;${project.name}`
+    const text0 = document.querySelector('#text-0');
+    const supplies = project.supplies;
+    if (supplies) {
+        const suppliesText = supplies.map(supply => `${supply}<br>`);
+        text0.innerHTML = suppliesText;
+    }
 
-
-    //update project in database on form submission
     form.addEventListener('submit', async(e) => {
         e.preventDefault();
         const formData = new FormData(form);

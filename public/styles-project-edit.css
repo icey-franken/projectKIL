@@ -29,3 +29,96 @@
 
 #edit-nav__add,
 #edit-nav__more {}
+
+.edit-step {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 142px;
+    border: 1px solid blue;
+    border-radius: 8px;
+    position: relative;
+    margin: 23px 8px;
+}
+
+.edit-step__image-container {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    display: border-box;
+    border: 1px solid red;
+    margin: 12px;
+    border-radius: 10px;
+}
+
+.edit-step__image-text {}
+
+.edit-step__contents {
+    width: 40%;
+    border: 1px solid purple;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.edit-step__text {
+    width: 100%;
+    padding: 8px 0px;
+    border: 3px solid green;
+    box-sizing: border-box;
+}
+
+.edit-step__heading {
+    font-weight: bold;
+    height: 17px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid red;
+}
+
+.edit-step__description {
+    font-size: 12px;
+    height: 92px;
+    padding: 3px 0px 10px;
+    border: 1px solid orange;
+}
+
+.edit-step__options-container {
+    width: 37px;
+    height: 142px;
+    border: 1px solid pink;
+    color: darkgrey;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 'reorder' 'new' 'delete'
+}
+
+.edit-step__reorder {
+    grid-area: reorder;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-step__new {
+    grid-area: new;
+    font-size: 80pt;
+    position: absolute;
+    bottom: 3px;
+    color: darkgrey;
+}
+
+.edit-step__delete {
+    font-size: 20px;
+    /* color: red; */
+    grid-area: delete;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

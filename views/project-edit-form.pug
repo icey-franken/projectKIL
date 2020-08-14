@@ -18,14 +18,20 @@ block content
 					button#edit-nav__preview.ml-auto.btn Full Preview
 					button#edit-nav__save.ml-auto.btn Save
 					button#edit-nav__publish.ml-auto.btn-primary Publish
-		#edit-main
+		.edit-main-container(id=`${projectId}`)
 			#edit-main__intro
-			h1 What do you want to destroy?
-			form(class="edit-project-form" id=`${projectId}`)
-				label(for='name') I Destroyed This:
-				input(type="text" name="name" placeholder="Project Title" id='edit-project-form__name')
-				label(for='')
-				button submit
+				.edit-step
+					.edit-step__image-container
+						.edit-step__image-text (DOWN ARROW) Drag Images From Top Bar
+					.edit-step__contents
+						.edit-step__text
+							.edit-step__heading#heading-0
+							.edit-step__description#text-0
+						.edit-step__options-container
+							.edit-step__reorder &#9776;
+							.edit-step__new &rsaquo;
+							.edit-step__delete &#x274C;
+
 			#edit-main__step-1
 			#edit-main__step-2
 			#edit-main__footer
