@@ -18,6 +18,9 @@ module.exports = {
             supplies: {
                 type: Sequelize.ARRAY(Sequelize.TEXT)
             },
+            destructionsHeadings: {
+                type: Sequelize.ARRAY(Sequelize.TEXT),
+            },
             destructions: {
                 type: Sequelize.ARRAY(Sequelize.TEXT),
                 // allowNull: false

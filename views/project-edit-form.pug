@@ -12,21 +12,12 @@ block content
 				button#edit-header__add-images + Click To Add Images
 			#edit-nav
 				#edit-nav__left-container
-					button#edit-nav__add.btn Add
-					button#edit-nav__more.btn More
+					button#edit-nav__add.btn.edit-nav__button Add
+					button#edit-nav__more.btn.edit-nav__button More
 				#edit-nav__right-container
-					button#edit-nav__preview.ml-auto.btn Full Preview
-					button#edit-nav__save.ml-auto.btn Save
-					button#edit-nav__publish.ml-auto.btn-primary Publish
-		#edit-main
-			#edit-main__intro
-			h1 What do you want to destroy?
-			form(class="edit-project-form" id=`${projectId}`)
-				label(for='name') I Destroyed This:
-				input(type="text" name="name" placeholder="Project Title" id='edit-project-form__name')
-				label(for='')
-				button submit
-			#edit-main__step-1
-			#edit-main__step-2
-			#edit-main__footer
-				button#edit-main__add-step
+					button#edit-nav__preview.btn.edit-nav__button Full Preview
+					button#edit-nav__save.btn.edit-nav__button Save
+					button#edit-nav__publish.btn-primary.edit-nav__button Publish
+		.edit-main-container(id=`${projectId}`)
+		#edit-main__footer
+			button#edit-main__add-step

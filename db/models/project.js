@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         intro: DataTypes.TEXT,
         supplies: DataTypes.ARRAY(DataTypes.TEXT),
+        destructionsHeadings: {
+            type: DataTypes.ARRAY(DataTypes.TEXT),
+        },
         destructions: {
             type: DataTypes.ARRAY(DataTypes.TEXT),
         },
