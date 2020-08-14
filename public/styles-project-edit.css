@@ -124,7 +124,7 @@
     color: darkgrey;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas: 'reorder' 'new' 'delete';
+    grid-template-areas: 'reorder' 'edit' 'delete';
     cursor: pointer;
 }
 
@@ -145,8 +145,8 @@
     color: rgba(169, 169, 169, 1);
 }
 
-.edit-step__new {
-    grid-area: new;
+.edit-step__edit {
+    grid-area: edit;
     font-size: 20pt;
     text-align: center;
     font-weight: bolder;
@@ -172,4 +172,15 @@
 
 .edit-step__delete:hover {
     color: rgba(256, 0, 0, 1);
+}
+
+.edit-main__add-step {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.edit-main__add-step-button {
+    background-color: #f6f6f6;
+    text-align: center;
 }

@@ -33,10 +33,8 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     //need to add validation that destructions and destructionsHeadings are same length. If they leave it empty we should log an empty string so that page renders correctly.
     function _generateEditPage(project) {
-        //add intro and supplies
+        //add intro step - required
         const introDiv = document.createElement('div');
-        //NO - supplies don't show on edit page - only show on edit step page!
-        // const projectSupplies = `complete me`;
         introDiv.setAttribute('id', `step-0`);
         introDiv.setAttribute('class', 'edit-step');
         const introDivHtml = `
@@ -53,13 +51,13 @@ document.addEventListener('DOMContentLoaded', async() => {
 							</div>
 							<div class='edit-step__options-container'>
 								<div class='edit-step__reorder'>&#9776;</div>
-								<div class='edit-step__new'>&#62;</div>
+								<div class='edit-step__edit'>&#62;</div>
 								<div class='edit-step__delete edit-step__delete--intro'></div>
 							</div>
 						</div>`;
         introDiv.innerHTML = introDivHtml;
         editMainContainer.appendChild(introDiv);
-        //add steps
+        //add steps - depends on project
         const destructionsHeadings = project.destructionsHeadings;
         const destructions = project.destructions;
         for (let i = 1; i <= destructions.length; i++) {
@@ -80,16 +78,66 @@ document.addEventListener('DOMContentLoaded', async() => {
 							</div>
 							<div class='edit-step__options-container'>
 								<div class='edit-step__reorder'>&#9776;</div>
-								<div class='edit-step__new'>&#62;</div>
+								<div class='edit-step__edit'>&#62;</div>
 								<div class='edit-step__delete'>&#215;</div>
 							</div>
 						</div>`;
             stepDiv.innerHTML = stepDivHtml;
             editMainContainer.appendChild(stepDiv);
-        }
+        };
+
+        //add 'add step' button to bottom of step list
+        const addStepFooter = document.createElement('div');
+        addStepFooter.setAttribute('class', 'edit-main__add-step');
+        const addStepFooterHtml = `<button class='edit-main__add-step-button btn' id='add-step-button' >Add Step</button>`;
+        addStepFooter.innerHTML = addStepFooterHtml;
+        editMainContainer.appendChild(addStepFooter);
+    };
+    //-------------------------------------------
+
+    //-----------------------------------------------
+    //add step
+    const addStepFooter = document.querySelector('.edit-main__add-step');
+    const addStepButton = document.querySelector('#add-step-button');
+    console.log(addStepButton);
+    addStepButton.addEventListener('click', e => {
+        const numOfSteps = document.querySelectorAll('.edit-step').length;
+        const newStep = _createStepDiv(numOfSteps);
+        addStepFooter.insertAdjacentElement('beforebegin', newStep);
+    })
+
+
+
+    //-------------------------------------------
+    //creates a blank step div - for add step button
+    function _createStepDiv(stepNumber) {
+        const stepDiv = document.createElement('div');
+        stepDiv.setAttribute('id', `step-${stepNumber}`);
+        stepDiv.setAttribute('class', 'edit-step');
+        const stepDivHtml = `
+						<div class='edit-step__image-container'>
+							<div class='edit-step__image'>
+								<span class='edit-step__image-arrow'>&#129095;</span>
+								<span class='edit-step__image-text'> Drag Images From Top Bar</span>
+							</div>
+						</div>
+						<div class='edit-step__contents'>
+							<div class='edit-step__text'>
+								<div class='edit-step__heading' id='heading-${stepNumber}'>Step ${stepNumber}: (click to edit))</div>
+								<div class='edit-step__description' id='text-${stepNumber}'></div>
+							</div>
+							<div class='edit-step__options-container'>
+								<div class='edit-step__reorder'>&#9776;</div>
+								<div class='edit-step__edit'>&#62;</div>
+								<div class='edit-step__delete'>&#215;</div>
+							</div>
+						</div>`;
+        stepDiv.innerHTML = stepDivHtml;
+        return stepDiv;
     }
 
-
+    //---------------------------------------------
+    //delete step button
 
     //save this for later
     const saveButton = document.querySelector('#edit-nav__save');
@@ -114,6 +162,7 @@ document.addEventListener('DOMContentLoaded', async() => {
         project = data.project; //this should be our updated project
         //I need to make a method here that dynamically updates the page.
     })
+
 
     //old code - might delete
     const form = document.querySelector('.edit-project-form');
