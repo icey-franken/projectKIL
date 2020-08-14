@@ -29,19 +29,27 @@ document.addEventListener('DOMContentLoaded', async() => {
         //then we should have a helper function that will go through and update the elements with the project info.
         //I think we should be able to use querySelectorAll(".edit-step") to grab each step node.
         //then we should be able to iterate through each node and update the necessary field (image(maybe), heading, and text). Heading and text are in a subarray in project.destructions
+        const editButtons = document.querySelectorAll('.edit-step__edit');
+        editButtons.forEach(editButton => _addEditButtonListener(editButton));
+        const deleteButtons = document.querySelectorAll('.edit-step__delete');
+        deleteButtons.forEach(deleteButton => _addDeleteButtonListener(deleteButton));
+
     }
 
+    //-------------------------------------------------------
+    //this function basically generates the entire page based on existing project model
     //need to add validation that destructions and destructionsHeadings are same length. If they leave it empty we should log an empty string so that page renders correctly.
     function _generateEditPage(project) {
-        //add intro and supplies
+        //add intro step - required
         const introDiv = document.createElement('div');
-        //NO - supplies don't show on edit page - only show on edit step page!
-        // const projectSupplies = `complete me`;
         introDiv.setAttribute('id', `step-0`);
         introDiv.setAttribute('class', 'edit-step');
         const introDivHtml = `
 						<div class='edit-step__image-container'>
-							<div class='edit-step__image-text'> (DOWN ARROW) Drag Images From Top Bar </div>
+							<div class='edit-step__image'>
+								<span class='edit-step__image-arrow'>&#129095;</span>
+								<span class='edit-step__image-text'> Drag Images From Top Bar</span>
+							</div>
 						</div>
 						<div class='edit-step__contents'>
 							<div class='edit-step__text'>
@@ -50,13 +58,13 @@ document.addEventListener('DOMContentLoaded', async() => {
 							</div>
 							<div class='edit-step__options-container'>
 								<div class='edit-step__reorder'>&#9776;</div>
-								<div class='edit-step__new'>&#62;</div>
-								<div class='edit-step__delete'></div>
+								<div class='edit-step__edit' id='edit-0'>&#62;</div>
+								<div class='edit-step__delete--intro' id='delete-0'></div>
 							</div>
 						</div>`;
         introDiv.innerHTML = introDivHtml;
         editMainContainer.appendChild(introDiv);
-        //add steps
+        //add steps - depends on project
         const destructionsHeadings = project.destructionsHeadings;
         const destructions = project.destructions;
         for (let i = 1; i <= destructions.length; i++) {
@@ -65,7 +73,10 @@ document.addEventListener('DOMContentLoaded', async() => {
             stepDiv.setAttribute('class', 'edit-step');
             const stepDivHtml = `
 						<div class='edit-step__image-container'>
-							<div class='edit-step__image-text'> (DOWN ARROW) Drag Images From Top Bar </div>
+							<div class='edit-step__image'>
+								<span class='edit-step__image-arrow'>&#129095;</span>
+								<span class='edit-step__image-text'> Drag Images From Top Bar</span>
+							</div>
 						</div>
 						<div class='edit-step__contents'>
 							<div class='edit-step__text'>
@@ -74,14 +85,92 @@ document.addEventListener('DOMContentLoaded', async() => {
 							</div>
 							<div class='edit-step__options-container'>
 								<div class='edit-step__reorder'>&#9776;</div>
-								<div class='edit-step__new'>&#62;</div>
-								<div class='edit-step__delete'>&#215;</div>
+								<div class='edit-step__edit' id='edit-${i}'>&#62;</div>
+								<div class='edit-step__delete' id='delete-${i}'>&#215;</div>
 							</div>
 						</div>`;
             stepDiv.innerHTML = stepDivHtml;
             editMainContainer.appendChild(stepDiv);
-        }
+        };
+
+        //add 'add step' button to bottom of step list
+        const addStepFooter = document.createElement('div');
+        addStepFooter.setAttribute('class', 'edit-main__add-step');
+        const addStepFooterHtml = `<button class='edit-main__add-step-button btn' id='add-step-button' >Add Step</button>`;
+        addStepFooter.innerHTML = addStepFooterHtml;
+        editMainContainer.appendChild(addStepFooter);
+    };
+    //-------------------------------------------
+
+    //-----------------------------------------------
+    //add step
+    const addStepFooter = document.querySelector('.edit-main__add-step');
+    const addStepButton = document.querySelector('#add-step-button');
+    console.log(addStepButton);
+    addStepButton.addEventListener('click', e => {
+        const stepNum = document.querySelectorAll('.edit-step').length;
+        const newStep = _createStepDiv(stepNum);
+        addStepFooter.insertAdjacentElement('beforebegin', newStep);
+        //we do the edit and delete button event listeners here so we don't have to grab ALL the buttons again - minor improvement
+        const editButton = document.querySelector(`#edit-${stepNum}`);
+        _addEditButtonListener(editButton);
+        const deleteButton = document.querySelector(`#delete-${stepNum}`);
+        _addDeleteButtonListener(deleteButton);
+    });
+
+    //----------------------------------------------
+    //add edit button event listeners - input is an edit button node
+    function _addEditButtonListener(editButton) {
+        editButton.addEventListener('click', (e) => {
+            const stepId = e.target.id.slice(5);
+            window.location.href = `/editDestructable/${projectId}/step/${stepId}`;
+        });
+    };
+
+    //---------------------------------------------
+    //delete step button
+    //
+    function _addDeleteButtonListener(deleteButton) {
+        deleteButton.addEventListener('click', (e) => {
+            const stepId = e.target.id.slice(7);
+            //might be easiest to delete step from database, then re-render all elements. This is resource intensive.
+
+            //alternative is to delete step from html, change id's of all subsequent steps, and delete from database
+
+            //I think for now you should do the re-render option as it'll be easier to implement, albeit slower.
+            //so make a fetch request to delete a step. That fetch should return the project. Then call _generateEditPage(project)
+        });
+    };
+
+    //-------------------------------------------
+    //creates a blank step div - for add step button
+    function _createStepDiv(stepNumber) {
+        const stepDiv = document.createElement('div');
+        stepDiv.setAttribute('id', `step-${stepNumber}`);
+        stepDiv.setAttribute('class', 'edit-step');
+        const stepDivHtml = `
+						<div class='edit-step__image-container'>
+							<div class='edit-step__image'>
+								<span class='edit-step__image-arrow'>&#129095;</span>
+								<span class='edit-step__image-text'> Drag Images From Top Bar</span>
+							</div>
+						</div>
+						<div class='edit-step__contents'>
+							<div class='edit-step__text'>
+								<div class='edit-step__heading' id='heading-${stepNumber}'>Step ${stepNumber}: (click to edit))</div>
+								<div class='edit-step__description' id='text-${stepNumber}'></div>
+							</div>
+							<div class='edit-step__options-container'>
+								<div class='edit-step__reorder'>&#9776;</div>
+								<div class='edit-step__edit' id='edit-${stepNumber}'>&#62;</div>
+								<div class='edit-step__delete' id='delete-${stepNumber}'>&#215;</div>
+							</div>
+						</div>`;
+        stepDiv.innerHTML = stepDivHtml;
+        return stepDiv;
     }
+
+
 
 
 
@@ -108,6 +197,7 @@ document.addEventListener('DOMContentLoaded', async() => {
         project = data.project; //this should be our updated project
         //I need to make a method here that dynamically updates the page.
     })
+
 
     //old code - might delete
     const form = document.querySelector('.edit-project-form');
