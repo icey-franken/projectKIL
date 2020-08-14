@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 const jwt = require('jsonwebtoken');
 const { secret, expiresIn } = require('../../config').jwtConfig
 const { routeHandler, handleValidationErrors } = require('../utils');
-const { getUserToken, checkUserToken } = require('../utils/auth')
+const { getUserToken, checkUserToken, getUserId } = require('../utils/auth')
 
 const { check } = require('express-validator');
 
@@ -84,15 +84,25 @@ router.post('/token', validateUsername, handleValidationErrors, routeHandler(asy
     res.json({ id: user.id, token });
 }));
 
-router.post('/signinstate', routeHandler(async (req, res) => {
+router.post('/getUserId', routeHandler(async(req, res) => {
+    const { token } = req.body;
+    const userId = await getUserId(token);
+    res.json({ userId });
+}))
+
+router.post('/signinstate', routeHandler(async(req, res) => {
     const { cookies } = req.body;
     const tokens = cookies.split(';').filter(cookie => cookie.slice(0, 6) === 'token=').map(token => token.slice(6));
-    const signInState = await checkUserToken(tokens);
-    res.json({ userSignedIn: signInState });
+    let token = await checkUserToken(tokens);
+    console.log(token);
+    let signInState = false;
+    if (token) signInState = true;
+    else token = null;
+    res.json({ userSignedIn: signInState, token });
 }))
 
 //this route should destroy the token belonging to signed in user
-router.get('/logout', routeHandler(async (req, res) => {
+router.get('/logout', routeHandler(async(req, res) => {
     res.clearCookie('token').end();
 }));
 

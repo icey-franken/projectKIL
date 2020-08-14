@@ -8,10 +8,6 @@ main+.auth-container {
     background-position: center;
 }
 
-.btn-primary {
-    background-color: orange;
-}
-
 #errors-container {
     box-sizing: content-box;
     padding-right: 15px;
@@ -73,27 +69,42 @@ main+.auth-container {
     min-height: 200px;
 }
 
-.btn-primary {
-    background-color: orange;
-    border: 1px solid orange;
-}
-
 .btn {
     background-color: transparent;
     border: 1px solid #ccc;
+}
+
+.btn-primary {
+    background-color: orange;
+    border: 1px solid orange;
 }
 
 .btn,
 .btn-primary {
     border-radius: 4px;
     height: 40px;
-    transition: background-color 0.2s linear, border 0.2s linear;
+    transition: background-color 0.2s linear, border 0.2s linear, box-shadow 0.2s linear;
+    height: auto;
+    margin: 0 auto;
+    padding: 11px 19px;
+    display: inline-block;
+    /* line-height: 44px;*/
+    text-align: center;
+    font-weight: 500;
+    font-size: large;
 }
 
 .btn:hover,
 .btn-primary:hover {
     background-color: darkorange;
     border: 1px solid darkorange;
+    box-shadow: 0 0 0 0.2rem orangered;
+}
+
+.btn-primary:focus {
+    background-color: inherit;
+    border: inherit;
+    box-shadow: inherit;
 }
 
 
