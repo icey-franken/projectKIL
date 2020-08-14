@@ -24,3 +24,17 @@
 .container{
     width:80% !important;
 }
+
+.card-body{
+
+    height: 50px;
+    padding-top: 0.5em;
+    font-size: 12px;
+}
+
+.card-footer{
+    padding:unset;
+    text-align: right;
+    padding:0.2em;
+    padding-right: 2em;
+}

@@ -44,7 +44,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 router.get('/project/:id(\\d+)', asyncHandler(async (req, res) => {
     const { id } = req.params;
     const comments = await Comment.findAll({
-        include: [{ model: Project }],
+        include: [{ model: Project }, { model: User }],
         where: { projectId: id }
     });
     res.json({ comments });
