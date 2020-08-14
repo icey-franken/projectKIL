@@ -5,23 +5,15 @@ document.addEventListener('DOMContentLoaded', async() => {
         e.preventDefault();
         //first we check that user signed in
         const cookies = document.cookie;
-
         const res1 = await fetch('/api/users/signinstate', {
             method: 'post',
             body: JSON.stringify({ cookies }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json' }
         });
         const data1 = await res1.json();
-        if (!res1.ok) {
-            const { message } = data1;
-            const errorsContainer = document.querySelector('#errors-container');
-            errorsContainer.innerHTML = message;
-            return;
-        }
+        if (!res1.ok) return displayErrors(data1);
         const { userSignedIn, token } = data1;
-        //if they are, we get the userId and proceed with new project creation
+        //if signed in, get userId and proceed with new project creation
         if (userSignedIn) {
             const formData = new FormData(createProjectForm);
             const name = formData.get('name');
@@ -33,6 +25,7 @@ document.addEventListener('DOMContentLoaded', async() => {
                 }
             });
             const data2 = await res2.json();
+            if (!res2.ok) return displayErrors(data2);
             const { userId } = data2;
             const body = { name, userId };
             const res3 = await fetch('/api/projects/new', {
@@ -43,12 +36,7 @@ document.addEventListener('DOMContentLoaded', async() => {
                 }
             })
             const data3 = await res3.json();
-            if (!res3.ok) {
-                const { message } = data3;
-                const errorsContainer = document.querySelector('#errors-container');
-                errorsContainer.innerHTML = message;
-                return;
-            }
+            if (!res3.ok) return displayErrors(data3);
             const { project } = data3;
             window.location.href = `/editDestructable/${project.id}`;
         } else {
@@ -56,3 +44,16 @@ document.addEventListener('DOMContentLoaded', async() => {
         };
     });
 })
+
+
+function displayErrors(data) {
+    const { message, errors } = data;
+    const errorsContainer = document.querySelector('#errors-container');
+    errorsContainer.innerHTML = '';
+    for (let error of errors) {
+        const errorLi = document.createElement('li');
+        errorLi.innerHTML = error;
+        errorsContainer.appendChild(errorLi);
+    }
+    return;
+}

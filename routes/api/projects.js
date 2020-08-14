@@ -13,7 +13,10 @@ const { getUserToken, checkUserToken } = require('../utils/auth')
 const validateProjectCreation = [
     check('name', 'Please provide a name for you destruction.')
     .exists({ checkNull: true })
-    .exists({ checkFalsy: true })
+    .exists({ checkFalsy: true }),
+    check('userId', 'Please sign in before destructing.')
+    .exists({ checkNull: true })
+    .exists({ checkFalsy: true }),
 ];
 
 
