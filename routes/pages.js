@@ -41,6 +41,12 @@ router.get('/editDestructable/:projectId/', asyncHandler(async(req, res) => {
     res.render('project-edit-form', { projectId })
 }))
 
+router.get('/editDestructable/:projectId/step/:stepId', asyncHandler(async(req, res) => {
+    const projectId = parseInt(req.params.projectId, 10);
+    const stepId = parseInt(req.params.stepId, 10);
+    res.render('project-edit-step-form', { projectId, stepId })
+}))
+
 //all other routes------------------------------------------------
 router.use((req, res) => {
     res.render('error-page');
