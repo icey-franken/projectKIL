@@ -10,12 +10,14 @@ block content
 	.container.text-center
 		#project-header
 	#project-intro_image
-	#project-intro_destruction.container
-	.container.text-center
-		button Add
-		button TipAsk
-		button Question
-		button Comment
-		button Download
+	#project-intro_destruction.container.px-5
+	#project-supplies.container.px-5
+	div(class="container text-center py-4")
+		button(class="btn btn-primary btn-sm mx-3") Add
+		button(class="btn btn-primary btn-sm mx-3") TipAsk
+		button(class="btn btn-primary btn-sm mx-3") Question
+		button(class="btn btn-primary btn-sm mx-3") Comment
+		button(class="btn btn-primary btn-sm mx-3") Download
+	hr(class="" width="20%")
 	#project-steps-container
 	include comments.pug
