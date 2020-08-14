@@ -13,7 +13,6 @@ const discussionBoxButtons = document.getElementById("discussion-box_buttons");
 // Paths
 const currentPath = window.location.href;
 const currentRoute = currentPath.slice(31);
-const projectIdRoute = currentRoute.slice(8);
 console.log(currentRoute);
 //variables
 let comments;
@@ -229,7 +228,7 @@ async function discussionElementInteractions() {
             const res = await fetch("/api/comments", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ comment: commentText, userId: 1, projectId: Number.parseInt(projectIdRoute) })
+                body: JSON.stringify({ comment: commentText, userId: 1, projectId: Number.parseInt(currentRoute) })
             });
             if (res.ok) {
                 commentsDisplayContainer.innerHTML = '';
