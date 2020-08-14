@@ -1,0 +1,27 @@
+.carousel-caption{
+    top:40%;
+    bottom:25%;
+    width:30%;
+}
+
+.carousel-indicators{
+    right:unset;
+    padding-left: unset;
+    margin-left: 20%;
+    bottom: 5%;
+}
+
+.carousel-indicators li{
+    background-clip: unset;
+    border-top: unset;
+    border-bottom: unset;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.container{
+    padding-left: unset;
+    padding-right: unset;
+}

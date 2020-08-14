@@ -5,6 +5,9 @@ html(lang='en')
 		title DESTRUCTABLES
 		meta(charset='utf-8')
 		link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+		script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous")
 		link(rel='icon' href='/public/favicon.ico' type='image/ico')
 		link(rel="stylesheet" href="/public/style.css")
 		block head
@@ -34,7 +37,7 @@ html(lang='en')
 				a(class="nav-link text-white hidden" href="/login" id='loginLink') Login
 				a(class="nav-link text-white hidden" href="/signup" id='signUpLink') Sign Up
 				a(class="nav-link text-white hidden" href='/projects' id='logoutLink') Logout
-			div(class="navbar  navbar-expand-md navbar-light bg-light")
+			div(class="navbar  navbar-expand-md navbar-light bg-silver")
 				a(class="navbar-brand" href="/")
 					svg#Capa_1(width="100" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' viewbox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve')
 						rect(x='194.189' y='193.602' style='fill:#FF9570;' width='61.811' height='309.054')
@@ -49,7 +52,7 @@ html(lang='en')
 				h2.font-weight-bold DESTRUCTABLES
 				ul(class="navbar-nav mr-auto")
 					li(class="nav-item active mx-4")
-						a(class="nav-link btn" href="/projects") Projects
+						a(class="nav-link btn btn-outline-secondary" href="/projects") Projects
 				ul(class="navbar-nav ml-auto")
 					li(class="nav-item active")
 						a(class="nav-link" href="#") COMMUNITY

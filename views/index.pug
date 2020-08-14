@@ -1,17 +1,46 @@
 extends layout.pug
 
 append head
-  script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js", integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf", crossorigin="anonymous" type='module' defer)
-  script(src="js/index.js" type="module")
-
+  script(src="../public/js/index.js" type="module")
+  link(rel="stylesheet" href="/public/style-index.css")
 
 block content
-  img(height='300em' width="100%" src='https://media.istockphoto.com/photos/blue-abstract-background-or-texture-picture-id1138395421?k=6&m=1138395421&s=612x612&w=0&h=bJ1SRWujCgg3QWzkGPgaRiArNYohPl7-Wc4p_Fa_cyA=' alt='Second slide')
-  .carousel-caption.m-5
-    h1 Another example headline.
-    p | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-    p
-      a.btn.btn-lg.btn-primary(href='#' role='button') Learn more
+  //slider
+  // Carousel Wrapper
+  #carousel-example-2.carousel.slide.carousel-fade(data-ride='carousel')
+    // Indicators
+    ol.carousel-indicators
+      li.active(data-target='#carousel-example-2' data-slide-to='0')
+      li(data-target='#carousel-example-2' data-slide-to='1')
+      li(data-target='#carousel-example-2' data-slide-to='2')
+    // /.Indicators
+    // Slides
+    .carousel-inner(role='listbox')
+      .carousel-item.active
+        .view
+          img.d-block.w-100(height="500" src='../public/images/explosion.png' alt='First slide')
+          .mask.rgba-black-light
+        .carousel-caption.border-top.border-bottom.text-left
+          h2.h2-responsive YOURS FOR THE MAKING
+          p Welcome to the world's most awesome playground for all things making. Learn from the largest collection of how to step-by-step workshop projects anywhere.
+      .carousel-item
+        // Mask color
+        .view
+          img.d-block.w-100(height="500" src='https://d32r1sh890xpii.cloudfront.net/article/718x300/05940203c93d72b6f5a339fa330c2f59.jpg' alt='Second slide')
+          .mask.rgba-black-strong
+        .carousel-caption.border-top.border-bottom.text-left
+          h2.h2-responsive LET'S MAKE IT LIGHT UP
+          p Welcome to the world's most awesome playground for all things making. Learn from the largest collection of how to step-by-step workshop projects anywhere.
+      .carousel-item
+        // Mask color
+        .view
+          img.d-block.w-100(height="500" src='../public/images/loginSignup.png' alt='Third slide')
+          .mask.rgba-black-slight
+        .carousel-caption.border-top.border-bottom.text-left
+          h2.h2-responsive LET'S MAKE IT LARGER THAN LIFE!
+          p Welcome to the world's most awesome playground for all things making. Learn from the largest collection of how to step-by-step workshop projects anywhere.
+    // /.Slides
+
   //
     Marketing messaging and featurettes
     ==================================================
@@ -34,60 +63,5 @@ block content
     //THUMBNAILS BELOW
     h2 Explore Projects
     .album
-      .container
-        .row.w-100.my-5
-          .col-xl
-            .card.mb-4.box-shadow
-              img.card-img-top(data-src='holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail' alt='Thumbnail [100%x225]' style='height: 225px; width: 100%; display: block;' src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_173e948a513%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_173e948a513%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.140625%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E' data-holder-rendered='true')
-              .card-body
-                p.card-text
-                  | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                .d-flex.justify-content-between.align-items-center
-                  .btn-group
-                    button.btn.btn-sm.btn-outline-secondary(type='button') View
-                    button.btn.btn-sm.btn-outline-secondary(type='button') Edit
-                  small.text-muted 9 mins
-          .col-xl
-            .card.mb-4.box-shadow
-              img.card-img-top(data-src='holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail' alt='Thumbnail [100%x225]' src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_173e948a515%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_173e948a515%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.140625%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E' data-holder-rendered='true' style='height: 225px; width: 100%; display: block;')
-              .card-body
-                p.card-text
-                  | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                .d-flex.justify-content-between.align-items-center
-                  .btn-group
-                    button.btn.btn-sm.btn-outline-secondary(type='button') View
-                    button.btn.btn-sm.btn-outline-secondary(type='button') Edit
-                  small.text-muted 9 mins
-          .col-xl
-            .card.mb-4.box-shadow
-              img.card-img-top(data-src='holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail' alt='Thumbnail [100%x225]' src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_173e948a516%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_173e948a516%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.140625%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E' data-holder-rendered='true' style='height: 225px; width: 100%; display: block;')
-              .card-body
-                p.card-text
-                  | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                .d-flex.justify-content-between.align-items-center
-                  .btn-group
-                    button.btn.btn-sm.btn-outline-secondary(type='button') View
-                    button.btn.btn-sm.btn-outline-secondary(type='button') Edit
-                  small.text-muted 9 mins
-          .col-xl
-            .card.mb-4.box-shadow
-              img.card-img-top(data-src='holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail' alt='Thumbnail [100%x225]' src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_173e948a516%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_173e948a516%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.140625%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E' data-holder-rendered='true' style='height: 225px; width: 100%; display: block;')
-              .card-body
-                p.card-text
-                  | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                .d-flex.justify-content-between.align-items-center
-                  .btn-group
-                    button.btn.btn-sm.btn-outline-secondary(type='button') View
-                    button.btn.btn-sm.btn-outline-secondary(type='button') Edit
-                  small.text-muted 9 mins
-          .col-xl
-            .card.mb-4.box-shadow
-              img.card-img-top(data-src='holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail' alt='Thumbnail [100%x225]' src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_173e948a516%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_173e948a516%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.140625%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E' data-holder-rendered='true' style='height: 225px; width: 100%; display: block;')
-              .card-body
-                p.card-text
-                  | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                .d-flex.justify-content-between.align-items-center
-                  .btn-group
-                    button.btn.btn-sm.btn-outline-secondary(type='button') View
-                    button.btn.btn-sm.btn-outline-secondary(type='button') Edit
-                  small.text-muted 9 mins
+      .container#container-explore
+        .row.w-100.my-5#container-explore_category
