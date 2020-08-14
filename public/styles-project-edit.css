@@ -1,7 +1,7 @@
 .edit-container {
     color: black;
     margin: 40px 23px 36px;
-    border: solid 1px orange;
+    border: 1px solid rgba(119, 130, 135, .4);
     border-radius: 9px;
     /* padding: 16px; */
     background-color: #fff;
@@ -34,7 +34,6 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid red;
     margin: 10px 0px 0px;
 }
 
@@ -89,7 +88,6 @@
 
 .edit-step__contents {
     width: 40%;
-    border: 1px solid purple;
     position: relative;
     display: flex;
     flex-wrap: nowrap;
@@ -98,7 +96,6 @@
 .edit-step__text {
     width: 100%;
     padding: 8px 0px;
-    border: 3px solid green;
     box-sizing: border-box;
 }
 
@@ -107,20 +104,17 @@
     height: 17px;
     margin-bottom: 10px;
     font-size: 14px;
-    border: 1px solid red;
 }
 
 .edit-step__description {
     font-size: 12px;
     height: 92px;
-    border: 1px solid orange;
 }
 
 .edit-step__options-container {
     width: 37px;
     height: 142px;
     box-sizing: border-box;
-    border: 1px solid pink;
     color: darkgrey;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
