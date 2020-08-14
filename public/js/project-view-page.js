@@ -3,7 +3,7 @@ const projectIntroImage = document.getElementById("project-intro_image")
 const projectIntroDestruction = document.getElementById("project-intro_destruction")
 const projectSupplies = document.getElementById("project-supplies")
 const projectStepsContainer = document.getElementById("project-steps-container")
-
+const editProjectButton = document.getElementById("edit");
 let project;
 function createCarousel() {
     return `
@@ -130,6 +130,7 @@ async function initialSetup() {
     projectSupplies.innerHTML = createSupplies();
     projectIntroDestruction.innerHTML = project.intro;
     createProjectSteps();
+    editProjectButton.href = `/editDestructable/${currentRoute}`;
 }
 
 initialSetup();

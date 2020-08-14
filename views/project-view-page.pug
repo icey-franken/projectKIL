@@ -5,8 +5,8 @@ append head
 	link(rel='stylesheet' href='/public/styles-project-view.css' defer)
 
 block content
-	.project-container(id=`${projectId}`)
-		button(id='edit') Edit Destruction
+	a(href='/editDestructable/1'  id='edit')
+		button(class="btn") Edit Destruction
 	.container.text-center
 		#project-header
 	#project-intro_image
