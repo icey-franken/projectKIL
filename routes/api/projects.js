@@ -62,15 +62,17 @@ router.post('/edit/:projectId(\\d+)', routeHandler(async(req, res) => {
 
 
 //DELETE STEP
-router.get('/:projectId(\\d+)/delete/step/:stepId(\\d+)/', routeHandler(async(req, res) => {
+router.get('/:projectId(\\d+)/delete/step/:stepNum(\\d+)/', routeHandler(async(req, res) => {
     const projectId = parseInt(req.params.projectId, 10);
     const stepNum = parseInt(req.params.stepNum, 10);
     const project = await Project.findByPk(projectId);
     console.log('before', project.destructions);
     const newDes = project.destructions;
     const newDesHead = project.destructionsHeadings;
-    newDes.splice(stepNum, 1);
-    newDesHead.splice(stepNum, 1);
+    console.log('projAPI stepNum', stepNum);
+    console.log('des', newDes);
+    newDes.splice(stepNum - 1, 1);
+    newDesHead.splice(stepNum - 1, 1);
     // console.log('oldDes', oldDes);
     await Project.update({ destructions: newDes, destructionsHeadings: newDesHead }, { where: { id: projectId } });
     // await project.update({ fields: ['destructions', 'destructionsHeadings'] });

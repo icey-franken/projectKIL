@@ -10,14 +10,13 @@ document.addEventListener('DOMContentLoaded', async() => {
     function renderEditPage(project) {
         const numSteps = project.destructions.length;
         generateIntroPage(project);
+        addEditButtonListener(0, projectId);
         if (numSteps > 0) {
             generateStepsPage(project);
-            for (let stepNum = 0; stepNum < numSteps; stepNum++) {
+            for (let stepNum = 1; stepNum <= numSteps; stepNum++) {
                 addEditButtonListener(stepNum, projectId);
-                if (stepNum !== 0) addDeleteButtonListener(stepNum, projectId);
+                addDeleteButtonListener(stepNum, projectId);
             };
-        } else {
-            addEditButtonListener(0, projectId);
         };
         generateAddStepButton();
     };
@@ -119,6 +118,7 @@ document.addEventListener('DOMContentLoaded', async() => {
         const deleteButton = document.querySelector(`#delete-${stepNum}`);
         deleteButton.addEventListener('click', async(e) => {
             const stepNum = e.target.id.slice(7);
+            console.log('line 121 stepnum', stepNum);
             const res = await fetch(`/api/projects/${projectId}/delete/step/${stepNum}`);
             const data = await res.json();
             const { project } = data;
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 						</div>
 						<div class='edit-step__contents'>
 							<div class='edit-step__text'>
-								<div class='edit-step__heading' id='heading-${stepNumber}'>Step ${stepNumber}: (click to edit))</div>
+								<div class='edit-step__heading' id='heading-${stepNumber}'>Step ${stepNumber}: (click to edit)</div>
 								<div class='edit-step__description' id='text-${stepNumber}'></div>
 							</div>
 							<div class='edit-step__options-container'>
