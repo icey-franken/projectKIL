@@ -9,31 +9,16 @@ mixin add-media-modal
 				div(class="modal-header border-bottom-0" id="add-media_dropzone")
 				ul.nav.nav-tabs.pl-3
 					li.nav-item
-						a.nav-link.active(href='#') Upload Photos and Files
+						a(class="nav-link active" href='#') Upload Photos and Files
 					li.nav-item
 						a.nav-link.disabled(href='#') Embed Videos
 				div(class="modal-body add-media text-center d-flex align-items-center")
+					div(class="file-upload-wrapper")
+						input(type="file" id="input-file-now" class="file-upload")
 					div.container
 						h2 Upload Files and Photos
 						h5 Drag or Browse to Add
 				div(class="modal-footer")
 					button(type="button" class="") Add Image...
-					input(type='file' name='image' accept='image/png, image/jpeg')
-					button(type="button" class="") Upload
-{
-    Version: "2012-10-17"
-    Statement:[
-        {
-            Sid: "Stm1420751757000"
-            Effect: "Allow"
-            Principlal:{
-                AWS: "arn:aws:iam::740645233048:user/kcsarith"
-            },
-            Action: "s3:*",
-            Resource:[
-                "arn:aws:s3:::destructables-storage",
-                "arn:aws:s3:::destructables-storage/*"
-            ]
-        }
-    ]
-}
+					input(type='file' name='image' accept='image/png, image/jpeg' id='upload-file_input')
+					button(type="button" name='upload' value='upload' class="" id='upload-file_button') Upload

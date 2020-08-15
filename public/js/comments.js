@@ -12,8 +12,21 @@ const discusionBoxTextArea = document.getElementById('discussion-box_text-area')
 const discussionBoxButtons = document.getElementById("discussion-box_buttons");
 const discussionJumbotron = document.querySelector(".jumbotron");
 // Paths
-const currentPath = window.location.href;
-const currentRoute = currentPath.slice(31, 32);
+let currentPath = window.location.href;
+const digitPath = (function () {
+    let charCount = 0;
+
+    if (currentPath[currentPath.length - 1] === '/') {
+        currentPath = currentPath.slice(0, currentPath.length - 1);
+    }
+    for (let i = currentPath.length - 1; i > 0; i--) {
+        let char = currentPath[i];
+        charCount++;
+        if (char === "/") break
+    }
+    return charCount;
+})();
+const currentRoute = currentPath.slice(currentPath.length - digitPath + 1);
 //variables
 let comments;
 let users;
