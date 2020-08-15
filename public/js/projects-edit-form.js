@@ -176,25 +176,32 @@ document.addEventListener('DOMContentLoaded', async() => {
     });
 
 
-    // add dropdown to more button
+    // add dropdown functionality
+    function dropDownMaker(button) {
+        button.addEventListener('mouseenter', (e) => {
+            button.children[0].classList.toggle('show');
+            button.children[0].classList.toggle('dropdown__content--opened');
+            button.classList.toggle('btn-primary--selected');
+            // setTimeout(() => {
+            //     moreButton.children[0].classList.toggle('show');
+            //     moreButton.classList.toggle('btn-primary--selected');
+            // }, 500);
+        })
+        button.addEventListener('mouseleave', (e) => {
+            setTimeout(() => {
+                button.children[0].classList.toggle('show');
+                button.children[0].classList.toggle('dropdown__content--opened');
+                button.classList.toggle('btn-primary--selected');
+            }, 100);
+        });
+    };
     const moreButton = document.querySelector('#edit-nav__more');
-    moreButton.addEventListener('mouseenter', (e) => {
-        moreButton.children[0].classList.toggle('show');
-        moreButton.children[0].classList.toggle('dropdown__content--opened');
-        moreButton.classList.toggle('btn-primary--selected');
-        // setTimeout(() => {
-        //     moreButton.children[0].classList.toggle('show');
-        //     moreButton.classList.toggle('btn-primary--selected');
-        // }, 500);
-    })
-    moreButton.addEventListener('mouseleave', (e) => {
+    dropDownMaker(moreButton);
+    const addButton = document.querySelector('#edit-nav__add');
+    dropDownMaker(addButton);
 
-        setTimeout(() => {
-            moreButton.children[0].classList.toggle('show');
-            moreButton.children[0].classList.toggle('dropdown__content--opened');
-            moreButton.classList.toggle('btn-primary--selected');
-        }, 200);
-    });
+
+
     //--------------------------------------------
     //--------------------------------------------
     //save this for later
