@@ -52,13 +52,8 @@
 /* FROM W3 FOR DROPBUTTON */
 
 .dropbtn {
-    /* from w3 */
-    /* background-color: #4CAF50; */
-    /* color: white; */
-    /* padding: 16px; */
-    /* font-size: 16px; */
-    /* border: none; */
-    /* cursor: pointer; */
+    z-index: 2;
+    position: relative;
 }
 
 .dropdown {
@@ -70,20 +65,25 @@
     display: none;
     position: absolute;
     z-index: 1;
-    text-align: left;
-    /* from w3 */
-    /* background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px; */
+    /* text-align: left; */
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    /* padding: 12px 12px; */
+    /* margin-top: -5px; */
+    margin-left: 2px;
+    color: black;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
-.dropdown__content--opened {
-    /* from w3 */
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+.dropdown__content div:hover {
+    background-color: rgba(255, 140, 0, 0.6)
+}
+
+.dropdown__content div {
+    padding: 12px 12px;
 }
 
 .hide {
@@ -92,11 +92,6 @@
 
 .show {
     display: block;
-}
-
-.dropdown__content div:hover {
-    /* from w3     */
-    background-color: #f1f1f1
 }
 
 .edit-step {

@@ -178,27 +178,25 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     // add dropdown functionality
     function dropDownMaker(button) {
-        button.addEventListener('mouseenter', (e) => {
-            button.children[0].classList.toggle('show');
-            button.children[0].classList.toggle('dropdown__content--opened');
-            button.classList.toggle('btn-primary--selected');
-            // setTimeout(() => {
-            //     moreButton.children[0].classList.toggle('show');
-            //     moreButton.classList.toggle('btn-primary--selected');
-            // }, 500);
+        button.parentElement.addEventListener('mouseenter', (e) => {
+            button.nextSibling.classList.add('show');
+            button.nextSibling.classList.add('dropdown__content--opened');
+            button.classList.add('btn-primary--selected');
         })
-        button.addEventListener('mouseleave', (e) => {
+        button.parentElement.addEventListener('mouseleave', (e) => {
             setTimeout(() => {
-                button.children[0].classList.toggle('show');
-                button.children[0].classList.toggle('dropdown__content--opened');
-                button.classList.toggle('btn-primary--selected');
+                button.nextSibling.classList.remove('show');
+                button.nextSibling.classList.remove('dropdown__content--opened');
+                button.classList.remove('btn-primary--selected');
             }, 100);
         });
     };
     const moreButton = document.querySelector('#edit-nav__more');
     dropDownMaker(moreButton);
+
     const addButton = document.querySelector('#edit-nav__add');
     dropDownMaker(addButton);
+
 
 
 
