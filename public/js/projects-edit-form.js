@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 						<div class='edit-step__text'>
 							<div class='edit-step__heading' id='heading-0'>Intro and Supplies: ${project.name}</div>
 							<div class='edit-step__description' id='text-0'>${project.intro}</div>
+							<div class='edit-step__supplies' id='supplies-0' style='display:none'>${project.supplies}</div>
 						</div>
 						<div class='edit-step__options-container'>
 							<div class='edit-step__reorder'>&#9776;</div>
@@ -170,26 +171,41 @@ document.addEventListener('DOMContentLoaded', async() => {
     //save this for later
     const saveButton = document.querySelector('#edit-nav__save');
     saveButton.addEventListener('click', async(e) => {
-        e.preventDefault();
-        const stepsText = document.querySelectorAll('.edit-step__text');
-        const contentArray = stepsText.map((step, i) => {
-            const heading = document.querySelector(`#heading-${i}`);
-            const description = document.querySelector(`#text-${i}`);
-            //get value from both of these, then push into sub-array with [heading, text]. This is what we return to contentArray.
-            const headingVal = heading.nodeValue;
-            const descriptionVal = description.nodeValue;
-            return [headingVal, descriptionVal];
+        const stepsHeadingsNodes = document.querySelectorAll('.edit-step__heading');
+        let destructionsHeadings = [];
+        stepsHeadingsNodes.forEach((stepHeadingNode, i) => {
+            destructionsHeadings.push(stepHeadingNode.innerHTML);
         });
-        body = contentArray;
+        const stepsDescriptionsNodes = document.querySelectorAll('.edit-step__description');
+        let destructions = [];
+        stepsDescriptionsNodes.forEach((stepDescriptionNode, i) => {
+            destructions.push(stepDescriptionNode.innerHTML);
+        })
+        const name = destructionsHeadings.shift().slice(20);
+        const intro = destructions.shift();
+        const suppliesNode = document.querySelector('.edit-step__supplies');
+        const supplies = suppliesNode.innerHTML;
+        const body = { name, intro, supplies, destructions, destructionsHeadings };
+        console.log('line189', body)
         const res = await fetch(`/api/projects/edit/${projectId}`, {
-            method: 'post',
+            method: 'put',
             body: JSON.stringify(body),
             headers: { 'Content-Type': 'application/json' }
         })
         const data = await res.json();
-        project = data.project; //this should be our updated project
-        //I need to make a method here that dynamically updates the page.
-    })
+        const { project } = data;
+        console.log(project);
+        renderEditPage(project);
+        // body = contentArray;
+        // const res = await fetch(`/api/projects/edit/${projectId}`, {
+        //     method: 'post',
+        //     body: JSON.stringify(body),
+        //     headers: { 'Content-Type': 'application/json' }
+        // })
+        // const data = await res.json();
+        // project = data.project; //this should be our updated project
+        // //I need to make a method here that dynamically updates the page.
+    });
 
 
     //old code - might delete

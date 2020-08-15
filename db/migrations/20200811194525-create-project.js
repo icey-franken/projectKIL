@@ -20,9 +20,11 @@ module.exports = {
             },
             destructionsHeadings: {
                 type: Sequelize.ARRAY(Sequelize.TEXT),
+                defaultValue: [],
             },
             destructions: {
                 type: Sequelize.ARRAY(Sequelize.TEXT),
+                defaultValue: [],
                 // allowNull: false
             },
             images: {

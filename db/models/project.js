@@ -30,9 +30,11 @@ module.exports = (sequelize, DataTypes) => {
         supplies: DataTypes.ARRAY(DataTypes.TEXT),
         destructionsHeadings: {
             type: DataTypes.ARRAY(DataTypes.TEXT),
+            defaultValue: [],
         },
         destructions: {
             type: DataTypes.ARRAY(DataTypes.TEXT),
+            defaultValue: [],
         },
         images: DataTypes.ARRAY(DataTypes.TEXT),
         categoryId: DataTypes.INTEGER,

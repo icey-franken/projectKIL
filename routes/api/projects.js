@@ -50,13 +50,33 @@ router.get('/:id(\\d+)', routeHandler(async(req, res) => {
 //UPDATE
 //	add validations that submitted info from project edit form is ok
 // I don't think this is currently doing a damn thing... need to grab body.
-router.post('/edit/:projectId(\\d+)', routeHandler(async(req, res) => {
-    const projectId = parstInt(req.params.projectId, 10);
-    const project = await Project.update({
-        where: {
-            id: projectId
-        },
-    });
+router.put('/edit/:projectId(\\d+)', routeHandler(async(req, res) => {
+    const projectId = parseInt(req.params.projectId, 10);
+    const { name, intro, supplies, destructions, destructionsHeadings } = req.body;
+    console.log(req.body);
+    if (destructions.length === destructionsHeadings.length && destructions.length === 0) {
+        try {
+            Project.update({
+                name,
+                intro,
+                supplies,
+            }, {
+                returning: true,
+                where: { id: projectId },
+            }).then(([rowsUpdated, [project]]) => console.log('rowsUpdated', rowsUpdated, 'project', project));
+        } catch (e) { console.log(e) };
+    } else {
+        await Project.update({
+            name,
+            intro,
+            supplies,
+            destructions,
+            destructionsHeadings,
+        }, {
+            where: { id: projectId }
+        })
+    };
+    const project = await Project.findByPk(projectId);
     res.json({ project });
 }));
 
