@@ -178,10 +178,23 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     // add dropdown to more button
     const moreButton = document.querySelector('#edit-nav__more');
-    moreButton.addEventListener('click', (e) => {
+    moreButton.addEventListener('mouseenter', (e) => {
         moreButton.children[0].classList.toggle('show');
+        moreButton.children[0].classList.toggle('dropdown__content--opened');
+        moreButton.classList.toggle('btn-primary--selected');
+        // setTimeout(() => {
+        //     moreButton.children[0].classList.toggle('show');
+        //     moreButton.classList.toggle('btn-primary--selected');
+        // }, 500);
     })
+    moreButton.addEventListener('mouseleave', (e) => {
 
+        setTimeout(() => {
+            moreButton.children[0].classList.toggle('show');
+            moreButton.children[0].classList.toggle('dropdown__content--opened');
+            moreButton.classList.toggle('btn-primary--selected');
+        }, 200);
+    });
     //--------------------------------------------
     //--------------------------------------------
     //save this for later

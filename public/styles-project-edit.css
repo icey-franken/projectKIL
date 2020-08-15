@@ -38,24 +38,64 @@
     margin: 10px 0px 0px;
 }
 
-.dropdown__content {
-    display: none;
-}
-
-.show {
-    display: block
-}
-
-.dropdown__content:hover #edit-nav__right-container {
-    display: flex;
-}
-
 #edit-nav__right-container .edit-nav__button {
     margin-left: 8px;
 }
 
-#edit-nav__left-container .edit-nav__button {
+.edit-nav__button {
+    display: inline-block;
     margin-right: 8px;
+}
+
+
+/* FROM W3 FOR DROPBUTTON */
+
+.dropbtn {
+    /* from w3 */
+    /* background-color: #4CAF50; */
+    /* color: white; */
+    /* padding: 16px; */
+    /* font-size: 16px; */
+    /* border: none; */
+    cursor: pointer;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown__content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    text-align: left;
+    /* from w3 */
+    /* background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px; */
+}
+
+.dropdown__content--opened {
+    /* from w3 */
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.dropdown__content div:hover {
+    /* from w3     */
+    background-color: #f1f1f1
 }
 
 .edit-step {
