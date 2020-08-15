@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Project, User, Category } = require('../../db/models');
+const { Project, User, Category, Comment } = require('../../db/models');
 const { check } = require('express-validator');
 const { Op } = require('sequelize');
 const jwt = require('jsonwebtoken');
@@ -122,8 +122,8 @@ router.get('/:projectId(\\d+)/addStep/', routeHandler(async(req, res) => {
     res.json({ project: newProject });
 }));
 
-//DELETE STEP
-router.get('/:projectId(\\d+)/delete/step/:stepNum(\\d+)/', routeHandler(async(req, res) => {
+//DELETE SINGLE STEP
+router.delete('/:projectId(\\d+)/delete/step/:stepNum(\\d+)/', routeHandler(async(req, res) => {
     const projectId = parseInt(req.params.projectId, 10);
     const stepNum = parseInt(req.params.stepNum, 10);
     const project = await Project.findByPk(projectId);
@@ -137,13 +137,14 @@ router.get('/:projectId(\\d+)/delete/step/:stepNum(\\d+)/', routeHandler(async(r
     res.json({ project: newProject });
 }));
 
-
-
-
-
-
-
-
+//DELETE ENTIRE PROJECT
+router.delete('/:projectId(\\d+)/delete', routeHandler(async(req, res) => {
+        const projectId = parseInt(req.params.projectId, 10);
+        await Comment.destroy({ where: { projectId } });
+        await Project.destroy({ where: { id: projectId } });
+    }))
+    //------------------------------------------
+    //old
 
 
 //When users make edits and save them they are 'submitting the project-edit-form' - it is a post request to the same route.
@@ -169,13 +170,6 @@ router.post('/edit/:projectId(\\d+)', routeHandler(async(req, res) => { //add ch
 //DESTROY
 // /projects/edit/deleted -- it is in project-readme that this is the route after project deletion. Maybe this is a confirmation page that project has been destroyed? If so, we can use the same page for each deletion (i.e. no specific project id or other identifying info). This will be the page we show upon successful Project.destroy(where: {id: projectId}) operation.
 
-//we should have a button on the project edit page that allows a user to delete. If they click delete they should be sent to this route, and then redirected to a /projects/edit/deleted page to confirm successful deletion.
-router.post('/edit/:projectId(\\d+)/delete', routeHandler(async(req, res) => {
-    const projectId = parseInt(req.params.projectId, 10);
-    const deletedProjectName = await Project.findByPk(projectId).name;
-    await Project.destroy(projectId);
-    res.render('project-deleted-page', { deletedProjectName }) //we pass in the name to the project deleted page so we can say something like "Your Destructable 'How to build a backyard nuke' has been successfully destructed."
-}))
 
 
 

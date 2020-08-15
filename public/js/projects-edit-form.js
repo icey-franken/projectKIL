@@ -127,7 +127,9 @@ document.addEventListener('DOMContentLoaded', async() => {
         deleteButton.addEventListener('click', async(e) => {
             const stepNum = e.target.id.slice(7);
             console.log('line 121 stepnum', stepNum);
-            const res = await fetch(`/api/projects/${projectId}/delete/step/${stepNum}`);
+            const res = await fetch(`/api/projects/${projectId}/delete/step/${stepNum}`, {
+                method: 'delete'
+            });
             const data = await res.json();
             const { project } = data;
             editMainContainer.innerHTML = '';
@@ -163,8 +165,22 @@ document.addEventListener('DOMContentLoaded', async() => {
         return stepDiv;
     }
 
+    //add project delete functionality
+    const deleteButton = document.querySelector('#edit-nav__delete');
+    deleteButton.addEventListener('click', async(e) => {
+        window.location.href = '/projects';
+        await fetch(`/api/projects/${projectId}/delete`, {
+            method: 'delete'
+        });
+        console.log('here');
+    });
 
 
+    // add dropdown to more button
+    const moreButton = document.querySelector('#edit-nav__more');
+    moreButton.addEventListener('click', (e) => {
+        moreButton.children[0].classList.toggle('show');
+    })
 
     //--------------------------------------------
     //--------------------------------------------

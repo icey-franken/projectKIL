@@ -38,7 +38,15 @@
     margin: 10px 0px 0px;
 }
 
-#edit-nav__right-container {
+.dropdown__content {
+    display: none;
+}
+
+.show {
+    display: block
+}
+
+.dropdown__content:hover #edit-nav__right-container {
     display: flex;
 }
 
