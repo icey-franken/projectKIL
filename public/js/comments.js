@@ -10,6 +10,7 @@ const buttonPostComment = document.getElementById("button_post-comment");
 const discussionBoxPostButton = document.getElementById("discussion-box_post-button");
 const discusionBoxTextArea = document.getElementById('discussion-box_text-area');
 const discussionBoxButtons = document.getElementById("discussion-box_buttons");
+const discussionJumbotron = document.querySelector(".jumbotron");
 // Paths
 const currentPath = window.location.href;
 const currentRoute = currentPath.slice(31, 32);
@@ -123,7 +124,7 @@ async function createCommentElements() {
                 <div class="text-break my-3">
                     <p class="quarantine-message js-quarantine-message" id="comment-${comment.id}">${comment.comment}</p>
                     <div class="hidden" id="comment_text-area-container-${comment.id}">
-                        <textarea class="w-100 h-100" id="comment_text-area-container_text-area-${comment.id}"></textarea>
+                        <textarea class="w-100 h-100" contentEditable="true" id="comment_text-area-container_text-area-${comment.id}"></textarea>
                         <button class="btn btn-primary my-2" id="comment_text-area_update-button-${comment.id}">Update</button>
                     </div>
                 </div>
@@ -162,7 +163,7 @@ async function createCommentElements() {
                     commentButtonEdit.classList.remove('hidden');
                     commentId.classList.remove('hidden');
                     commentTextAreaContainer.classList.add('hidden');
-                    commentId.innerText = updateCommentTextAreaValue;
+                    commentId.innerHTML = updateCommentTextAreaValue;
                 }
                 else console.log('failed')
             }
@@ -180,7 +181,7 @@ async function createCommentElements() {
                 commentTextAreaContainer.classList.add('hidden');
             }
 
-        });
+        }, true);
         commentButtonDelete.addEventListener('click', async function (e) {
             const res = await fetch(`/api/comments/${comment.id}`, {
                 method: "DELETE",
@@ -207,13 +208,13 @@ async function discussionElementInteractions() {
         if (discusionBoxTextArea.value) discussionBoxPostButton.disabled = false;
     });
 
-    discusionBoxTextArea.addEventListener('blur', function (e) {
+    discussionJumbotron.addEventListener('click', function (e) {
         discusionBoxTextArea.classList.add('hidden');
         discussionBoxButtons.classList.remove('hidden');
-
-        console.log("lost focus on text containter")
-        if (!e.relatedTarget) discussionBoxPostButton.disabled = true;
-    });
+        const eventClassList = e.target.className;
+        console.log(eventClassList.includes('btn'))
+        if (eventClassList.includes('btn')) discussionBoxPostButton.disabled = true;
+    }, true);
     discusionBoxTextArea.addEventListener('input', function (e) {
         if (discusionBoxTextArea.value) {
             discussionBoxPostButton.disabled = false;
