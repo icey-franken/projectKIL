@@ -49,36 +49,65 @@ router.get('/:id(\\d+)', routeHandler(async(req, res) => {
 
 //UPDATE
 //	add validations that submitted info from project edit form is ok
-// I don't think this is currently doing a damn thing... need to grab body.
+
+//WILL PROBABLY ONLY WORK IF I CHANGE DATA MODEL TO HAVE SEP DESTRUCTION TABLE WITH HEADING AND DESCRIPTION FIELDS.
+//this will update everything except arrays (destructions and desctruction headings).
+// router.put('/edit/:projectId(\\d+)', routeHandler(async(req, res) => {
+//     const projectId = parseInt(req.params.projectId, 10);
+//     const { name, intro, supplies, destructions, destructionsHeadings } = req.body;
+//     console.log(req.body);
+//     if (destructions.length === destructionsHeadings.length && destructions.length === 0) {
+//         try {
+//             Project.update({
+//                 name,
+//                 intro,
+//                 supplies,
+//             }, {
+//                 returning: true,
+//                 where: { id: projectId },
+//             }).then(([rowsUpdated, [project]]) => console.log('rowsUpdated', rowsUpdated, 'project', project));
+//         } catch (e) { console.log(e) };
+//     } else {
+//         await Project.update({
+//             name,
+//             intro,
+//             supplies,
+//             destructions,
+//             destructionsHeadings,
+//         }, {
+//             where: { id: projectId }
+//         })
+//     };
+//     const project = await Project.findByPk(projectId);
+//     res.json({ project });
+// }));
+
+
+
+//ARRAY PROBLEM WORKAROUND - this is ugly as shit... but it works.
 router.put('/edit/:projectId(\\d+)', routeHandler(async(req, res) => {
     const projectId = parseInt(req.params.projectId, 10);
     const { name, intro, supplies, destructions, destructionsHeadings } = req.body;
-    console.log(req.body);
-    if (destructions.length === destructionsHeadings.length && destructions.length === 0) {
-        try {
-            Project.update({
-                name,
-                intro,
-                supplies,
-            }, {
-                returning: true,
-                where: { id: projectId },
-            }).then(([rowsUpdated, [project]]) => console.log('rowsUpdated', rowsUpdated, 'project', project));
-        } catch (e) { console.log(e) };
-    } else {
-        await Project.update({
-            name,
-            intro,
-            supplies,
-            destructions,
-            destructionsHeadings,
-        }, {
-            where: { id: projectId }
+    Project.findByPk(projectId).then((project) => {
+        project.name = name;
+        project.intro = intro;
+        project.supplies = supplies;
+        project.destructions = destructions;
+        project.destructionsHeadings = destructionsHeadings;
+        project.update({
+            name: project.name,
+            intro: project.intro,
+            supplies: project.supplies,
+            destructions: project.destructions,
+            destructionsHeadings: project.destructionsHeadings,
+        }, { where: { id: projectId } }).then(project => {
+            console.log('line96', project);
+            res.json({ project });
         })
-    };
-    const project = await Project.findByPk(projectId);
-    res.json({ project });
+    });
 }));
+
+
 
 //ADD STEP
 router.get('/:projectId(\\d+)/addStep/', routeHandler(async(req, res) => {

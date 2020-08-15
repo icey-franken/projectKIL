@@ -195,7 +195,9 @@ document.addEventListener('DOMContentLoaded', async() => {
         const data = await res.json();
         const { project } = data;
         console.log(project);
+        editMainContainer.innerHTML = '';
         renderEditPage(project);
+        //I may have to change the models so that destructables is a separate model, with a heading, descriptions, stepOrder, and projectId. I have having problems updating arrays in sequelize.
         // body = contentArray;
         // const res = await fetch(`/api/projects/edit/${projectId}`, {
         //     method: 'post',
