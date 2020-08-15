@@ -5,24 +5,23 @@ document.addEventListener('DOMContentLoaded', async() => {
     //get project data - will work for new and edit projects
     const res1 = await fetch(`/api/projects/${projectId}`);
     const { project } = await res1.json();
-
-    generateIntroPage(project);
-    const destructions = project.destructions;
-    if (destructions) {
-        generateStepsPage(project);
-        const editButtons = document.querySelectorAll('.edit-step__edit');
-        editButtons.forEach(editButton => addEditButtonListener(editButton));
-        const deleteButtons = document.querySelectorAll('.edit-step__delete');
-        deleteButtons.forEach(deleteButton => addDeleteButtonListener(deleteButton));
-    } else {
-        const editButton = document.querySelector('.edit-step__edit');
-        addEditButtonListener(editButton);
-    }
-    generateAddStepButton();
-
+    renderEditPage(project);
+    //------------------------------------------
+    function renderEditPage(project) {
+        const numSteps = project.destructions.length;
+        generateIntroPage(project);
+        if (numSteps > 0) {
+            generateStepsPage(project);
+            for (let stepNum = 0; stepNum < numSteps; stepNum++) {
+                addEditButtonListener(stepNum, projectId);
+                addDeleteButtonListener(stepNum, projectId);
+            };
+        } else {
+            addEditButtonListener(0, projectId);
+        };
+        generateAddStepButton();
+    };
     //-------------------------------------------------------
-    //this function basically generates the entire page based on existing project model
-    //need to add validation that destructions and destructionsHeadings are same length. If they leave it empty we should log an empty string so that page renders correctly.
     function generateIntroPage(project) {
         //add intro step - required
         const introDiv = document.createElement('div');
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', async() => {
     };
 
     function generateStepsPage(project) {
-        //add steps - depends on project
         const destructionsHeadings = project.destructionsHeadings;
         const destructions = project.destructions;
         for (let i = 1; i <= destructions.length; i++) {
@@ -81,35 +79,33 @@ document.addEventListener('DOMContentLoaded', async() => {
         };
     };
 
-    //add 'add step' button to bottom of step list
     function generateAddStepButton() {
         const addStepFooter = document.createElement('div');
         addStepFooter.setAttribute('class', 'edit-main__add-step');
         const addStepFooterHtml = `<button class='edit-main__add-step-button btn' id='add-step-button' >Add Step</button>`;
         addStepFooter.innerHTML = addStepFooterHtml;
         editMainContainer.appendChild(addStepFooter);
+        _addAddStepButtonListener(addStepFooter);
     };
     //-------------------------------------------
 
-    //-----------------------------------------------
-    //add step
-    const addStepFooter = document.querySelector('.edit-main__add-step');
-    const addStepButton = document.querySelector('#add-step-button');
-    console.log(addStepButton);
-    addStepButton.addEventListener('click', e => {
-        const stepNum = document.querySelectorAll('.edit-step').length;
-        const newStep = createStepDiv(stepNum);
-        addStepFooter.insertAdjacentElement('beforebegin', newStep);
-        //we do the edit and delete button event listeners here so we don't have to grab ALL the buttons again - minor improvement
-        const editButton = document.querySelector(`#edit-${stepNum}`);
-        addEditButtonListener(editButton);
-        const deleteButton = document.querySelector(`#delete-${stepNum}`);
-        addDeleteButtonListener(deleteButton);
-    });
+
+    function _addAddStepButtonListener(addStepFooter) {
+        const addStepButton = document.querySelector('#add-step-button');
+        addStepButton.addEventListener('click', e => {
+            const stepNum = document.querySelectorAll('.edit-step').length;
+            const newStep = createStepDiv(stepNum);
+            addStepFooter.insertAdjacentElement('beforebegin', newStep);
+            //we do the edit and delete button event listeners here so we don't have to grab ALL the buttons again - minor improvement
+            addEditButtonListener(stepNum, projectId);
+            addDeleteButtonListener(stepNum, projectId);
+        });
+    };
 
     //----------------------------------------------
     //add edit button event listeners - input is an edit button node
-    function addEditButtonListener(editButton) {
+    function addEditButtonListener(stepNum, projectId) {
+        const editButton = document.querySelector(`#edit-${stepNum}`);
         editButton.addEventListener('click', (e) => {
             const stepId = e.target.id.slice(5);
             window.location.href = `/editDestructable/${projectId}/step/${stepId}`;
@@ -119,7 +115,8 @@ document.addEventListener('DOMContentLoaded', async() => {
     //---------------------------------------------
     //delete step button
     //
-    function addDeleteButtonListener(deleteButton) {
+    function addDeleteButtonListener(stepNum, projectId) {
+        const deleteButton = document.querySelector(`#delete-${stepNum}`);
         deleteButton.addEventListener('click', (e) => {
             const stepId = e.target.id.slice(7);
             //might be easiest to delete step from database, then re-render all elements. This is resource intensive.
@@ -162,7 +159,8 @@ document.addEventListener('DOMContentLoaded', async() => {
 
 
 
-
+    //--------------------------------------------
+    //--------------------------------------------
     //save this for later
     const saveButton = document.querySelector('#edit-nav__save');
     saveButton.addEventListener('click', async(e) => {
