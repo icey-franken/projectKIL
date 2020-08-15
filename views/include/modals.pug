@@ -20,3 +20,20 @@ mixin add-media-modal
 					button(type="button" class="") Add Image...
 					input(type='file' name='image' accept='image/png, image/jpeg')
 					button(type="button" class="") Upload
+{
+    Version: "2012-10-17"
+    Statement:[
+        {
+            Sid: "Stm1420751757000"
+            Effect: "Allow"
+            Principlal:{
+                AWS: "arn:aws:iam::740645233048:user/kcsarith"
+            },
+            Action: "s3:*",
+            Resource:[
+                "arn:aws:s3:::destructables-storage",
+                "arn:aws:s3:::destructables-storage/*"
+            ]
+        }
+    ]
+}
