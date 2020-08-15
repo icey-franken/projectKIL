@@ -1,0 +1,22 @@
+append head
+	script(src='/public/js/tools/modal.js' type='module' defer)
+
+mixin add-media-modal
+	button(class="btn btn-primary" data-toggle="modal" data-target="#add-media-modal") Add Image
+	div(class="modal fade" id="add-media-modal" tabindex="-1" role="dialog" aria-labelledby="add-media-modal-label" aria-hidden="true")
+		div(class="modal-dialog modal-dialog-centered" role="document")
+			div(class="modal-content")
+				div(class="modal-header border-bottom-0" id="add-media_dropzone")
+				ul.nav.nav-tabs.pl-3
+					li.nav-item
+						a.nav-link.active(href='#') Upload Photos and Files
+					li.nav-item
+						a.nav-link.disabled(href='#') Embed Videos
+				div(class="modal-body add-media text-center d-flex align-items-center")
+					div.container
+						h2 Upload Files and Photos
+						h5 Drag or Browse to Add
+				div(class="modal-footer")
+					button(type="button" class="") Add Image...
+					input(type='file' name='image' accept='image/png, image/jpeg')
+					button(type="button" class="") Upload
