@@ -91,13 +91,20 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     function _addAddStepButtonListener(addStepFooter) {
         const addStepButton = document.querySelector('#add-step-button');
-        addStepButton.addEventListener('click', e => {
+        addStepButton.addEventListener('click', async e => {
             const stepNum = document.querySelectorAll('.edit-step').length;
             const newStep = createStepDiv(stepNum);
             addStepFooter.insertAdjacentElement('beforebegin', newStep);
             //we do the edit and delete button event listeners here so we don't have to grab ALL the buttons again - minor improvement
             addEditButtonListener(stepNum, projectId);
             addDeleteButtonListener(stepNum, projectId);
+            //add database stuff to new step function - should be just like the generate steps page but smaller. We could reload if we want to be really lazy. What I will do now is add an empty string to the database so the arrays for destructions and destructionsHeadings are equal length.
+            const res = await fetch(`/api/projects/${projectId}/addStep/`);
+            const data = await res.json();
+            const { project } = data;
+            //when we add a step we simply add an empty string to the database for destructions and destructionsHeading, so there's no need to pass project to the createStepDiv. The values will be updated on press of 'save' button.
+
+
         });
     };
 
@@ -124,12 +131,6 @@ document.addEventListener('DOMContentLoaded', async() => {
             const { project } = data;
             editMainContainer.innerHTML = '';
             renderEditPage(project);
-            //might be easiest to delete step from database, then re-render all elements. This is resource intensive.
-
-            //alternative is to delete step from html, change id's of all subsequent steps, and delete from database
-
-            //I think for now you should do the re-render option as it'll be easier to implement, albeit slower.
-            //so make a fetch request to delete a step. That fetch should return the project. Then call _generateEditPage(project)
         });
     };
 

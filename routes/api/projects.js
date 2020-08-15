@@ -49,6 +49,7 @@ router.get('/:id(\\d+)', routeHandler(async(req, res) => {
 
 //UPDATE
 //	add validations that submitted info from project edit form is ok
+// I don't think this is currently doing a damn thing... need to grab body.
 router.post('/edit/:projectId(\\d+)', routeHandler(async(req, res) => {
     const projectId = parstInt(req.params.projectId, 10);
     const project = await Project.update({
@@ -59,27 +60,31 @@ router.post('/edit/:projectId(\\d+)', routeHandler(async(req, res) => {
     res.json({ project });
 }));
 
-
+//ADD STEP
+router.get('/:projectId(\\d+)/addStep/', routeHandler(async(req, res) => {
+    const projectId = parseInt(req.params.projectId, 10);
+    const project = await Project.findByPk(projectId);
+    const newDes = project.destructions;
+    const newDesHead = project.destructionsHeadings;
+    newDes.push('');
+    newDesHead.push('');
+    await Project.update({ destructions: newDes, destructionsHeadings: newDesHead }, { where: { id: projectId } });
+    const newProject = await Project.findByPk(projectId)
+    res.json({ project: newProject });
+}));
 
 //DELETE STEP
 router.get('/:projectId(\\d+)/delete/step/:stepNum(\\d+)/', routeHandler(async(req, res) => {
     const projectId = parseInt(req.params.projectId, 10);
     const stepNum = parseInt(req.params.stepNum, 10);
     const project = await Project.findByPk(projectId);
-    console.log('before', project.destructions);
     const newDes = project.destructions;
     const newDesHead = project.destructionsHeadings;
-    console.log('projAPI stepNum', stepNum);
-    console.log('des', newDes);
     newDes.splice(stepNum - 1, 1);
     newDesHead.splice(stepNum - 1, 1);
-    // console.log('oldDes', oldDes);
     await Project.update({ destructions: newDes, destructionsHeadings: newDesHead }, { where: { id: projectId } });
-    // await project.update({ fields: ['destructions', 'destructionsHeadings'] });
-    console.log('between', project.destructions);
     const newProject = await Project.findByPk(projectId)
-    console.log('after', newProject.destructions);
-
+        //might be unnecessary to findByPk again, but it worksss
     res.json({ project: newProject });
 }));
 
