@@ -10,5 +10,9 @@ module.exports = {
     jwtConfig: {
         secret: process.env.JWT_SECRET,
         expiresIn: process.env.JWT_EXPIRES_IN,
+    },
+    iam: {
+        iam_access_id: process.env.IAM_ACCESS_ID,
+        iam_secret: process.env.IAM_SECRET
     }
 };

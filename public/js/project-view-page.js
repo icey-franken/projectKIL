@@ -49,16 +49,26 @@ function createCarousel() {
 }
 
 
-const currentPath = window.location.href;
-const currentRoute = currentPath.slice(31, 32);
-console.log(currentRoute);
+let currentPath = window.location.href;
+const digitPath = (function () {
+    let charCount = 0;
+
+    if (currentPath[currentPath.length - 1] === '/') {
+        currentPath = currentPath.slice(0, currentPath.length - 1);
+    }
+    for (let i = currentPath.length - 1; i > 0; i--) {
+        let char = currentPath[i];
+        charCount++;
+        if (char === "/") break
+    }
+    return charCount;
+})();
+const currentRoute = currentPath.slice(currentPath.length - digitPath + 1);
 
 async function fetchProject() {
     const res = await fetch(`/api/projects/${currentRoute}`);
     const data = await res.json();
     const values = data.project;
-    console.log(data);
-    console.log(values)
     return values;
 }
 
@@ -139,7 +149,6 @@ function createProjectSteps() {
 async function initialSetup() {
     project = await fetchProject();
     createProjectHeader();
-    console.log(projectIntroImage)
     projectIntroImage.innerHTML = createCarousel();
     projectOwnerContainer.innerHTML = createProjectOwnerContainer();
     projectSupplies.innerHTML = createSupplies();
