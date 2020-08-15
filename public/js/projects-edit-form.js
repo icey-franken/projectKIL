@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async() => {
             generateStepsPage(project);
             for (let stepNum = 0; stepNum < numSteps; stepNum++) {
                 addEditButtonListener(stepNum, projectId);
-                addDeleteButtonListener(stepNum, projectId);
+                if (stepNum !== 0) addDeleteButtonListener(stepNum, projectId);
             };
         } else {
             addEditButtonListener(0, projectId);
@@ -117,8 +117,13 @@ document.addEventListener('DOMContentLoaded', async() => {
     //
     function addDeleteButtonListener(stepNum, projectId) {
         const deleteButton = document.querySelector(`#delete-${stepNum}`);
-        deleteButton.addEventListener('click', (e) => {
-            const stepId = e.target.id.slice(7);
+        deleteButton.addEventListener('click', async(e) => {
+            const stepNum = e.target.id.slice(7);
+            const res = await fetch(`/api/projects/${projectId}/delete/step/${stepNum}`);
+            const data = await res.json();
+            const { project } = data;
+            editMainContainer.innerHTML = '';
+            renderEditPage(project);
             //might be easiest to delete step from database, then re-render all elements. This is resource intensive.
 
             //alternative is to delete step from html, change id's of all subsequent steps, and delete from database

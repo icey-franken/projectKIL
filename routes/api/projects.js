@@ -12,16 +12,16 @@ const { getUserToken, checkUserToken } = require('../utils/auth')
 
 const validateProjectCreation = [
     check('name', 'Please provide a name for you destruction.')
-        .exists({ checkNull: true })
-        .exists({ checkFalsy: true }),
+    .exists({ checkNull: true })
+    .exists({ checkFalsy: true }),
     check('userId', 'Please sign in before destructing.')
-        .exists({ checkNull: true })
-        .exists({ checkFalsy: true }),
+    .exists({ checkNull: true })
+    .exists({ checkFalsy: true }),
 ];
 
 
 //CREATE
-router.post('/new', validateProjectCreation, handleValidationErrors, routeHandler(async (req, res) => {
+router.post('/new', validateProjectCreation, handleValidationErrors, routeHandler(async(req, res) => {
     const { name, userId } = req.body;
     const project = await Project.create({ name, userId });
     res.json({ project })
@@ -29,7 +29,7 @@ router.post('/new', validateProjectCreation, handleValidationErrors, routeHandle
 
 //READ
 //	read all projects
-router.get('/', routeHandler(async (req, res) => {
+router.get('/', routeHandler(async(req, res) => {
     const projects = await Project.findAll({
         include: [{ model: User }],
         limit: 25,
@@ -38,7 +38,7 @@ router.get('/', routeHandler(async (req, res) => {
 }))
 
 //	read single project
-router.get('/:id(\\d+)', routeHandler(async (req, res) => {
+router.get('/:id(\\d+)', routeHandler(async(req, res) => {
     const projectId = parseInt(req.params.id, 10);
     const project = await Project.findByPk(projectId, {
         include: [{ model: User }, { model: Category }],
@@ -49,7 +49,7 @@ router.get('/:id(\\d+)', routeHandler(async (req, res) => {
 
 //UPDATE
 //	add validations that submitted info from project edit form is ok
-router.post('/edit/:projectId(\\d+)', routeHandler(async (req, res) => {
+router.post('/edit/:projectId(\\d+)', routeHandler(async(req, res) => {
     const projectId = parstInt(req.params.projectId, 10);
     const project = await Project.update({
         where: {
@@ -58,6 +58,37 @@ router.post('/edit/:projectId(\\d+)', routeHandler(async (req, res) => {
     });
     res.json({ project });
 }));
+
+
+
+//DELETE STEP
+router.get('/:projectId(\\d+)/delete/step/:stepId(\\d+)/', routeHandler(async(req, res) => {
+    const projectId = parseInt(req.params.projectId, 10);
+    const stepNum = parseInt(req.params.stepNum, 10);
+    const project = await Project.findByPk(projectId);
+    console.log('before', project.destructions);
+    const newDes = project.destructions;
+    const newDesHead = project.destructionsHeadings;
+    newDes.splice(stepNum, 1);
+    newDesHead.splice(stepNum, 1);
+    // console.log('oldDes', oldDes);
+    await Project.update({ destructions: newDes, destructionsHeadings: newDesHead }, { where: { id: projectId } });
+    // await project.update({ fields: ['destructions', 'destructionsHeadings'] });
+    console.log('between', project.destructions);
+    const newProject = await Project.findByPk(projectId)
+    console.log('after', newProject.destructions);
+
+    res.json({ project: newProject });
+}));
+
+
+
+
+
+
+
+
+
 
 //When users make edits and save them they are 'submitting the project-edit-form' - it is a post request to the same route.
 
@@ -68,13 +99,13 @@ router.post('/edit/:projectId(\\d+)', routeHandler(async (req, res) => {
 // ];
 
 //I think since this is a post request we should have some validation things in here - using the check and validationHandler shit from the express-validator package or whatever.
-router.post('/edit/:projectId(\\d+)', routeHandler(async (req, res) => { //add checkProjectEdits and handleValidationErrors middleware
+router.post('/edit/:projectId(\\d+)', routeHandler(async(req, res) => { //add checkProjectEdits and handleValidationErrors middleware
     //destructure body of requst to get the shit the users want to edit about the project
     const { destructuredShit } = req.body
     const project = await Project.update({ destructuredShit })
-    //we'll have an error handler or something in case the project isn't updated correctly.
-    //If project IS updated correctly, then we want to render the edit form once again but with the new project stuff.
-    //We probably also want to save the previous version of the project somewhere in our database for history purposes, but maybe we worry about that later on.
+        //we'll have an error handler or something in case the project isn't updated correctly.
+        //If project IS updated correctly, then we want to render the edit form once again but with the new project stuff.
+        //We probably also want to save the previous version of the project somewhere in our database for history purposes, but maybe we worry about that later on.
     res.render('project-edit-form', { project });
 }))
 
@@ -83,7 +114,7 @@ router.post('/edit/:projectId(\\d+)', routeHandler(async (req, res) => { //add c
 // /projects/edit/deleted -- it is in project-readme that this is the route after project deletion. Maybe this is a confirmation page that project has been destroyed? If so, we can use the same page for each deletion (i.e. no specific project id or other identifying info). This will be the page we show upon successful Project.destroy(where: {id: projectId}) operation.
 
 //we should have a button on the project edit page that allows a user to delete. If they click delete they should be sent to this route, and then redirected to a /projects/edit/deleted page to confirm successful deletion.
-router.post('/edit/:projectId(\\d+)/delete', routeHandler(async (req, res) => {
+router.post('/edit/:projectId(\\d+)/delete', routeHandler(async(req, res) => {
     const projectId = parseInt(req.params.projectId, 10);
     const deletedProjectName = await Project.findByPk(projectId).name;
     await Project.destroy(projectId);
