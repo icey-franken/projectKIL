@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     images.forEach((image, imageNum) => {
             const imageURL = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${image}`
             const imageDiv = document.createElement('div');
-            const imgEl = `<img src=${imageURL} id='image-${imageNum}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-index:1;position:absolute' >`;
+            const imgEl = `<img src=${imageURL} id='image-${imageNum}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-index:1;position:absolute' alt='${image}'>`;
             imageDiv.innerHTML = imgEl;
             editHeader.prepend(imageDiv);
         })
