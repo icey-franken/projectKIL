@@ -168,10 +168,3 @@ label[for='upload-media_input-box']{
     color:white !important;
 }
 
-/* IDK HOW TO FIX THISS!!!!!!!!!!!!!! */
-
-@media(max-width: 800px) {
-    .row {
-        width: 250px;
-    }
-}
