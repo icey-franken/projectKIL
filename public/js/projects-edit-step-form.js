@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     //get project data - will work for new and edit projects
 
-    let project = renderEditStepPage();
+    let project = await renderEditStepPage();
     //------------------------------------------
     async function renderEditStepPage() {
         const res1 = await fetch(`/api/projects/${projectId}`);
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 					</div>`;
         console.log(stepHeading);
         if (supplies) {
-            stepDivHtml += `<div class='edit-step__supplies' id='supplies-0'><textarea name='supplies' style='width:100%;height:100%' defaultValue='${supplies}'></textarea></div>`;
+            stepDivHtml += `<div class='edit-step__supplies' id='supplies-0'><textarea name='supplies' style='width:100%;height:100%'>${supplies}</textarea></div>`;
         }
         stepDivHtml += `<button type='submit' class='hide' id='edit-step__save/></form></div>
 
@@ -68,8 +68,13 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     const saveButton = document.querySelector('#edit-nav__save');
     saveButton.setAttribute('type', 'submit');
-    const editStepSaveButton = document.querySelector('#edit-step__save');
+
     addSaveButtonListener(saveButton);
+    const publishButton = document.querySelector('#edit-nav__publish');
+    publishButton.addEventListener('click', async(e) => {
+        saveButton.dispatchEvent(e);
+        window.location.href = `/projects/${projectId}`;
+    })
 
     function addSaveButtonListener(button) {
         button.addEventListener('click', async(e) => {
@@ -77,27 +82,25 @@ document.addEventListener('DOMContentLoaded', async() => {
             const form = new FormData(editStepForm);
             let newDestructionHeading = form.get('heading');
             let newDestruction = form.get('description');
-            let supplies = form.get('supplies');
+            let newSupplies = form.get('supplies');
             let body;
             let name;
             let intro;
-            let destructions = project.destructions;;
-            let destructionsHeadings = project.destructionsHeadings;;
-            console.log(newDestructionHeading, stepNum === 0);
+            let supplies = project.supplies;
+            let destructions = project.destructions;
+            let destructionsHeadings = project.destructionsHeadings;
             if (stepNum === 0) {
                 name = newDestructionHeading;
                 intro = newDestruction;
+                supplies = newSupplies;
             } else {
                 name = project.name;
                 intro = project.intro;
                 supplies = project.supplies;
                 destructions[stepNum - 1] = newDestruction;
                 destructionsHeadings[stepNum - 1] = newDestructionHeading;
-
-                console.log(supplies);
             }
-            console.log(name);
-            body = { name, intro, supplies, destructions, destructionsHeadings }
+            body = { name, intro, supplies, destructions, destructionsHeadings };
             let data;
             try {
                 const res = await fetch(`/api/projects/edit/${projectId}`, {
@@ -115,13 +118,7 @@ document.addEventListener('DOMContentLoaded', async() => {
                 window.location.href = `/projects/${projectId}`
             }
             editMainContainer.innerHTML = '';
-            project = data.project;
-            console.log('before', project)
-            const res1 = await fetch(`/api/projects/${projectId}`);
-            let data1 = await res1.json();
-            project = data1.project;
-            console.log('after', project);
-            renderEditStepPage(project);
+            renderEditStepPage();
 
         });
     };
