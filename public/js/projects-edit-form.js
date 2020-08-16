@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async() => {
             const stepDivHtml = `
 						<div class='edit-step__image-container' id='image-container-${i}' ondrop='drop(event)' ondragover='allowDrop(event)'>
 							<div class='edit-step__image'>
-								<span class='edit-step__image-arrow'>&#129095;</span>
+								<span class='edit-step__image-arrow' >&#129095;</span>
 								<span class='edit-step__image-text'> Drag Images From Top Bar</span>
 							</div>
 						</div>
@@ -335,13 +335,16 @@ document.addEventListener('DOMContentLoaded', async() => {
         // imageEl.setAttribute('ondragstart', drag(event));
         // imageEl.setAttribute('style', 'width:250px;height:250px');
     const imageDiv = document.createElement('div');
-    const imgEl = `<img src=${imageURL} id='image-${imageId}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-axis:1;text-align:center' >`;
+    const imgEl = `<img src=${imageURL} id='image-${imageId}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-index:1;position:absolute' >`;
     imageDiv.innerHTML = imgEl;
     console.log(imgEl);
     console.log(imageDiv);
-    editMainContainer.prepend(imageDiv);
 
-
+    const editHeader = document.querySelector('#edit-header');
+    editHeader.setAttribute('ondrop', 'drop(event)');
+    editHeader.setAttribute('ondragover', 'allowDrop(event)');
+    const imageHeader = document.querySelector('.edit-header__add-images');
+    editHeader.prepend(imageDiv);
 
 
 });
