@@ -11,8 +11,14 @@ module.exports = {
         secret: process.env.JWT_SECRET,
         expiresIn: process.env.JWT_EXPIRES_IN,
     },
-    iam: {
-        iam_access_id: process.env.IAM_ACCESS_ID,
-        iam_secret: process.env.IAM_SECRET
+    iamConfig: {
+        iamAccessId: process.env.IAM_ACCESS_ID,
+        iamSecret: process.env.IAM_SECRET
+    },
+    awsConfig: {
+        awsAccessId: process.env.AWS_ACCESS_ID,
+        awsSecret: process.env.AWS_SECRET,
+        awsRegion: process.env.AWS_REGION,
+        awsBucket: process.env.AWS_BUCKET
     }
 };

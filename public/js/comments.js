@@ -11,6 +11,7 @@ const discussionBoxPostButton = document.getElementById("discussion-box_post-but
 const discusionBoxTextArea = document.getElementById('discussion-box_text-area');
 const discussionBoxButtons = document.getElementById("discussion-box_buttons");
 const discussionJumbotron = document.querySelector(".jumbotron");
+
 // Paths
 let currentPath = window.location.href;
 const digitPath = (function () {
@@ -100,6 +101,7 @@ async function initialSetup() {
     discussionElementInteractions();
 }
 
+
 async function createCommentElements() {
     for (let comment of comments) {
         const username = comment.User.username;
@@ -171,7 +173,6 @@ async function createCommentElements() {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ updatedComment: updateCommentTextAreaValue })
                 });
-                console.log(res);
                 if (res.ok) {
                     commentButtonEdit.classList.remove('hidden');
                     commentId.classList.remove('hidden');
@@ -221,13 +222,16 @@ async function discussionElementInteractions() {
         if (discusionBoxTextArea.value) discussionBoxPostButton.disabled = false;
     });
 
-    discussionJumbotron.addEventListener('click', function (e) {
-        discusionBoxTextArea.classList.add('hidden');
-        discussionBoxButtons.classList.remove('hidden');
-        const eventClassList = e.target.className;
-        console.log(eventClassList.includes('btn'))
-        if (eventClassList.includes('btn')) discussionBoxPostButton.disabled = true;
-    }, true);
+    discusionBoxTextArea.addEventListener('blur', function (e) {
+        console.log('blurred')
+        console.log(e.relatedTarget);
+        if (!e.relatedTarget) {
+            console.log('hiding')
+            discusionBoxTextArea.classList.add('hidden');
+            discussionBoxButtons.classList.remove('hidden');
+            discussionBoxPostButton.disabled = true;
+        }
+    });
     discusionBoxTextArea.addEventListener('input', function (e) {
         if (discusionBoxTextArea.value) {
             discussionBoxPostButton.disabled = false;
@@ -244,6 +248,7 @@ async function discussionElementInteractions() {
             });
             if (res.ok) {
                 commentsDisplayContainer.innerHTML = '';
+                console.log('posted')
                 comments = await fetchComments(currentRoute);
                 discussionBoxPostButton.disabled = true;
                 numberOfCommentsDisplay.innerHTML = `${comments.length} Discussions`;
