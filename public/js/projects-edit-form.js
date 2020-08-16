@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', async() => {
     if (!project) { window.location.href = '/projects' }
     const publishButton = document.querySelector('#edit-nav__publish');
     const saveButton = document.querySelector('#edit-nav__save');
+    addSaveButtonListener(publishButton);
+    addSaveButtonListener(saveButton);
     renderEditPage(project);
     //------------------------------------------
     function renderEditPage(project) {
@@ -22,8 +24,7 @@ document.addEventListener('DOMContentLoaded', async() => {
             };
         };
         generateAddStepButton();
-        addSaveButtonListener(publishButton);
-        addSaveButtonListener(saveButton);
+
     };
     //-------------------------------------------------------
     function generateIntroPage(project) {
@@ -258,12 +259,12 @@ document.addEventListener('DOMContentLoaded', async() => {
 
                 if (!res.ok) { throw Error('issue with save') }
                 console.log('line253 projectseditform.js', res.ok)
-                editMainContainer.innerHTML = '';
 
             } catch (e) { console.error('line 263 projectseditform.js', e) }
             if (button.id === 'edit-nav__publish') {
                 window.location.href = `/projects/${projectId}`
             }
+            editMainContainer.innerHTML = '';
             const { project } = data;
             renderEditPage(project);
             //I may have to change the models so that destructables is a separate model, with a heading, descriptions, stepOrder, and projectId. I have having problems updating arrays in sequelize.
