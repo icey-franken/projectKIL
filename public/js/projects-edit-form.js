@@ -319,35 +319,43 @@ document.addEventListener('DOMContentLoaded', async() => {
     // })
 
 
-
-
-
-    //download images
-    const images = project.images;
-    console.log(images);
-    const imageName = images[1];
-    // const imageEl = document.createElement('img');
-    const imageId = 1;
-    const imageURL = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${imageName}`
-        // imageEl.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${image}`);
-        // imageEl.setAttribute('id', `image-${imageId}`);
-        // imageEl.setAttribute('draggable', 'true');
-        // imageEl.setAttribute('ondragstart', drag(event));
-        // imageEl.setAttribute('style', 'width:250px;height:250px');
-    const imageDiv = document.createElement('div');
-    const imgEl = `<img src=${imageURL} id='image-${imageId}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-index:1;position:absolute' >`;
-    imageDiv.innerHTML = imgEl;
-    console.log(imgEl);
-    console.log(imageDiv);
-
+    //------------------------------------
+    //drag and drop and image stuff
     const editHeader = document.querySelector('#edit-header');
     editHeader.setAttribute('ondrop', 'drop(event)');
     editHeader.setAttribute('ondragover', 'allowDrop(event)');
     const imageHeader = document.querySelector('.edit-header__add-images');
-    editHeader.prepend(imageDiv);
 
+
+
+    //download images
+    const { images } = project;
+    images.forEach((image, imageNum) => {
+            const imageURL = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${image}`
+            const imageDiv = document.createElement('div');
+            const imgEl = `<img src=${imageURL} id='image-${imageNum}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-index:1;position:absolute' >`;
+            imageDiv.innerHTML = imgEl;
+            editHeader.prepend(imageDiv);
+        })
+        // const imageName = images[1];
+        // // const imageEl = document.createElement('img');
+        // const imageId = 1;
+        // const imageURL = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${imageName}`
+        //     // imageEl.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${image}`);
+        //     // imageEl.setAttribute('id', `image-${imageId}`);
+        //     // imageEl.setAttribute('draggable', 'true');
+        //     // imageEl.setAttribute('ondragstart', drag(event));
+        //     // imageEl.setAttribute('style', 'width:250px;height:250px');
+        // const imageDiv = document.createElement('div');
+        // const imgEl = `<img src=${imageURL} id='image-${imageId}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-index:1;position:absolute' >`;
+        // imageDiv.innerHTML = imgEl;
+        // console.log(imgEl);
+        // console.log(imageDiv);
 
 });
+
+
+
 // /drag and drop.....
 
 function allowDrop(ev) {
