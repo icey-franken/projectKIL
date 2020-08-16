@@ -123,15 +123,15 @@ uploadNewMediaButton.addEventListener('click', (e) => {
 });
 
 async function createImageGallery() {
-    const res = await fetch(`/api/projects/${currentRoute}`);
+    const res = await fetch(`/api/file_uploads/project/${currentRoute}`);
     const data = await res.json();
-    const { project } = data;
-    const images = project.images;
+    console.log(data);
+    const { images } = data;
     console.log('PROJECT', images)
     for (let i = 0; i < images.length; i++) {
         const currentImage = images[i];
         const imageContainerDiv = document.createElement('div');
-        imageContainerDiv.classList.add('col-2');
+        imageContainerDiv.classList.add('col-4');
         const imageTag = document.createElement('img');
         imageTag.classList.add('img-thumbnail', 'btn')
         imageTag.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}`);
