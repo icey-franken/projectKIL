@@ -48,6 +48,11 @@ router.get('/editDestructable/:projectId/step/:stepId', asyncHandler(async(req, 
 }))
 
 //all other routes------------------------------------------------
+router.get( "/search/results/", asyncHandler(async (req, res) => {
+    res.render("search-results-page");
+  })
+);
+
 router.use((req, res) => {
     res.render('error-page');
 });
