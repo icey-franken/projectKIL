@@ -1,12 +1,14 @@
 extends layout.pug
 
+include include/modals.pug
+
 
 block content
 	.edit-container.container
 		#errors-container
 		#edit-header-container
 			#edit-header
-				button#edit-header__add-images + Click To Add Images
+				+add-media-modal.edit-header__add-images
 			#edit-nav
 				#edit-nav__left-container
 					div.dropdown

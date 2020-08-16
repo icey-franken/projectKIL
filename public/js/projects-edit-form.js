@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', async() => {
     addSaveButtonListener(publishButton);
     addSaveButtonListener(saveButton);
     const fullPreviewButton = document.querySelector('#edit-nav__preview');
+
+    const mediaModalButton = document.querySelector('#add-media-modal_button');
+    mediaModalButton.classList.add('edit-header__add-images');
+    mediaModalButton.innerHTML = '+ Click To Add Images';
+
     fullPreviewButton.addEventListener('click', () =>
         window.location.href = `/projects/${projectId}`);
     renderEditPage(project);
