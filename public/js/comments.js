@@ -223,10 +223,7 @@ async function discussionElementInteractions() {
     });
 
     discusionBoxTextArea.addEventListener('blur', function (e) {
-        console.log('blurred')
-        console.log(e.relatedTarget);
         if (!e.relatedTarget) {
-            console.log('hiding')
             discusionBoxTextArea.classList.add('hidden');
             discussionBoxButtons.classList.remove('hidden');
             discussionBoxPostButton.disabled = true;
