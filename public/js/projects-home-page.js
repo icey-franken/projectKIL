@@ -47,7 +47,7 @@ async function createProjectElements() {
         containerExplore.append(rowContainer);
 
     };
-    // commentsDisplayContainer.appendChild(commentsDisplayDiv);
+    commentsDisplayContainer.appendChild(commentsDisplayDiv);
 }
 
 async function initialSetup() {
@@ -55,4 +55,4 @@ async function initialSetup() {
     createProjectElements();
 }
 
-// initialSetup();
+initialSetup();
