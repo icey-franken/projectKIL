@@ -35,7 +35,7 @@ router.get('/project/:projectId(\\d+)', routeHandler(async (req, res) => {
     const projectId = parseInt(req.params.projectId, 10);
     const project = await Project.findByPk(projectId);
     const images = project.images;
-    res.json({ images });
+    return await res.json({ images });
 }));
 
 router.post('/project/:projectId', upload.single('uploadedFile'), routeHandler(async function (req, res, next) {

@@ -140,7 +140,7 @@ async function createCommentElements() {
                     <p class="quarantine-message js-quarantine-message" id="comment-${comment.id}">${comment.comment}</p>
                     <div class="hidden" id="comment_text-area-container-${comment.id}">
                         <textarea class="w-100 h-100" contentEditable="true" id="comment_text-area-container_text-area-${comment.id}"></textarea>
-                        <button class="btn btn-primary my-2" id="comment_text-area_update-button-${comment.id}">Update</button>
+                        <button class="btn btn-primary my-2 post-comment_button" id="comment_text-area_update-button-${comment.id}">Update</button>
                     </div>
                 </div>
                 <div class="js-edit-container"></div>

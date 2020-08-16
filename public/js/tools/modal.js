@@ -16,6 +16,11 @@ const uploadNewMediaButton = document.getElementById('upload-new-media_button');
 const modalContent2 = document.getElementById('modal-content2');
 // Paths
 let currentPath = window.location.href;
+
+//Global variables
+let recentTextArea;
+let postButtons;
+
 const digitPath = (function () {
     let charCount = 0;
 
@@ -123,19 +128,44 @@ uploadNewMediaButton.addEventListener('click', (e) => {
 });
 
 async function createImageGallery() {
-    const res = await fetch(`/api/projects/${currentRoute}`);
+    const res = await fetch(`/api/file_uploads/project/${currentRoute}`);
     const data = await res.json();
-    const { project } = data;
-    const images = project.images;
+    console.log(data);
+    const { images } = data;
     console.log('PROJECT', images)
     for (let i = 0; i < images.length; i++) {
         const currentImage = images[i];
         const imageContainerDiv = document.createElement('div');
-        imageContainerDiv.classList.add('col-2');
+        imageContainerDiv.setAttribute('data-dismiss', "modal");
+        imageContainerDiv.classList.add('col-4');
         const imageTag = document.createElement('img');
         imageTag.classList.add('img-thumbnail', 'btn')
         imageTag.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}`);
         imageContainerDiv.appendChild(imageTag)
         modalImageGallery.appendChild(imageContainerDiv);
+
+        imageContainerDiv.addEventListener('click', function (e) {
+            recentTextArea.innerHTML = recentTextArea.innerHTML + `<img src="https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}">`
+            for (let i = 0; i < postButtons.length; i++) {
+                const postButton = postButtons[i];
+                postButton.disabled = false;
+            }
+        })
     };
 }
+
+
+async function addClickEventForTextAreas() {
+    console.log('finished time out')
+    let textAreas = document.querySelectorAll('textarea');
+    postButtons = document.querySelectorAll('.post-comment_button');
+    for (let i = 0; i < textAreas.length; i++) {
+        const textArea = textAreas[i]
+        textArea.addEventListener('focus', function (e) {
+            recentTextArea = e.target;
+        });
+
+    }
+}
+
+setTimeout(addClickEventForTextAreas, 2000);

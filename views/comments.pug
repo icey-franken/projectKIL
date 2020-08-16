@@ -27,7 +27,7 @@ block content
                     textarea(class="w-100 h-100 hidden" contentEditable="true" id="discussion-box_text-area")
             div(class="text-right")
                 +add-media-modal
-                button(class="m-4 btn-lg" id="discussion-box_post-button" disabled) Post
+                button(class="m-4 btn-lg post-comment_button" id="discussion-box_post-button" disabled) Post
         div(class="px-5 bg-white rounded box-shadow ")
             div(class="text-center p-5")
                 h2#display-comments_number-of-comments LOADING
@@ -44,5 +44,5 @@ block content
                             textarea(contentEditable="true" class="w-100 h-100" id="post-comment-bottom_text-area")
                     div(class="text-right")
                         +add-media-modal
-                        button(class="m-4 btn-lg" id="discussion-box_post-button" disabled) Post
+                        button(class="m-4 btn-lg post-comment_button" id="discussion-box_post-button" disabled) Post
                     hr.w-25
