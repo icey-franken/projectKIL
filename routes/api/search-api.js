@@ -27,7 +27,7 @@ router.get(
       },
     });
     
-    return res.json(matchingProjects);
+    return res.json(matchingProjects, {query});
   })
 );
 
