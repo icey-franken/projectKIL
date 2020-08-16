@@ -1,3 +1,4 @@
+const modalContent1 = document.getElementById('modal-content1');
 const addMediaContainer = document.getElementById('add-media-container');
 const addMediaPreview = document.getElementById('add-media_preview');
 const uploadMediaInputBox = document.getElementById('upload-media_input-box');
@@ -7,8 +8,12 @@ const uploadMediaName = document.getElementById('upload-media_name');
 const uploadMediaButton = document.getElementById('upload-media_button');
 const addMediaPreviewContainer = document.getElementById('add-media-preview_container');
 const addMediaModal = document.getElementById('add-media-modal')
-const modalCloseButton = document.getElementById('modal-close_button')
+const modalAddImageButton = document.getElementById('modal-add-image_button')
 
+const modalImageGallery = document.getElementById('modal-image-gallery');
+const modalCloseButton = document.getElementById('modal-close-button');
+const uploadNewMediaButton = document.getElementById('upload-new-media_button');
+const modalContent2 = document.getElementById('modal-content2');
 // Paths
 let currentPath = window.location.href;
 const digitPath = (function () {
@@ -100,6 +105,37 @@ uploadMediaButton.addEventListener('click', async (e) => {
     }
 });
 
+modalAddImageButton.addEventListener('click', (e) => {
+    modalContent1.classList.add('hidden');
+    modalContent2.classList.remove('hidden');
+    createImageGallery();
+});
+
 modalCloseButton.addEventListener('click', (e) => {
     addMediaDropzone.innerHTML = 'Upload Files and Photos'
 })
+
+uploadNewMediaButton.addEventListener('click', (e) => {
+    addMediaDropzone.innerHTML = 'Upload Files and Photos'
+    modalContent1.classList.remove('hidden');
+    modalContent2.classList.add('hidden');
+    modalImageGallery.innerHTML = '';
+});
+
+async function createImageGallery() {
+    const res = await fetch(`/api/projects/${currentRoute}`);
+    const data = await res.json();
+    const { project } = data;
+    const images = project.images;
+    console.log('PROJECT', images)
+    for (let i = 0; i < images.length; i++) {
+        const currentImage = images[i];
+        const imageContainerDiv = document.createElement('div');
+        imageContainerDiv.classList.add('col-2');
+        const imageTag = document.createElement('img');
+        imageTag.classList.add('img-thumbnail', 'btn')
+        imageTag.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}`);
+        imageContainerDiv.appendChild(imageTag)
+        modalImageGallery.appendChild(imageContainerDiv);
+    };
+}
