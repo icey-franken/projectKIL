@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', async() => {
     const res1 = await fetch(`/api/projects/${projectId}`);
     const { project } = await res1.json();
     if (!project) { window.location.href = '/projects' }
+    const publishButton = document.querySelector('#edit-nav__publish');
+    const saveButton = document.querySelector('#edit-nav__save');
     renderEditPage(project);
     //------------------------------------------
     function renderEditPage(project) {
@@ -20,6 +22,8 @@ document.addEventListener('DOMContentLoaded', async() => {
             };
         };
         generateAddStepButton();
+        addSaveButtonListener(publishButton);
+        addSaveButtonListener(saveButton);
     };
     //-------------------------------------------------------
     function generateIntroPage(project) {
@@ -93,6 +97,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     function _addAddStepButtonListener(addStepFooter) {
         const addStepButton = document.querySelector('#add-step-button');
+        const navAddStepButton = document.querySelector('#edit-nav__add-step');
         addStepButton.addEventListener('click', async e => {
             const stepNum = document.querySelectorAll('.edit-step').length;
             const newStep = createStepDiv(stepNum);
@@ -107,6 +112,17 @@ document.addEventListener('DOMContentLoaded', async() => {
             //when we add a step we simply add an empty string to the database for destructions and destructionsHeading, so there's no need to pass project to the createStepDiv. The values will be updated on press of 'save' button.
 
 
+        });
+        //add same functionality to link in 'add' dropdown in nav
+        navAddStepButton.addEventListener('click', async e => {
+            const stepNum = document.querySelectorAll('.edit-step').length;
+            const newStep = createStepDiv(stepNum);
+            addStepFooter.insertAdjacentElement('beforebegin', newStep);
+            addEditButtonListener(stepNum, projectId);
+            addDeleteButtonListener(stepNum, projectId);
+            const res = await fetch(`/api/projects/${projectId}/addStep/`);
+            const data = await res.json();
+            const { project } = data;
         });
     };
 
@@ -165,7 +181,6 @@ document.addEventListener('DOMContentLoaded', async() => {
         stepDiv.innerHTML = stepDivHtml;
         return stepDiv;
     }
-
     //add project delete functionality
     const deleteButton = document.querySelector('#edit-nav__delete');
     deleteButton.addEventListener('click', async(e) => {
@@ -210,45 +225,59 @@ document.addEventListener('DOMContentLoaded', async() => {
     //--------------------------------------------
     //--------------------------------------------
     //save this for later
-    const saveButton = document.querySelector('#edit-nav__save');
-    saveButton.addEventListener('click', async(e) => {
-        const stepsHeadingsNodes = document.querySelectorAll('.edit-step__heading');
-        let destructionsHeadings = [];
-        stepsHeadingsNodes.forEach((stepHeadingNode, i) => {
-            destructionsHeadings.push(stepHeadingNode.innerHTML);
+
+
+    function addSaveButtonListener(button) {
+        button.addEventListener('click', async(e) => {
+            const stepsHeadingsNodes = document.querySelectorAll('.edit-step__heading');
+            let destructionsHeadings = [];
+            stepsHeadingsNodes.forEach((stepHeadingNode, i) => {
+                let headingText = stepHeadingNode.innerHTML;
+                let cutIndex = headingText.indexOf(':');
+                headingText = headingText.slice(cutIndex + 1);
+                destructionsHeadings.push(headingText);
+            });
+            const stepsDescriptionsNodes = document.querySelectorAll('.edit-step__description');
+            let destructions = [];
+            stepsDescriptionsNodes.forEach((stepDescriptionNode, i) => {
+                destructions.push(stepDescriptionNode.innerHTML);
+            })
+            const name = destructionsHeadings.shift().slice(20);
+            const intro = destructions.shift();
+            const suppliesNode = document.querySelector('.edit-step__supplies');
+            const supplies = suppliesNode.innerHTML;
+            const body = { name, intro, supplies, destructions, destructionsHeadings };
+            let data;
+            try {
+                const res = await fetch(`/api/projects/edit/${projectId}`, {
+                    method: 'put',
+                    body: JSON.stringify(body),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                data = await res.json();
+
+                if (!res.ok) { throw Error('issue with save') }
+                console.log('line253 projectseditform.js', res.ok)
+                editMainContainer.innerHTML = '';
+
+            } catch (e) { console.error('line 263 projectseditform.js', e) }
+            if (button.id === 'edit-nav__publish') {
+                window.location.href = `/projects/${projectId}`
+            }
+            const { project } = data;
+            renderEditPage(project);
+            //I may have to change the models so that destructables is a separate model, with a heading, descriptions, stepOrder, and projectId. I have having problems updating arrays in sequelize.
+            // body = contentArray;
+            // const res = await fetch(`/api/projects/edit/${projectId}`, {
+            //     method: 'post',
+            //     body: JSON.stringify(body),
+            //     headers: { 'Content-Type': 'application/json' }
+            // })
+            // const data = await res.json();
+            // project = data.project; //this should be our updated project
+            // //I need to make a method here that dynamically updates the page.
         });
-        const stepsDescriptionsNodes = document.querySelectorAll('.edit-step__description');
-        let destructions = [];
-        stepsDescriptionsNodes.forEach((stepDescriptionNode, i) => {
-            destructions.push(stepDescriptionNode.innerHTML);
-        })
-        const name = destructionsHeadings.shift().slice(20);
-        const intro = destructions.shift();
-        const suppliesNode = document.querySelector('.edit-step__supplies');
-        const supplies = suppliesNode.innerHTML;
-        const body = { name, intro, supplies, destructions, destructionsHeadings };
-        console.log('line189', body)
-        const res = await fetch(`/api/projects/edit/${projectId}`, {
-            method: 'put',
-            body: JSON.stringify(body),
-            headers: { 'Content-Type': 'application/json' }
-        })
-        const data = await res.json();
-        const { project } = data;
-        console.log(project);
-        editMainContainer.innerHTML = '';
-        renderEditPage(project);
-        //I may have to change the models so that destructables is a separate model, with a heading, descriptions, stepOrder, and projectId. I have having problems updating arrays in sequelize.
-        // body = contentArray;
-        // const res = await fetch(`/api/projects/edit/${projectId}`, {
-        //     method: 'post',
-        //     body: JSON.stringify(body),
-        //     headers: { 'Content-Type': 'application/json' }
-        // })
-        // const data = await res.json();
-        // project = data.project; //this should be our updated project
-        // //I need to make a method here that dynamically updates the page.
-    });
+    };
 
 
     //old code - might delete
