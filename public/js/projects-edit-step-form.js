@@ -6,9 +6,17 @@ document.addEventListener('DOMContentLoaded', async() => {
     const fullPreviewButton = document.querySelector('#edit-nav__preview');
     fullPreviewButton.addEventListener('click', () =>
         window.location.href = `/projects/${projectId}`);
+    const leftContainer = document.querySelector('#edit-nav__left-container');
+    const viewAllButton = document.createElement('button');
+    viewAllButton.innerHTML = 'View All';
+    viewAllButton.classList.add('btn', 'edit-nav__button', )
+    viewAllButton.setAttribute('id', 'edit-nav__view-all');
+    leftContainer.prepend(viewAllButton);
+    viewAllButton.addEventListener('click', () => {
+        window.location.href = `/editDestructable/${projectId}`;
+    });
 
     //get project data - will work for new and edit projects
-
     let project = await renderEditStepPage();
     //------------------------------------------
     async function renderEditStepPage() {
@@ -72,7 +80,8 @@ document.addEventListener('DOMContentLoaded', async() => {
     addSaveButtonListener(saveButton);
     const publishButton = document.querySelector('#edit-nav__publish');
     publishButton.addEventListener('click', async(e) => {
-        saveButton.dispatchEvent(e);
+        const event = new Event('click');
+        saveButton.dispatchEvent(event);
         window.location.href = `/projects/${projectId}`;
     })
 
@@ -122,4 +131,6 @@ document.addEventListener('DOMContentLoaded', async() => {
 
         });
     };
+
+
 });
