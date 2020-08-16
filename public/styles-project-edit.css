@@ -6,6 +6,7 @@
     padding: 0px;
     background-color: #fff;
     margin-bottom: 32px;
+    margin-top: 32px;
 }
 
 #edit-header-container {
@@ -83,7 +84,8 @@
 }
 
 .dropdown__content div {
-    padding: 12px 12px;
+    padding: 8px 12px;
+    height: fit-content;
 }
 
 .hide {

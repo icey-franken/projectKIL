@@ -55,4 +55,4 @@ async function initialSetup() {
     createProjectElements();
 }
 
-initialSetup();
+// initialSetup();

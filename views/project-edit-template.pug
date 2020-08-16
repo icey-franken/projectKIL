@@ -1,0 +1,30 @@
+extends layout.pug
+
+
+block content
+	.edit-container.container
+		#errors-container
+		#edit-header-container
+			#edit-header
+				button#edit-header__add-images + Click To Add Images
+			#edit-nav
+				#edit-nav__left-container
+					div.dropdown
+						button#edit-nav__add.btn.edit-nav__button.dropbtn Add
+						div.dropdown__content
+							div#edit-nav__add-step Step
+							div#edit-nav__add-photo Photos
+							div#edit-nav__add-video Video
+							div#edit-nav__add-file Files
+					div.dropdown
+						button#edit-nav__more.btn.edit-nav__button.dropbtn More
+						div.dropdown__content
+							div#edit-nav__collaborate Collaborate
+							div#edit-nav__history History
+							div#edit-nav__delete Delete
+							div#edit-nav__help Help
+				#edit-nav__right-container
+					button#edit-nav__preview.btn.edit-nav__button Full Preview
+					button#edit-nav__save.btn.edit-nav__button Save
+					button#edit-nav__publish.btn-primary.edit-nav__button Publish
+		block edit

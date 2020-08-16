@@ -142,6 +142,8 @@ router.delete('/:projectId(\\d+)/delete', routeHandler(async(req, res) => {
         const projectId = parseInt(req.params.projectId, 10);
         await Comment.destroy({ where: { projectId } });
         await Project.destroy({ where: { id: projectId } });
+        // res.end();
+        res.json({})
     }))
     //------------------------------------------
     //old

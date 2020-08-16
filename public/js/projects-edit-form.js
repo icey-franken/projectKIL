@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     //get project data - will work for new and edit projects
     const res1 = await fetch(`/api/projects/${projectId}`);
     const { project } = await res1.json();
+    if (!project) { window.location.href = '/projects' }
     renderEditPage(project);
     //------------------------------------------
     function renderEditPage(project) {
@@ -169,9 +170,15 @@ document.addEventListener('DOMContentLoaded', async() => {
     const deleteButton = document.querySelector('#edit-nav__delete');
     deleteButton.addEventListener('click', async(e) => {
         window.location.href = '/projects';
-        await fetch(`/api/projects/${projectId}/delete`, {
-            method: 'delete'
-        });
+        try {
+            const res = await fetch(`/api/projects/${projectId}/delete`, {
+                method: 'delete'
+            });
+            const data = await res.json();
+        } catch (e) {
+            console.error(e);
+            res.status;
+        }
         console.log('here');
     });
 
