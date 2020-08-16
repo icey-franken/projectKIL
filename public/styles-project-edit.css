@@ -6,15 +6,16 @@
     padding: 0px;
     background-color: #fff;
     margin-bottom: 32px;
+    margin-top: 32px;
 }
 
 #edit-header-container {
     background-color: #f6f6f6;
-    padding: 16px 10px;
+    padding: 16px 10px 0px;
     border-top-right-radius: 9px;
     border-top-left-radius: 9px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
 }
 
 #edit-header__add-images {
@@ -27,6 +28,7 @@
     color: #aaaaaa;
     font-size: 20px;
     box-shadow: inset 0 0 3px 3px #dfdfdf;
+    margin: 0px 4px;
 }
 
 #edit-nav {
@@ -35,19 +37,64 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0px 0px;
+    height: 48px;
 }
 
-#edit-nav__right-container {
-    display: flex;
+.edit-nav__button {
+    display: inline-block;
+    margin: 0px 4px;
+    vertical-align: middle;
+    height: 33px;
+    box-sizing: border-box;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
-#edit-nav__right-container .edit-nav__button {
-    margin-left: 8px;
+
+/* FROM W3 FOR DROPBUTTON */
+
+.dropbtn {
+    z-index: 2;
+    position: relative;
 }
 
-#edit-nav__left-container .edit-nav__button {
-    margin-right: 8px;
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown__content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    /* text-align: left; */
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    /* padding: 12px 12px; */
+    /* margin-top: -5px; */
+    margin-left: 2px;
+    color: black;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.dropdown__content div:hover {
+    background-color: rgba(255, 140, 0, 0.6)
+}
+
+.dropdown__content div {
+    padding: 8px 12px;
+    height: fit-content;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
 }
 
 .edit-step {

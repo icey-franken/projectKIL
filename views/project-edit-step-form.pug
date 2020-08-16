@@ -1,8 +1,10 @@
 extends project-edit-template.pug
 
 append head
-	script(src='/public/js/projects-edit-form.js' type='module')
+	script(src='/public/js/projects-edit-step-form.js' type='module')
 	link(rel='stylesheet' href='/public/styles-project-edit.css')
 
 block edit
+	div fuck
 	.edit-main-container(id=`${projectId}`)
+	.edit-step-container(id=`${stepId}`)

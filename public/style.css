@@ -31,7 +31,7 @@ main+.auth-container {
     padding: 10px;
 }
 
-.signup-dropdown-container{
+.signup-dropdown-container {
     display: flex;
     flex-wrap: wrap;
     margin-right: -97px;
@@ -90,21 +90,32 @@ main+.auth-container {
 }
 
 .btn:hover,
-.btn-primary:hover {
+.btn-primary:hover,
+.btn--selected,
+.btn-primary--selected {
     background-color: darkorange;
     border: 1px solid darkorange;
     box-shadow: 0 0 0 0.2rem orangered;
 }
 
-.btn-primary:focus {
+.btn:focus {
     background-color: inherit;
     border: inherit;
-    box-shadow: inherit;
+    box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.3);
 }
-#discussion-box_buttons button{
-    color:grey;
+
+.btn-primary:focus {
+    background-color: rgba(255, 140, 0, 0.6);
+    border: none;
+    color: black;
+    box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.3);
 }
-.footer-container > .row{
+
+#discussion-box_buttons button {
+    color: grey;
+}
+
+.footer-container>.row {
     margin: auto;
 }
 
@@ -112,13 +123,13 @@ main+.auth-container {
 .form-inline .btn{
     position: relative;
     right: 20%;
-    border:none;
+    border: none;
     padding: unset;
 }
 
-.small-button{
-    padding:0.2em;
-    font-size:1em;
+.small-button {
+    padding: 0.2em;
+    font-size: 1em;
 }
 
 /* For modal */

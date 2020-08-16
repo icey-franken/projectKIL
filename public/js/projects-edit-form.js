@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     //get project data - will work for new and edit projects
     const res1 = await fetch(`/api/projects/${projectId}`);
     const { project } = await res1.json();
+    if (!project) { window.location.href = '/projects' }
     renderEditPage(project);
     //------------------------------------------
     function renderEditPage(project) {
@@ -127,7 +128,9 @@ document.addEventListener('DOMContentLoaded', async() => {
         deleteButton.addEventListener('click', async(e) => {
             const stepNum = e.target.id.slice(7);
             console.log('line 121 stepnum', stepNum);
-            const res = await fetch(`/api/projects/${projectId}/delete/step/${stepNum}`);
+            const res = await fetch(`/api/projects/${projectId}/delete/step/${stepNum}`, {
+                method: 'delete'
+            });
             const data = await res.json();
             const { project } = data;
             editMainContainer.innerHTML = '';
@@ -162,6 +165,44 @@ document.addEventListener('DOMContentLoaded', async() => {
         stepDiv.innerHTML = stepDivHtml;
         return stepDiv;
     }
+
+    //add project delete functionality
+    const deleteButton = document.querySelector('#edit-nav__delete');
+    deleteButton.addEventListener('click', async(e) => {
+        window.location.href = '/projects';
+        try {
+            const res = await fetch(`/api/projects/${projectId}/delete`, {
+                method: 'delete'
+            });
+            const data = await res.json();
+        } catch (e) {
+            console.error(e);
+            res.status;
+        }
+        console.log('here');
+    });
+
+
+    // add dropdown functionality
+    function dropDownMaker(button) {
+        button.parentElement.addEventListener('mouseenter', (e) => {
+            button.nextSibling.classList.add('show');
+            button.nextSibling.classList.add('dropdown__content--opened');
+            button.classList.add('btn-primary--selected');
+        })
+        button.parentElement.addEventListener('mouseleave', (e) => {
+            setTimeout(() => {
+                button.nextSibling.classList.remove('show');
+                button.nextSibling.classList.remove('dropdown__content--opened');
+                button.classList.remove('btn-primary--selected');
+            }, 100);
+        });
+    };
+    const moreButton = document.querySelector('#edit-nav__more');
+    dropDownMaker(moreButton);
+
+    const addButton = document.querySelector('#edit-nav__add');
+    dropDownMaker(addButton);
 
 
 
