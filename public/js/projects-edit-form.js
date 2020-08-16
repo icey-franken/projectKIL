@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', async() => {
             };
         };
         generateAddStepButton();
-
     };
     //-------------------------------------------------------
     function generateIntroPage(project) {
@@ -41,8 +40,8 @@ document.addEventListener('DOMContentLoaded', async() => {
         introDiv.setAttribute('id', `step-0`);
         introDiv.setAttribute('class', 'edit-step');
         const introDivHtml = `
-					<div class='edit-step__image-container'>
-						<div class='edit-step__image'>
+					<div class='edit-step__image-container' id='image-container-0' ondrop='drop(event)' ondragover='allowDrop(event)'>
+						<div class='edit-step__image' id='image-container-0'>
 							<span class='edit-step__image-arrow'>&#129095;</span>
 							<span class='edit-step__image-text'> Drag Images From Top Bar</span>
 						</div>
@@ -71,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async() => {
             stepDiv.setAttribute('id', `step-${i}`);
             stepDiv.setAttribute('class', 'edit-step');
             const stepDivHtml = `
-						<div class='edit-step__image-container'>
+						<div class='edit-step__image-container' id='image-container-${i}' ondrop='drop(event)' ondragover='allowDrop(event)'>
 							<div class='edit-step__image'>
 								<span class='edit-step__image-arrow'>&#129095;</span>
 								<span class='edit-step__image-text'> Drag Images From Top Bar</span>
@@ -318,4 +317,48 @@ document.addEventListener('DOMContentLoaded', async() => {
     //     // const { project } = data
     //     window.location.href = `/projects/${projectId}`
     // })
-})
+
+
+
+
+
+    //download images
+    const images = project.images;
+    console.log(images);
+    const imageName = images[1];
+    // const imageEl = document.createElement('img');
+    const imageId = 1;
+    const imageURL = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${imageName}`
+        // imageEl.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${image}`);
+        // imageEl.setAttribute('id', `image-${imageId}`);
+        // imageEl.setAttribute('draggable', 'true');
+        // imageEl.setAttribute('ondragstart', drag(event));
+        // imageEl.setAttribute('style', 'width:250px;height:250px');
+    const imageDiv = document.createElement('div');
+    const imgEl = `<img src=${imageURL} id='image-${imageId}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-axis:1;text-align:center' >`;
+    imageDiv.innerHTML = imgEl;
+    console.log(imgEl);
+    console.log(imageDiv);
+    editMainContainer.prepend(imageDiv);
+
+
+
+
+});
+// /drag and drop.....
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    console.log(ev)
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    console.log(ev.target);
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
