@@ -97,23 +97,37 @@ uploadMediaButton.addEventListener('click', async (e) => {
         // const res = await fetch(`/api/file_uploads`);
         console.log('fetched via DOM');
         if (res.ok) {
-            console.log('posted file!')
-            addMediaDropzone.classList.add('btn', 'd-flex');
-            addMediaDropzone.classList.remove('hidden');
-            addMediaPreviewContainer.classList.add('hidden');
-            addMediaPreview.setAttribute('src', '');
-            addMediaModal.classList.add('hide');
-            addMediaDropzone.innerHTML = 'UPLOAD SUCCESSFUL'
-        }
-        else console.log('failed')
-
+            const imageContainerDiv = document.createElement('div');
+            imageContainerDiv.setAttribute('data-dismiss', "modal");
+            imageContainerDiv.classList.add('col-4');
+            const imageTag = document.createElement('img');
+            imageTag.classList.add('img-thumbnail', 'btn')
+            imageTag.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${file.name}`);
+            imageContainerDiv.appendChild(imageTag)
+            modalImageGallery.appendChild(imageContainerDiv);
+            console.log(file.name)
+            imageTag.addEventListener('click', function (e) {
+                recentTextArea.value = `<img src="https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${file.name}">`
+                for (let i = 0; i < postButtons.length; i++) {
+                    const postButton = postButtons[i];
+                    postButton.disabled = false;
+                }
+            })
+        };
+        console.log('posted file!')
+        addMediaDropzone.classList.add('btn', 'd-flex');
+        addMediaDropzone.classList.remove('hidden');
+        addMediaPreviewContainer.classList.add('hidden');
+        addMediaPreview.setAttribute('src', '');
+        addMediaModal.classList.add('hide');
+        addMediaDropzone.innerHTML = 'UPLOAD SUCCESSFUL! <br> Be sure to add them by click on the add images button.'
     }
+    else console.log('failed')
 });
 
 modalAddImageButton.addEventListener('click', (e) => {
     modalContent1.classList.add('hidden');
     modalContent2.classList.remove('hidden');
-    createImageGallery();
 });
 
 modalCloseButton.addEventListener('click', (e) => {
@@ -124,7 +138,8 @@ uploadNewMediaButton.addEventListener('click', (e) => {
     addMediaDropzone.innerHTML = 'Upload Files and Photos'
     modalContent1.classList.remove('hidden');
     modalContent2.classList.add('hidden');
-    modalImageGallery.innerHTML = '';
+
+
 });
 
 async function createImageGallery() {
@@ -144,8 +159,8 @@ async function createImageGallery() {
         imageContainerDiv.appendChild(imageTag)
         modalImageGallery.appendChild(imageContainerDiv);
 
-        imageContainerDiv.addEventListener('click', function (e) {
-            recentTextArea.innerHTML = recentTextArea.innerHTML + `<img src="https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}">`
+        imageTag.addEventListener('click', function (e) {
+            recentTextArea.value = `<img src="https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}">`
             for (let i = 0; i < postButtons.length; i++) {
                 const postButton = postButtons[i];
                 postButton.disabled = false;
@@ -162,10 +177,12 @@ async function addClickEventForTextAreas() {
     for (let i = 0; i < textAreas.length; i++) {
         const textArea = textAreas[i]
         textArea.addEventListener('focus', function (e) {
-            recentTextArea = e.target;
+            recentTextArea = textArea;
+            console.log(recentTextArea)
+            console.log()
         });
 
     }
 }
-
-setTimeout(addClickEventForTextAreas, 2000);
+createImageGallery();
+setTimeout(addClickEventForTextAreas, 100);
