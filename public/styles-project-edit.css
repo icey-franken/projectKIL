@@ -18,7 +18,7 @@
     /* margin-bottom: 32px; */
 }
 
-#edit-header__add-images {
+.edit-header__add-images {
     width: 100%;
     height: 116px;
     box-sizing: border-box;
