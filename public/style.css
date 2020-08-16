@@ -134,7 +134,7 @@ main+.auth-container {
 
 /* For modal */
 .add-media{
-    max-width: 500px;
+    min-width: 400px;
     min-height: 300px;
     border: 3px dashed gray;
     margin: 20px;

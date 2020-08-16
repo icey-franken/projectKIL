@@ -5,22 +5,27 @@ mixin add-media-modal
 	button(class="btn btn-primary" data-toggle="modal" data-target="#add-media-modal" id="add-media-modal_button") Add Image
 	div(class="modal fade" id="add-media-modal" tabindex="-1" role="dialog" aria-labelledby="add-media-modal-label" aria-hidden="true")
 		div(class="modal-dialog modal-dialog-centered" role="document" id="add-media-modal_dialog")
-			div(class="modal-content")
+			div(class="modal-content" id='modal-content1')
 				ul.nav.nav-tabs.pl-3.pt-3
 					li.nav-item
-						a(class="nav-link active" href='#') Upload Photos and Files
+						a(class="nav-link active") Upload Photos and Files
 				div(class="modal-body text-center")
 					input(type='file' class='hidden' name='image' accept='image/png, image/jpeg' id='upload-media_input-box')
 					label(for='upload-media_input-box' class='btn add-media d-flex justify-content-center align-items-center' id='add-media_dropzone') Upload Files and Photos
-						br
-						|	Drag or Browse to Add
 					div(class="container" id="add-media-container")
 						div(class='hidden' id='add-media-preview_container')
 							img(src="" alt="File Preview" class="w-100 h-100 media-preview" id='add-media_preview' data-label='my-file')
 							div(class="card-footer text-muted")
 								p(id="upload-media_name") My File
 				div(class="modal-footer")
-					button(type="button" class="btn" data-dismiss="modal" id="modal-close_button") Close
+					button(type="button" class="btn" id="modal-add-image_button") Add Image...
 					input(type='file' class ='hidden' name='image' accept='image/png, image/jpeg' id='upload-media_input')
 					label(for='upload-media_input' class='btn') Browse...
 					button(type="button" class="btn"  id='upload-media_button') Upload
+			div(class="modal-content hidden" id='modal-content2')
+				ul.nav.pl-3.pt-3
+					h3(class="nav-link active w-100") Add Images from Library
+				div(class="modal-body text-center container row" id='modal-image-gallery')
+				div(class="modal-footer")
+					button(type="button" class="btn"  id='upload-new-media_button') Upload New File
+					button(type="button" class="btn" data-dismiss="modal" id="modal-close-button") Done
