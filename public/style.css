@@ -119,11 +119,8 @@ main+.auth-container {
     margin: auto;
 }
 
-#discussion-box_buttons button:hover {
-    color: white !important;
-}
 
-.form-inline .btn {
+.form-inline .btn{
     position: relative;
     right: 20%;
     border: none;
@@ -135,12 +132,41 @@ main+.auth-container {
     font-size: 1em;
 }
 
-.add-media {
-    height: 300px;
+/* For modal */
+.add-media{
+    max-width: 500px;
+    min-height: 300px;
     border: 3px dashed gray;
     margin: 20px;
+    border-radius: 1em;
 }
 
+.add-media:hover{
+    border: 4px dashed white;
+    background-color:white !important;
+}
+
+label[for='upload-media_input-box']{
+    width: 400px;
+    min-height: 300px;
+    margin: auto;
+}
+
+.modal-footer .btn{
+    background-color: unset;
+    padding: 8px;
+    margin: 10px;
+    font: unset;
+}
+.modal-footer .btn:hover{
+
+    color:black !important;
+}
+
+/* comment css btn */
+#discussion-box_buttons button:hover{
+    color:white !important;
+}
 
 /* IDK HOW TO FIX THISS!!!!!!!!!!!!!! */
 

@@ -6,6 +6,7 @@ app.set('view engine', 'pug');
 app.use(require('morgan')("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(require('body-parser').urlencoded({ extended: false }))
 app.use(require('cookie-parser')());
 //remember to use csrfProtection as middleware on individual routes as needed!
 const csrfProtection = require('csurf')({ cookie: true });
@@ -19,7 +20,9 @@ app.get('/', function (req, res, next) {
     res.render('index')
 });
 
+
 app.use('/public', express.static('public'));
+
 app.use('/api', apiRouter);
 app.use('/comments', commentsRouter);
 app.use('/', pagesRouter);

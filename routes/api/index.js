@@ -13,6 +13,8 @@ const aboutYousRouter = require('./aboutyous');
 router.use('/aboutYous', aboutYousRouter);
 const commentsRouter = require('./comments');
 router.use('/comments', commentsRouter);
+const fileUploadRouter = require('./file-upload');
+router.use('/file_uploads', fileUploadRouter);
 
 router.use((err, req, res, next) => {
     console.log('before err instanceof----------------', err instanceof ValidationError);
