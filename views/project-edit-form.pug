@@ -1,8 +1,9 @@
 extends project-edit-template.pug
 
 append head
-	script(src='/public/js/projects-edit-form.js' type='module')
 	link(rel='stylesheet' href='/public/styles-project-edit.css')
+	script(src='/public/js/projects-edit-form.js' type='module')
+	script function allowDrop(ev) {ev.preventDefault();};          function drag(ev) {console.log(ev); ev.dataTransfer.setData("text", ev.target.id);};                                     function drop(ev) {ev.preventDefault(); var data = ev.dataTransfer.getData("text"); console.log(ev.target.id);ev.target.appendChild(document.getElementById(data));};
 
 block edit
 	.edit-main-container(id=`${projectId}`)
