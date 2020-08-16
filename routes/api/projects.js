@@ -90,8 +90,9 @@ router.get('/:id(\\d+)', routeHandler(async(req, res) => {
 router.put('/edit/:projectId(\\d+)', routeHandler(async(req, res, next) => {
     const projectId = parseInt(req.params.projectId, 10);
     let { name, intro, supplies, destructions, destructionsHeadings } = req.body;
-    supplies = supplies.split(',');
-    // console.log(supplies);
+    // supplies = Array.from(supplies);
+    console.log('after split', supplies);
+    if (!Array.isArray(supplies)) { supplies = supplies.split(','); }
     Project.findByPk(projectId)
         .then((project) => {
             console.log('line 94', project)

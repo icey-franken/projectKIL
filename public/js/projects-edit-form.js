@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', async() => {
     const saveButton = document.querySelector('#edit-nav__save');
     addSaveButtonListener(publishButton);
     addSaveButtonListener(saveButton);
+    const fullPreviewButton = document.querySelector('#edit-nav__preview');
+    fullPreviewButton.addEventListener('click', () =>
+        window.location.href = `/projects/${projectId}`);
     renderEditPage(project);
     //------------------------------------------
     function renderEditPage(project) {
