@@ -4,6 +4,8 @@ const projectOwnerContainer = document.getElementById("project-owner-container")
 const projectSupplies = document.getElementById("project-supplies")
 const projectStepsContainer = document.getElementById("project-steps-container")
 const editProjectButton = document.getElementById("edit");
+const endOfProjectDetails = document.getElementById("end-of-project-details")
+const endOfSupplies = document.getElementById('end-of-supplies')
 let project;
 
 function getRndInteger(min, max) {
@@ -97,7 +99,7 @@ function createSupplies() {
 function createEndOfStepHTML() {
     return `
     <div class="container text-center py-4">
-        <button class="btn btn-primary btn-sm mx-3">Add</button><button class="btn btn-primary btn-sm mx-3">TipAsk</button><button class="btn btn-primary btn-sm mx-3">Question</button><button class="btn btn-primary btn-sm mx-3">Comment</button><button class="btn btn-primary btn-sm mx-3">Download</button>
+        <button class="btn btn-primary btn-sm mx-3">Add</button><button class="btn btn-primary btn-sm mx-3">TipAsk</button><button class="btn btn-primary btn-sm mx-3">Question</button><button class="btn btn-primary btn-sm mx-3">Comment</button>
     </div>
     <hr width="20%">`
 }
@@ -115,6 +117,9 @@ function createProjectSteps() {
         const stepNumber = i + 1;
         const destructionHeading = destructionHeadings[i];
         endOfStepSeperatorDiv.innerHTML = createEndOfStepHTML();
+        endOfStepSeperatorDiv.addEventListener('click', (e) => {
+            endOfProjectDetails.scrollIntoView();
+        })
         stepDiv.classList.add('container');
         stepNumberHeader.classList.add('text-center')
         stepDestruction.classList.add('container', 'w-50');
@@ -137,6 +142,10 @@ async function initialSetup() {
     projectIntroImage.innerHTML = createCarousel();
     projectOwnerContainer.innerHTML = createProjectOwnerContainer();
     projectSupplies.innerHTML = createSupplies();
+    endOfSupplies.innerHTML = createEndOfStepHTML();
+    endOfSupplies.addEventListener('click', (e) => {
+        endOfProjectDetails.scrollIntoView();
+    })
     createProjectSteps();
     editProjectButton.href = `/editDestructable/${currentRoute}`;
 }
