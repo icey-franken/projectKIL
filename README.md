@@ -1,4 +1,4 @@
-# projectKIL - [Welcome to Destructables.](https://destructables-app.herokuapp.com/)
+# projectKIL - [Welcome to Destructables](https://destructables-app.herokuapp.com/)
 
 Destructables is a place where destroyers from all walks of life can come together and share their hard-earned destructive knowledge.
 
