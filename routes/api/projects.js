@@ -84,7 +84,7 @@ router.get('/:id(\\d+)', routeHandler(async(req, res) => {
 
 
 
-//ARRAY PROBLEM WORKAROUND - this is ugly as shit... but it works.
+//ARRAY PROBLEM WORKAROUND - this is ugly... but it works.
 //Still throwing errors. THis is over my head. I'm going to ignore for the time being.
 //somehow this works. IDK what's going on. DOn't touch this.
 router.put('/edit/:projectId(\\d+)', routeHandler(async(req, res, next) => {
@@ -165,15 +165,15 @@ router.delete('/:projectId(\\d+)/delete', routeHandler(async(req, res) => {
 
 //validations for editing a project -- these should be similar to the validations we implement on our database. We do them here as well so make sure the stuff we are sending to our database are properly submitted. Soon-Mi called this "sanitizing our database inputs"
 // const checkProjectEdits = [
-// 	check('bullshit')
+// 	check('stuff')
 // 	.yadda yadda
 // ];
 
 //I think since this is a post request we should have some validation things in here - using the check and validationHandler shit from the express-validator package or whatever.
 // router.post('/edit/:projectId(\\d+)', routeHandler(async (req, res) => { //add checkProjectEdits and handleValidationErrors middleware
-//     //destructure body of requst to get the shit the users want to edit about the project
-//     const { destructuredShit } = req.body
-//     const project = await Project.update({ destructuredShit })
+//     //destructure body of requst to get the info the users want to edit about the project
+//     const { destructuredStuff } = req.body
+//     const project = await Project.update({ destructuredStuff })
 //     //we'll have an error handler or something in case the project isn't updated correctly.
 //     //If project IS updated correctly, then we want to render the edit form once again but with the new project stuff.
 //     //We probably also want to save the previous version of the project somewhere in our database for history purposes, but maybe we worry about that later on.

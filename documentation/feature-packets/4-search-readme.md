@@ -7,9 +7,9 @@
 
 ## Endpoints Needed
 
-### search all categories by keyword: '/howto/:keyword/'
+### search all categories by keyword: '/search/results/:keyword/'
 
-* note that on instructables page there is no option to sort search (e.g. by featured, recent, popular, views, winners)
+* searching Project and Users
 
 ### search specific categories by keyword: '/:category/howto/:keyword/'
 

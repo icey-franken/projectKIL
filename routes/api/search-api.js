@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { Project, User } = require("../../db/models");
 const { routeHandler } = require("../utils");
-
+//this is all ugly and I have no idea what's going on. Not functioning. don't show.
 router.get(
-  "/search/results/:string",
+  "/",
   routeHandler(async (req, res) => {
     const query = req.params.string;
     const matchingProjects = await Project.findAll({
@@ -27,7 +27,7 @@ router.get(
       },
     });
     
-    return res.json(matchingProjects, {query});
+    return res.create(matchingProjects, {query});
   })
 );
 
