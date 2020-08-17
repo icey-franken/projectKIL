@@ -147,26 +147,29 @@ async function createImageGallery() {
     const data = await res.json();
     console.log(data);
     const { images } = data;
-    console.log('PROJECT', images)
-    for (let i = 0; i < images.length; i++) {
-        const currentImage = images[i];
-        const imageContainerDiv = document.createElement('div');
-        imageContainerDiv.setAttribute('data-dismiss', "modal");
-        imageContainerDiv.classList.add('col-4');
-        const imageTag = document.createElement('img');
-        imageTag.classList.add('img-thumbnail', 'btn')
-        imageTag.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}`);
-        imageContainerDiv.appendChild(imageTag)
-        modalImageGallery.appendChild(imageContainerDiv);
+    if (images) {
+        for (let i = 0; i < images.length; i++) {
+            const currentImage = images[i];
+            const imageContainerDiv = document.createElement('div');
+            imageContainerDiv.setAttribute('data-dismiss', "modal");
+            imageContainerDiv.classList.add('col-4');
+            const imageTag = document.createElement('img');
+            imageTag.classList.add('img-thumbnail', 'btn')
+            imageTag.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}`);
+            imageContainerDiv.appendChild(imageTag)
+            modalImageGallery.appendChild(imageContainerDiv);
 
-        imageTag.addEventListener('click', function (e) {
-            recentTextArea.value = `<img src="https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}">`
-            for (let i = 0; i < postButtons.length; i++) {
-                const postButton = postButtons[i];
-                postButton.disabled = false;
-            }
-        })
-    };
+            imageTag.addEventListener('click', function (e) {
+                recentTextArea.value = `<img src="https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${currentImage}">`
+                for (let i = 0; i < postButtons.length; i++) {
+                    const postButton = postButtons[i];
+                    postButton.disabled = false;
+                }
+            })
+        };
+    } else {
+
+    }
 }
 
 
