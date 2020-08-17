@@ -1,7 +1,6 @@
 const projectHeader = document.getElementById("project-header")
 const projectIntroImage = document.getElementById("project-intro_image")
 const projectOwnerContainer = document.getElementById("project-owner-container")
-const projectIntroDestruction = document.getElementById("project-intro_destruction")
 const projectSupplies = document.getElementById("project-supplies")
 const projectStepsContainer = document.getElementById("project-steps-container")
 const editProjectButton = document.getElementById("edit");
@@ -26,7 +25,7 @@ function createCarousel() {
         // }
         projectImagesString += `
             <div class="container text-center my-4">
-                <img src="https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${projectImage}">
+                <img class=" w-75" src="https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${projectImage}">
             </div>
       `
     }
@@ -81,11 +80,10 @@ function createProjectHeader() {
 function createProjectOwnerContainer() {
     return `
     <div class="media">
-        <img class="align-self-center mr-3" src="..." alt="Generic placeholder image">
+        <img class="align-self-center mr-3 poster" src="https://cdn1.vectorstock.com/i/thumb-large/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg" alt="Generic placeholder image">
     <div class="media-body">
-        <h5 class="mt-0">Center-aligned media</h5>
-        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-        <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        <h5 class="mt-0">by ${project.User.username}</h5>
+        <p>${project.intro}</p>
     </div>
     </div>
     `
@@ -119,7 +117,7 @@ function createProjectSteps() {
         endOfStepSeperatorDiv.innerHTML = createEndOfStepHTML();
         stepDiv.classList.add('container');
         stepNumberHeader.classList.add('text-center')
-        stepDestruction.classList.add('px-5', 'mx-5');
+        stepDestruction.classList.add('container', 'w-50');
         if (destructionHeading) stepNumberHeader.innerHTML = `Step ${stepNumber}: ${destructionHeading}`;
         else stepNumberHeader.innerHTML = `Step ${stepNumber}`;
         stepDiv.appendChild(stepNumberHeader);
@@ -139,7 +137,6 @@ async function initialSetup() {
     projectIntroImage.innerHTML = createCarousel();
     projectOwnerContainer.innerHTML = createProjectOwnerContainer();
     projectSupplies.innerHTML = createSupplies();
-    projectIntroDestruction.innerHTML = project.intro;
     createProjectSteps();
     editProjectButton.href = `/editDestructable/${currentRoute}`;
 }
