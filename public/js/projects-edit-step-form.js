@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', async() => {
         window.location.href = `/editDestructable/${projectId}`;
     });
 
+    document.getElementById('edit-nav__add').remove();
+    document.getElementById('edit-nav__more').remove();
+
+
+
     //get project data - will work for new and edit projects
     let project = await renderEditStepPage();
     //------------------------------------------
@@ -109,6 +114,12 @@ document.addEventListener('DOMContentLoaded', async() => {
                 destructions[stepNum - 1] = newDestruction;
                 destructionsHeadings[stepNum - 1] = newDestructionHeading;
             }
+            if (name === null) name = '';
+            if (intro === null) intro = '';
+            if (supplies === null) supplies = [];
+            if (destructions === null) destructions = [];
+            if (destructionsHeadings === null) destructionsHeadings = [];
+
             body = { name, intro, supplies, destructions, destructionsHeadings };
             let data;
             try {

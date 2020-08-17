@@ -5,19 +5,6 @@ document.addEventListener('DOMContentLoaded', async() => {
     //get project data - will work for new and edit projects
     const res1 = await fetch(`/api/projects/${projectId}`);
     const { project } = await res1.json();
-    if (!project) { window.location.href = '/projects' }
-    const publishButton = document.querySelector('#edit-nav__publish');
-    const saveButton = document.querySelector('#edit-nav__save');
-    addSaveButtonListener(publishButton);
-    addSaveButtonListener(saveButton);
-    const fullPreviewButton = document.querySelector('#edit-nav__preview');
-
-    const mediaModalButton = document.querySelector('#add-media-modal_button');
-    mediaModalButton.classList.add('edit-header__add-images');
-    mediaModalButton.innerHTML = '+ Click To Add Images';
-
-    fullPreviewButton.addEventListener('click', () =>
-        window.location.href = `/projects/${projectId}`);
     renderEditPage(project);
     //------------------------------------------
     function renderEditPage(project) {
@@ -287,7 +274,10 @@ document.addEventListener('DOMContentLoaded', async() => {
         });
     };
 
-
+    const publishButton = document.querySelector('#edit-nav__publish');
+    const saveButton = document.querySelector('#edit-nav__save');
+    addSaveButtonListener(publishButton);
+    addSaveButtonListener(saveButton);
     //old code - might delete
     const form = document.querySelector('.edit-project-form');
     // form.addEventListener('submit', async(e) => {
@@ -319,38 +309,21 @@ document.addEventListener('DOMContentLoaded', async() => {
     // })
 
 
-    //------------------------------------
-    //drag and drop and image stuff
-    const editHeader = document.querySelector('#edit-header');
-    editHeader.setAttribute('ondrop', 'drop(event)');
-    editHeader.setAttribute('ondragover', 'allowDrop(event)');
-    const imageHeader = document.querySelector('.edit-header__add-images');
 
-
-
-    //download images
-    const { images } = project;
-    images.forEach((image, imageNum) => {
-            const imageURL = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${image}`
-            const imageDiv = document.createElement('div');
-            const imgEl = `<img src=${imageURL} id='image-${imageNum}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-index:1;position:absolute' alt='${image}'>`;
-            imageDiv.innerHTML = imgEl;
-            editHeader.prepend(imageDiv);
-        })
-        // const imageName = images[1];
-        // // const imageEl = document.createElement('img');
-        // const imageId = 1;
-        // const imageURL = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${imageName}`
-        //     // imageEl.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${image}`);
-        //     // imageEl.setAttribute('id', `image-${imageId}`);
-        //     // imageEl.setAttribute('draggable', 'true');
-        //     // imageEl.setAttribute('ondragstart', drag(event));
-        //     // imageEl.setAttribute('style', 'width:250px;height:250px');
-        // const imageDiv = document.createElement('div');
-        // const imgEl = `<img src=${imageURL} id='image-${imageId}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-index:1;position:absolute' >`;
-        // imageDiv.innerHTML = imgEl;
-        // console.log(imgEl);
-        // console.log(imageDiv);
+    // const imageName = images[1];
+    // // const imageEl = document.createElement('img');
+    // const imageId = 1;
+    // const imageURL = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${imageName}`
+    //     // imageEl.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${image}`);
+    //     // imageEl.setAttribute('id', `image-${imageId}`);
+    //     // imageEl.setAttribute('draggable', 'true');
+    //     // imageEl.setAttribute('ondragstart', drag(event));
+    //     // imageEl.setAttribute('style', 'width:250px;height:250px');
+    // const imageDiv = document.createElement('div');
+    // const imgEl = `<img src=${imageURL} id='image-${imageId}' draggable='true' ondragstart='drag(event)' style='width:118px;height:118px;z-index:1;position:absolute' >`;
+    // imageDiv.innerHTML = imgEl;
+    // console.log(imgEl);
+    // console.log(imageDiv);
 
 });
 
