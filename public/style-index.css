@@ -32,6 +32,10 @@
     font-size: 12px;
 }
 
+.card-img-top{
+    height:200px;
+}
+
 .card-footer{
     padding:unset;
     text-align: right;

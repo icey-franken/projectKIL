@@ -12,17 +12,19 @@ async function fetchProjects() {
 
 
 async function createProjectElements() {
-    console.log(projects);
     let filteredProjects = projects.filter(function (project) {
         return project.Category;
     });
+    let projectImage = '/public/images/loginSignup.png'
     for (let i = 0; i < 5;) {
         const rowContainer = document.createElement("div");
         rowContainer.classList.add("row", "w-100", "my-5")
         for (let j = 0; j < 5; j++) {
             if (i >= filteredProjects.length) break;
             const project = filteredProjects[i];
-            console.log(project.Category.name)
+            if (project.images) {
+                projectImage = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${project.images[0]}`
+            }
             i++;
             const projectDiv = document.createElement('div');
             projectDiv.classList.add("col");
@@ -30,7 +32,7 @@ async function createProjectElements() {
             projectDiv.innerHTML = `
                 <div class="card mb-2">
                 <a href="/projects/${project.id}" class="overflow-hidden">
-                    <img class="card-img-top" src="/public/images/loginSignup.png" alt="Card image cap">
+                    <img class="card-img-top" src="${projectImage}" alt="Card image cap">
                 </a>
                 <div class="card-body">
                     <a href="/projects/${project.id}" class="card-title font-weight-bold">${project.name}</a>
