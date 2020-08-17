@@ -149,7 +149,13 @@ async function createImageGallery() {
     const { images } = data;
     if (images) {
         for (let i = 0; i < images.length; i++) {
-            const currentImage = images[i];
+            let currentImage = images[i];
+            let splitImage = currentImage.split('.');
+            if (splitImage[1] = 'jpeg') {
+                splitImage[1] = 'jpg';
+                currentImage = splitImage.join('.');
+            }
+
             const imageContainerDiv = document.createElement('div');
             imageContainerDiv.setAttribute('data-dismiss', "modal");
             imageContainerDiv.classList.add('col-4');

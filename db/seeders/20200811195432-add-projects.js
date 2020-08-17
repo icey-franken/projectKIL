@@ -8,7 +8,7 @@ module.exports = {
             supplies: ['JS knowledge', 'computer', 'willpower'],
             destructionsHeadings: ['do thing 1'],
             destructions: ['please refer to mdn bc i dont have time for this'],
-            images: ['blank_stare.gif'],
+            images: ['blank_stare.jpg'],
             categoryId: 3,
             userId: 1
         },
@@ -18,7 +18,7 @@ module.exports = {
             supplies: ['cake mix and the fixins', 'baby'],
             destructionsHeadings: ['do thing 1', 'do thing 2', 'do thing 3'],
             destructions: ['follow instructions to bake cake', 'decorate cake after cooling', 'place baby in front of cake', 'observe'],
-            images: ['happy_baby.gif'],
+            images: ['happy_baby.jpg'],
             categoryId: 1,
             userId: 2
         },
@@ -28,7 +28,7 @@ module.exports = {
             supplies: ['lauren3', 'krisna3', 'isaac3'],
             destructionsHeadings: ['do thing 1', 'do thing 2', 'do thing 3'],
             destructions: ['wake up3', 'start computer3', 'bang out3'],
-            images: ['blank_stare3.gif'],
+            images: ['blank_stare3.jpg'],
             categoryId: 5,
             userId: 3
         },
@@ -38,7 +38,7 @@ module.exports = {
             supplies: ['cannon', 'cannon ball', 'fuse', 'lighter', 'pirate flag'],
             destructionsHeadings: ['do thing 1', 'do thing 2', 'do thing 3', 'do ting 4'],
             destructions: ['load the cannon', 'light the fuse', 'fire in the hole!', 'raise pirate flag'],
-            images: ['ship_destroyed.gif'],
+            images: ['ship_destroyed.jpg'],
             categoryId: 5,
             userId: 1
         },
@@ -48,7 +48,7 @@ module.exports = {
             supplies: ['stomping boots'],
             destructionsHeadings: ['do thing 1', 'do thing 2', 'do thing 3', 'thing 4', 'thing5'],
             destructions: ['get your head in the game', 'strap on your boots', 'search for pumpkins', 'stomp it like it is a roach!', 'run away'],
-            images: ['jack-o-lantern.gif'],
+            images: ['jack-o-lantern.jpg'],
             categoryId: 3,
             userId: 2
         },
@@ -58,7 +58,7 @@ module.exports = {
             supplies: ['booze', 'more booze', 'maybe a hotel room?', 'party pants', 'favorite drinking cup', 'maybe a shot glass or two', 'friends...bc dont drink alone'],
             destructionsHeadings: ['do thing 1', 'do thing 2', 'do thing 3', '4', '5', '6', '7', '8'],
             destructions: ['pregame', 'clock in', 'cheers', 'bottoms up!', 'drink some more', 'dont stop now', 'keep going', 'power hour', 'rally'],
-            images: ['party_pic.gif'],
+            images: ['party_pic.jpg'],
             categoryId: 7,
             userId: 3
         }

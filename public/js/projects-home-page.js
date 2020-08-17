@@ -13,15 +13,15 @@ async function fetchProjects() {
 
 async function createProjectElements() {
     console.log(projects);
-    projects.filter(function (project) {
+    let filteredProjects = projects.filter(function (project) {
         return project.Category;
     });
     for (let i = 0; i < 5;) {
         const rowContainer = document.createElement("div");
         rowContainer.classList.add("row", "w-100", "my-5")
         for (let j = 0; j < 5; j++) {
-            if (i >= projects.length) break;
-            const project = projects[i];
+            if (i >= filteredProjects.length) break;
+            const project = filteredProjects[i];
             console.log(project.Category.name)
             i++;
             const projectDiv = document.createElement('div');
