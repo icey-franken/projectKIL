@@ -1,8 +1,8 @@
-# README for instructables project features
+# Desctructables project features
 
 Our project: replicate instructables.com website appearance and the functionality specified in feature list below.
 
-## Group Members and Roles
+## Team KIL Members and Roles
 
 UX Lead - Krisna
 
@@ -10,7 +10,7 @@ Model Lead - Lauren
 
 Team Lead - Isaac
 
-## Feature list specific to instructables project (**add development estimates to each**)
+## Destructables Feature List 
 
 ### Minimum Viable Product
 
@@ -82,10 +82,9 @@ Team Lead - Isaac
 
 ## Feature Packets Overview
 
-Create a feature packet for each of the above features (features 1-4 at minimumin) in a new markdown document. Within that document include the following documentation (see documents 0-7 in feature-packets directory):
+Feature packets for each of the above features are contained in the feature-packets directory. Each feature-packet includes the following information:
 
 * models needed
-  * use <https://drawsql.app/> for constructing model relationships
 * endpoints needed
 * templates needed
 * wire frames or sketches
