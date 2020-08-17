@@ -10,13 +10,13 @@ searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const searchString = searchFormInput.value;
   //console.log("target", e.target)
-  console.log("search string", searchString);
+  //console.log("search string", searchString);
 
   if (searchString === "") return;
 
   const res = await fetch(`/api/projects/`);
   const { projects } = await res.json();
-  //searchResultsContainer.innerHTML = projects
+
   for (let project of projects) {
     // console.log("project", project)
     // console.log("projects", projects)
@@ -24,16 +24,24 @@ searchForm.addEventListener("submit", async (e) => {
     if (
       project.name.toLowerCase().includes(searchString) ||
       project.intro.toLowerCase().includes(searchString)
-    ) {
-      console.log(`${project.name}`);
-      //searchProjects.push(`Project name: ${project.name}, Intro: ${project.intro}`)
-    }
-    searchResultsContainer.innerHTML = searchProjects;
+    ) { 
+      //createProjectElements()
+      //console.log(`Project name: ${project.name}`);
+      searchProjects.push(
+      ` <div class="card-body">
+          <a href="/projects/${project.id}" class="card-title font-weight-bold">
+            ${project.name}
+          </a><br>
+          <p> ${project.intro} <br>
+          by ${project.User.username}
+        </div>`
+
+      );
+      // console.log(searchProjects);
+      searchResultsContainer.innerHTML = searchProjects;
+    } //else { console.log("project not found")}
+    //searchResultsContainer.innerHTML = searchProjects;
   }
 
-  //     const filteredProjects = projects.filter(project =>{
-  //         return project.name.toLowerCase().includes(searchString)||
-  //         project.intro.toLowerCase().includes(searchString)
-  //     })
-  //    searchResultsContainer.innerHTML=filteredProjects.join('');
 });
+
