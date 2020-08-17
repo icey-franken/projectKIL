@@ -22,11 +22,6 @@ Team Lead - Isaac
 
 * so that...I can have access to projects as well as create my own
 
-* notes: we will want to use JWT to authenticate users. This will allow us to identify who created a project/comment and give update/destroy powers only to those who own a particular resource.
-  * Ed says: **this is our focus for Monday** - goal is to finish projects and user auth on day one
-  * **do projects feature before auth**
-  * work on auth feature together - use S-M's walkthrough video
-
 #### 1. Projects (~14 hours - ~6 h backend; ~8 h frontend)
 
 * as a... person who enjoys destroying/destructuring things
@@ -34,11 +29,6 @@ Team Lead - Isaac
 * I want... a central resource where I can find instructions for destruction in a clear, ordered manner; to be able to create my own destructions so I can share with others; to be able to make changes to my destructions as I learn and improve; most importantly I would like the ability to destroy my destructions.
 
 * so that... I may spend less time searching for what I need and more time destroying
-
-* Ed says: do backend FIRST - use postman to test constantly. **"When you finish an algorithm - if you can test it, TEST IT!" - will save a lot of pain**
-  * style views as your create them - NOT all at the end (nightmare)
-
-* flow: make a branch for project feature; make AND test backend; make AND test frontend; merge branch to master; push updated master to gh.
 
 #### 2. Commenting on projects (~5 hours)
 
@@ -53,7 +43,6 @@ Team Lead - Isaac
 * as a... visually inclined human
 
 * I want... to be able to show off my destructions and see the destructions of others using a SWEET drag and drop function (along with browsing my local files and embedding video links)
-  * Ed says drag and drop and embedding videos are probably the hardest parts of this project - aA will set up an AWS buckets account for us to do video hosting from. Ed also has other resources for us. He says DON'T focus on this feature until AFTER Tuesday - for now use a div with a static placeholder image.
 
 * so that... we may all may bask in the visual glory, and also so we are able to see what is going on, and how to do it.
 
@@ -103,7 +92,7 @@ Create a feature packet for each of the above features (features 1-4 at minimumi
 
 ## Other features/requirements that apply to ALL projects
 
-1. ~~new account creation, login, and guest/demo login~~ (included above in MVP)
+1. new account creation, login, and guest/demo login (included above in MVP)
 2. a brief production readme file for github repo containing
    1. Brief explanation of what the app is and does
    2. Link to live site
