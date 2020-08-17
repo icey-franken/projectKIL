@@ -162,9 +162,10 @@ label[for='upload-media_input-box']{
 
     color:black !important;
 }
-
+.footer_top{
+    margin-bottom: 0;
+}
 /* comment css btn */
 #discussion-box_buttons button:hover{
     color:white !important;
 }
-
