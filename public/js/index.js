@@ -56,10 +56,14 @@ async function createProjectElements() {
         const timeAgo = timeDifference(currentTimestamp, projectTimestamp)
         projectDiv.classList.add("col-lg-3");
         projectDiv.id = (`project-container-${project.id}`)
+        let projectImage = '/public/images/loginSignup.png'
+        if (project.images) {
+            projectImage = `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${project.images[0]}`
+        }
         projectDiv.innerHTML = `
             <div class="card mb-2">
             <a href="/projects/${project.id}" class="overflow-hidden">
-                <img class="card-img-top" src="/public/images/loginSignup.png" alt="Card image cap">
+                <img class="card-img-top" src="${projectImage}" alt="Card image cap">
             </a>
             <div class="card-body">
                 <a href="/projects/${project.id}" class="card-title font-weight-bold">${project.name}</a>
