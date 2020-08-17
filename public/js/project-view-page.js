@@ -6,6 +6,7 @@ const projectSupplies = document.getElementById("project-supplies")
 const projectStepsContainer = document.getElementById("project-steps-container")
 const editProjectButton = document.getElementById("edit");
 let project;
+
 function createCarousel() {
     return `
         <div class="container my-4">
@@ -50,7 +51,7 @@ function createCarousel() {
 
 
 let currentPath = window.location.href;
-const digitPath = (function () {
+const digitPath = (function() {
     let charCount = 0;
 
     if (currentPath[currentPath.length - 1] === '/') {
@@ -148,6 +149,7 @@ function createProjectSteps() {
 
 async function initialSetup() {
     project = await fetchProject();
+    checkEditPriv(project.userId);
     createProjectHeader();
     projectIntroImage.innerHTML = createCarousel();
     projectOwnerContainer.innerHTML = createProjectOwnerContainer();
@@ -158,3 +160,28 @@ async function initialSetup() {
 }
 
 initialSetup();
+
+
+async function checkEditPriv(projectUserId) {
+    const editButton = document.querySelector('#edit-destruction');
+    const cookies = document.cookie;
+    const res1 = await fetch(`/api/users/signinstate`, {
+        method: 'post',
+        body: JSON.stringify({ cookies }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const { token } = await res1.json();
+    const res2 = await fetch(`/api/users/getUserId`, {
+        method: 'post',
+        body: JSON.stringify({ token }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const { userId } = await res2.json();
+    console.log(userId);
+    console.log(projectUserId);
+    if (userId !== projectUserId) { editButton.setAttribute('style', 'display:none') }
+}
