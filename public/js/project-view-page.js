@@ -183,5 +183,5 @@ async function checkEditPriv(projectUserId) {
     const { userId } = await res2.json();
     console.log(userId);
     console.log(projectUserId);
-    if (userId !== projectUserId) { editButton.setAttribute('style', 'display:none') }
+    if (userId !== projectUserId) { editButton.remove() }
 }
