@@ -38,7 +38,9 @@
         "per-env": "^1.0.2",
         "pg": "^8.3.0",
         "pug": "^2.0.4",
-        "sequelize": "^6.3.4"
+        "sequelize": "^6.3.4",
+        "node-fetch": "^2.6.1",
+}
     },
     "devDependencies": {
         "dotenv": "^8.2.0",
