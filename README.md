@@ -36,4 +36,85 @@ The biggest challenge was the time constraints. A week is not a long time. For m
 
 ## Code snippets to highlight the best code
 
-The whole gosh darned thing.
+### sequelize-cli configuration
+Sequelize folders can be organized by setting up the .sequelizesrc file. The 4 main folders we set up are the
+1. configuration of the database
+2. database models
+3. database seeders
+4. database migrations
+
+The entire .sequelizerc file looks like this:
+```
+require('dotenv').config()
+const path = require('path');
+
+module.exports = {
+  'config': path.resolve('config', 'database.js'),
+  'models-path': path.resolve('db', 'models'),
+  'seeders-path': path.resolve('db', 'seeders'),
+  'migrations-path': path.resolve('db', 'migrations')
+};
+
+```
+
+The ```require(dotenv).config``` at the top is needed to grab environment variables.
+
+1. For the configuration of the database, it looks in the "config" folder and find "database.js"
+2. For the creating models, it looks in the "db" folder and saves them in the "models" folder.
+3. For the creating seeders, it looks in the "db" folder and saves them in the "seeders" folder.
+4. For the creating migrations, it looks in the "db" folder and saves them in the "migrations" folder.
+
+* The database.js file exports the variables needed to authenticate the database which were fetched from the "index.js" file They export must exported with keys either "development" and/or "production".
+```
+//database.js//
+
+const config = require("./index");
+
+const db = config.db;
+const username = db.username;
+const password = db.password;
+const database = db.database;
+const host = db.host;
+
+module.exports = {
+    development: {
+        username,
+        password,
+        database,
+        host,
+        dialect: "postgres",
+        seederStorage: "sequelize"
+    },
+    production: {
+        use_env_variable: 'DATABASE_URL',
+    },
+};
+```
+The ```const config = require("./index")``` imports a file called "index.js" that grabs all of the secret environment variables in the env file.
+```
+// Index.js //
+
+module.exports = {
+    environment: process.env.NODE_ENV || "development",
+    port: process.env.PORT || 8080,
+    db: {
+        username: process.env.DB_USERNAME || 'postgres',
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
+        host: process.env.DB_HOST,
+    },
+    jwtConfig: {
+        secret: process.env.JWT_SECRET,
+        expiresIn: process.env.JWT_EXPIRES_IN,
+    },
+    iamConfig: {
+        iamAccessId: process.env.IAM_ACCESS_ID,
+        iamSecret: process.env.IAM_SECRET
+    },
+    awsConfig: {
+        awsAccessId: process.env.AWS_ACCESS_ID,
+        awsSecret: process.env.AWS_SECRET,
+        awsRegion: process.env.AWS_REGION,
+        awsBucket: process.env.AWS_BUCKET
+    }
+};
