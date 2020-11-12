@@ -71,10 +71,6 @@ function createProjectHeader() {
             <div class="col-4 pt-1">
                 Published Aug 14th, 2020
             </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="btn btn-sm btn-outline-secondary" href="#">Download</a>
-                <a class="btn btn-sm btn-outline-secondary" href="#">Favorite</a>
-            </div>
             </div>
         `
 };
