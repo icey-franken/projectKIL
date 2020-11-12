@@ -90,7 +90,7 @@ module.exports = {
     },
 };
 ```
-The ```const config = require("./index")``` imports a file called "index.js" that grabs all of the secret environment variables in the env file.
+The ```const config = require("./index")``` imports a file called "index.js" that grabs all of the secret environment variables from the env file.
 ```
 // Index.js //
 
