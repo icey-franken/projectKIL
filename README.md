@@ -6,23 +6,11 @@ Users can view projects created by others, create their own projects, and intera
 
 Each project contains a number of steps and images to aid in your destructions, along with a list of supplies you may require.
 
-## Discussion of technologies used
+## Technologies used
 
-Application built using node.js.
+Application built using node.js and uses the express web framework to handle requests and routing. The Database is built in Postgres and is interacted with using Sequelize ORM configured with the .sequelizerc file. Front-end user views are created using a combination of PUG HTML templates and vanilla JS for dynamic rendering of views (AJAX). Webpage styling is done with bootstrap (v4.1.1) and custom CSS. AWS is used for image hosting. Heroku is used to host our full application. 
 
-Application uses the express web framework to handle requests and routing.
-
-Database is built in Postgres and is interacted with using Sequelize ORM.
-
-Front-end user views are created using a combination of PUG HTML templates and vanilla JS for dynamic rendering of views (AJAX).
-
-Webpage styling is done with bootstrap (v4.1.1) and custom CSS.
-
-AWS is used for image hosting.
-
-Heroku is used to host our full application. 
-
-## Discussion of both challenges faced and the way the team solved them
+## Challenges faced and the way the team solved them
 
 A bug we encountered was an issue with our data validations. We had a not null constraint set that supposed to prevent null from being sent to our database. This was supposed to log an error on the browser. It was working, but then after some changes it stopped working and we were unable to get our page to render beyond the basic layout. After many hours of digging we found that a dummy value we had set to null in order to test our validations was actually set to 'null' (a string). This was buried in our vanilla JS used to render the page. Lesson learned - null as a string is different from null-null. We knew this before hand, but after this experience it is seared into our brains.
 
@@ -30,9 +18,67 @@ The biggest challenge was the time constraints. A week is not a long time. For m
 
 ## Discussion of two features that show off the team's technical abilities
 
-### Feature 1:
+### Uploading images:
+Upload image logic is found in the "routes/api/utils/file-upload.js" file/. It must use the ```aws-sdk``` package to communicate with the Amazon Web Services S3 bucket,  ```fs``` module to read files, and the ```awsAccessId```, ```awsSecret```, ```awsRegion```, ```awsBucket``` which are all destructured in the "awsConfig" file to allow uploading.
 
-### Feature 2:
+To begin using S3, it must first set the promise dependecy, then update the config, and then create a new instance of s3 like the following lines.
+```
+// file-upload.js //
+
+aws.config.setPromisesDependency();
+
+aws.config.update({
+    secretAccessKey: awsSecret,
+    accessKeyId: awsAccessId,
+    region: awsRegion
+});
+
+const s3 = new aws.S3();
+```
+The function to upload a file uses the 'fs.readFile' module to read the file which takes in the source, and a callback with error, and data as parameters.
+
+If the file read was successful, it will do ```s3.putObject({Bucket: storageName, Key: newFileName, Body: filedata, ACL: 'public-read' } , cb(err, data))```
+```
+// file-upload.js //
+async function uploadFile(source, newFileName, imageArray) {
+    await fs.readFile(source, function (err, filedata) {
+        if (!err) {
+            const putParams = {
+                Bucket: storageName,
+                Key: newFileName,
+                Body: filedata,
+                ACL: 'public-read',
+            };
+            s3.putObject(putParams, async function (err, data) {
+                if (err) {
+                    console.log('Could nor upload the file. Error :', err);
+                }
+                else {
+                    fs.unlinkSync(source);// Deleting the file from uploads folder(Optional).Do Whatever you prefer.
+                    let filenameAndType = source.split('uploads/')[1];
+                    if (imageArray.includes(filenameAndType)) {
+                        imageArray = imageArray.filter((image) => {
+                            return image !== filenameAndType
+                        }
+                        );
+                    }
+                    const fileUrl = `https://${awsBucket}.s3-${awsRegion}.amazonaws.com/${filenameAndType}`
+                    imageArray.push(filenameAndType);
+                    return res.send({ fileUrl });
+                }
+            });
+        }
+        else {
+            console.log({ 'err': err });
+        }
+    });
+}
+```
+
+Front end visuals and logic for allowing users to upload a picture is found in "/public/js/tools/modal.js" file with a mixin called 'add-media-'
+
+
+### Commenting:
 
 ## Code snippets to highlight the best code
 
