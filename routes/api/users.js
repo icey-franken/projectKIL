@@ -91,14 +91,16 @@ router.post(
       where: {
         [Op.or]: [{ username }, { email: username }],
       },
-    });
+		});
+		console.log(user)
     if (!user || !user.validatePassword(password)) {
       const err = new Error("Invalid username/password combination");
       err.status = 401;
       err.title = "Unauthorized";
       throw err;
     }
-    const token = await getUserToken(user);
+		const token = await getUserToken(user);
+		console.log(token)
     res.cookie("token", token, { maxAge: expiresIn * 1000 });
     res.json({ id: user.id, token });
   })
