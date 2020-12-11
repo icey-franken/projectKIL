@@ -17,7 +17,8 @@ const fileUploadRouter = require('./file-upload');
 router.use('/file_uploads', fileUploadRouter);
 
 router.use((err, req, res, next) => {
-    console.log('before err instanceof----------------', err instanceof ValidationError);
+		console.log('before err instanceof----------------', err instanceof ValidationError);
+		console.log(err)
     if (err instanceof ValidationError) {
         console.log('err.errors before map-----------------', err.errors)
         err.errors = err.errors.map(e => e.message);
