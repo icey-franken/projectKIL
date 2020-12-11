@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', async() => {
                 'Content-Type': 'application/json'
             }
         })
-        const data = await res.json();
+				const data = await res.json();
+				console.log(errors)
         if (!res.ok) {
             const { message, errors } = data;
             const errorsContainer = document.querySelector('#errors-container');
