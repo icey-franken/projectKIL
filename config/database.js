@@ -1,6 +1,7 @@
 const config = require("./index");
 
-// require('dotenv').config()
+// move the below code to top of .sequelizerc if you're having issues locally. Remove when seeding production site.
+require('dotenv').config()
 
 
 const db = config.db;
