@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         await fetch(`/api/users/logout`);
         alert('You are now logged out')
     })
-    const cookies = document.cookie;
+		const cookies = document.cookie;
+		console.log(cookies)
     const res = await fetch(`/api/users/signinstate`, {
         method: 'post',
         body: JSON.stringify({ cookies }),
@@ -16,8 +17,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             'Content-Type': 'application/json'
         }
     });
-    const { userSignedIn } = await res.json();
-    console.log('USER SIGNED IN', userSignedIn)
+    const data = await res.json();
+		console.log(data)
+		const {userSignedIn} = data
+		console.log('USER SIGNED IN', userSignedIn)
     if (userSignedIn) {
         loginLink.classList.add('hidden');
         demoLoginLink.classList.add('hidden');
