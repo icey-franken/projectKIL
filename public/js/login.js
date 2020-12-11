@@ -35,7 +35,8 @@ demoLoginLink.addEventListener('click', async (e) => {
             'Content-Type': 'application/json'
         }
     })
-    const data = await res.json();
+		const data = await res.json();
+		console.log(data);
     if (!res.ok) {
         const { message } = data;
         const errorsContainer = document.querySelector('#errors-container');
