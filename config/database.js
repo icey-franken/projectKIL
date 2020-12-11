@@ -1,6 +1,6 @@
 const config = require("./index");
 
-require('dotenv').config()
+// require('dotenv').config()
 
 
 const db = config.db;
