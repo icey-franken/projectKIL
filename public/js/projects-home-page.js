@@ -16,10 +16,10 @@ async function createProjectElements() {
         return project.Category;
     });
     let projectImage = '/public/images/loginSignup.png'
-    for (let i = 0; i < 5;) {
+    for (let i = 0; i < 6;) {
         const rowContainer = document.createElement("div");
         rowContainer.classList.add("row", "w-100", "my-5")
-        for (let j = 0; j < 5; j++) {
+        for (let j = 0; j < 4; j++) {
             if (i >= filteredProjects.length) break;
             const project = filteredProjects[i];
             if (project.images) {
@@ -27,7 +27,7 @@ async function createProjectElements() {
             }
             i++;
             const projectDiv = document.createElement('div');
-            projectDiv.classList.add("col");
+            projectDiv.classList.add("col-lg-3");
             projectDiv.id = (`project-container-${project.id}`)
             projectDiv.innerHTML = `
                 <div class="card mb-2">

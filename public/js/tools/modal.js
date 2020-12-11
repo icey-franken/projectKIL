@@ -51,6 +51,7 @@ uploadMediaInputBox.addEventListener('change', (e) => {
         });
         reader.readAsDataURL(file);
         uploadMediaName.innerHTML = file.name;
+        uploadMedia()
     }
 });
 
@@ -69,10 +70,10 @@ uploadMediaInput.addEventListener('change', (e) => {
         });
         reader.readAsDataURL(file);
         uploadMediaName.innerHTML = file.name;
+        uploadMedia()
     }
 });
-
-uploadMediaButton.addEventListener('click', async (e) => {
+async function uploadMedia(e) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json; charset=utf-8");
 
@@ -123,7 +124,59 @@ uploadMediaButton.addEventListener('click', async (e) => {
         addMediaDropzone.innerHTML = 'UPLOAD SUCCESSFUL! <br> Be sure to add them by click on the add images button.'
     }
     else console.log('failed')
-});
+}
+// uploadMediaButton.addEventListener('click', async (e) => {
+//     let myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json; charset=utf-8");
+
+//     let formdata = new FormData();
+
+//     let file
+
+//     if (uploadMediaInputBox.files[0]) {
+//         file = uploadMediaInputBox.files[0];
+//         uploadMediaInput.value = null;
+//     }
+//     else if (uploadMediaInput.files[0]) file = uploadMediaInput.files[0];
+//     if (file) {
+//         formdata.append("uploadedFile", file);
+//         let requestOptions = {
+//             method: 'POST',
+//             body: formdata,
+//         };
+//         console.log(formdata);
+//         console.log('uploading...');
+//         const res = await fetch(`/api/file_uploads/project/${currentRoute}`, requestOptions);
+//         // const res = await fetch(`/api/file_uploads`);
+//         console.log('fetched via DOM');
+//         if (res.ok) {
+//             const imageContainerDiv = document.createElement('div');
+//             imageContainerDiv.setAttribute('data-dismiss', "modal");
+//             imageContainerDiv.classList.add('col-4');
+//             const imageTag = document.createElement('img');
+//             imageTag.classList.add('img-thumbnail', 'btn')
+//             imageTag.setAttribute('src', `https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${file.name}`);
+//             imageContainerDiv.appendChild(imageTag)
+//             modalImageGallery.appendChild(imageContainerDiv);
+//             console.log(file.name)
+//             imageTag.addEventListener('click', function (e) {
+//                 recentTextArea.value = `<img src="https://destructables-storage-dev.s3-us-west-1.amazonaws.com/${file.name}">`
+//                 for (let i = 0; i < postButtons.length; i++) {
+//                     const postButton = postButtons[i];
+//                     postButton.disabled = false;
+//                 }
+//             })
+//         };
+//         console.log('posted file!')
+//         addMediaDropzone.classList.add('btn', 'd-flex');
+//         addMediaDropzone.classList.remove('hidden');
+//         addMediaPreviewContainer.classList.add('hidden');
+//         addMediaPreview.setAttribute('src', '');
+//         addMediaModal.classList.add('hide');
+//         addMediaDropzone.innerHTML = 'UPLOAD SUCCESSFUL! <br> Be sure to add them by click on the add images button.'
+//     }
+//     else console.log('failed')
+// });
 
 modalAddImageButton.addEventListener('click', (e) => {
     modalContent1.classList.add('hidden');

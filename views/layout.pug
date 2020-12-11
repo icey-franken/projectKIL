@@ -35,8 +35,9 @@ html(lang='en')
 					//- li(class="nav-item active")
 					//- 	a(class="nav-link" href="#") Teachers
 				a(class="nav-link text-white hidden" href="/login" id='loginLink') Login
+				a(class="nav-link text-white hidden clickable-link" id='demo-login-link') Demo Login
 				a(class="nav-link text-white hidden" href="/signup" id='signUpLink') Sign Up
-				a(class="nav-link text-white hidden" href='/projects' id='logoutLink') Logout
+				a(class="nav-link text-white hidden" href='/' id='logoutLink') Logout
 			div(class="navbar navbar-expand-md navbar-light border-bottom" style="background-color: #F2F2F2;")
 				a(class="navbar-brand" href="/")
 					svg#Capa_1(height="60" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' viewbox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve')
@@ -73,7 +74,7 @@ html(lang='en')
 			div(class="row footer_top container")
 				div(class="col-12 col-md")
 					a(class="navbar-brand" href="/")
-						svg#Capa_1(height="200" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' viewbox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve')
+						svg#Capa_1(height="100" xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' viewbox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve')
 							rect(x='194.189' y='193.602' style='fill:#FF9570;' width='61.811' height='309.054')
 							rect(x='256' y='193.602' style='fill:#FF7240;' width='61.811' height='309.054')
 							rect(x='232.821' y='193.602' style='fill:#FFB9A0;' width='46.358' height='309.054')
@@ -126,10 +127,16 @@ html(lang='en')
 				div(class="col-6 col-md")
 					h5 Creator Githubs
 					div(class="row d-flex justify-content-around")
-						a(class="m-3" href="https://github.com/kcsarith") Krisna
-						a(class="m-3" href="https://github.com/icey-franken") Isaac
-						a(class="m-3" href="https://github.com/3ll3rach3l") Lauren
+						a(class="m-3" href="https://github.com/kcsarith")
+							img(src="https://www.flaticon.com/svg/static/icons/svg/25/25231.svg" height="16px")
+							span Krisna
+						a(class="m-3" href="https://github.com/icey-franken")
+							img(src="https://www.flaticon.com/svg/static/icons/svg/25/25231.svg" height="16px")
+							span Isaac
+						a(class="m-3" href="https://github.com/3ll3rach3l")
+							img(src="https://www.flaticon.com/svg/static/icons/svg/25/25231.svg" height="16px")
+							span Lauren
 			hr
 			div(class="row")
-				p © 2020 Destructables. See Our Project On
-					a(target='_blank' href='https://github.com/icey-franken/projectKIL') GitHub
+				p © 2020 Destructables. See Our Project on
+					a(target='_blank' href='https://github.com/icey-franken/projectKIL')  GitHub

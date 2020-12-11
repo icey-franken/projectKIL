@@ -1,7 +1,8 @@
-document.addEventListener('DOMContentLoaded', async() => {
+document.addEventListener('DOMContentLoaded', async () => {
     const editMainContainer = document.querySelector('.edit-main-container');
     const projectId = editMainContainer.getAttribute('id');
 
+    alert('The Project Page does not allow uploading or changing the steps yet.')
     //get project data - will work for new and edit projects
     const res1 = await fetch(`/api/projects/${projectId}`);
     const { project } = await res1.json();
@@ -65,8 +66,8 @@ document.addEventListener('DOMContentLoaded', async() => {
 						</div>
 						<div class='edit-step__contents'>
 							<div class='edit-step__text'>
-								<div class='edit-step__heading' id='heading-${i}'>Step ${i}: ${destructionsHeadings[i-1]}</div>
-								<div class='edit-step__description' id='text-${i}'>${destructions[i-1]}</div>
+								<div class='edit-step__heading' id='heading-${i}'>Step ${i}: ${destructionsHeadings[i - 1]}</div>
+								<div class='edit-step__description' id='text-${i}'>${destructions[i - 1]}</div>
 							</div>
 							<div class='edit-step__options-container'>
 								<div class='edit-step__reorder'>&#9776;</div>
@@ -136,7 +137,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     //
     function addDeleteButtonListener(stepNum, projectId) {
         const deleteButton = document.querySelector(`#delete-${stepNum}`);
-        deleteButton.addEventListener('click', async(e) => {
+        deleteButton.addEventListener('click', async (e) => {
             const stepNum = e.target.id.slice(7);
             console.log('line 121 stepnum', stepNum);
             const res = await fetch(`/api/projects/${projectId}/delete/step/${stepNum}`, {
@@ -178,7 +179,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     }
     //add project delete functionality
     const deleteButton = document.querySelector('#edit-nav__delete');
-    deleteButton.addEventListener('click', async(e) => {
+    deleteButton.addEventListener('click', async (e) => {
         window.location.href = '/projects';
         try {
             const res = await fetch(`/api/projects/${projectId}/delete`, {
@@ -223,7 +224,7 @@ document.addEventListener('DOMContentLoaded', async() => {
 
 
     function addSaveButtonListener(button) {
-        button.addEventListener('click', async(e) => {
+        button.addEventListener('click', async (e) => {
             const stepsHeadingsNodes = document.querySelectorAll('.edit-step__heading');
             let destructionsHeadings = [];
             stepsHeadingsNodes.forEach((stepHeadingNode, i) => {

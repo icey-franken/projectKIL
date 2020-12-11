@@ -111,6 +111,10 @@ main+.auth-container {
     box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.3);
 }
 
+.clickable-link:hover{
+    cursor: pointer;
+}
+
 #discussion-box_buttons button {
     color: grey;
 }
@@ -168,4 +172,7 @@ label[for='upload-media_input-box']{
 /* comment css btn */
 #discussion-box_buttons button:hover{
     color:white !important;
+}
+img{
+    object-fit: cover;
 }

@@ -17,7 +17,8 @@ function createCarousel() {
     console.log(projectImages)
     let projectImagesString = '';
     if (projectImages) {
-        let randomImageIndex = getRndInteger(0, projectImages.length)
+        // let randomImageIndex = getRndInteger(0, projectImages.length)
+        let randomImageIndex = getRndInteger(0, 0)
         let projectImage = projectImages[randomImageIndex];
         console.log(projectImage);
         // let splitProjectImageString = projectImage.split('.');

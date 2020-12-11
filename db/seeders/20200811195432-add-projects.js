@@ -8,7 +8,7 @@ module.exports = {
             supplies: ['JS knowledge', 'computer', 'willpower'],
             destructionsHeadings: ['do thing 1'],
             destructions: ['please refer to mdn bc i dont have time for this'],
-            images: ['blank_stare.jpg'],
+            images: ['stare.jpg'],
             categoryId: 3,
             userId: 1
         },
@@ -18,7 +18,7 @@ module.exports = {
             supplies: ['cake mix and the fixins', 'baby'],
             destructionsHeadings: ['do thing 1', 'do thing 2', 'do thing 3'],
             destructions: ['follow instructions to bake cake', 'decorate cake after cooling', 'place baby in front of cake', 'observe'],
-            images: ['happy_baby.jpg'],
+            images: ['happy.jpg'],
             categoryId: 1,
             userId: 2
         },
@@ -48,7 +48,7 @@ module.exports = {
             supplies: ['stomping boots'],
             destructionsHeadings: ['do thing 1', 'do thing 2', 'do thing 3', 'thing 4', 'thing5'],
             destructions: ['get your head in the game', 'strap on your boots', 'search for pumpkins', 'stomp it like it is a roach!', 'run away'],
-            images: ['jack-o-lantern.jpg'],
+            images: ['lantern.jpg'],
             categoryId: 3,
             userId: 2
         },
@@ -58,7 +58,7 @@ module.exports = {
             supplies: ['booze', 'more booze', 'maybe a hotel room?', 'party pants', 'favorite drinking cup', 'maybe a shot glass or two', 'friends...bc dont drink alone'],
             destructionsHeadings: ['do thing 1', 'do thing 2', 'do thing 3', '4', '5', '6', '7', '8'],
             destructions: ['pregame', 'clock in', 'cheers', 'bottoms up!', 'drink some more', 'dont stop now', 'keep going', 'power hour', 'rally'],
-            images: ['party_pic.jpg'],
+            images: ['party.jpg'],
             categoryId: 7,
             userId: 3
         }
