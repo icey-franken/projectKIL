@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { secret, expiresIn } = require('../../config').jwtConfig;
-console.log(secret, expiresIn);
 const getUserToken = async(user) => {
+	console.log(secret, expiresIn);
     return await jwt.sign({
             id: user.id,
             username: user.username
