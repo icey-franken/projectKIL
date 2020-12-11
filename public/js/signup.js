@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     const data = await res.json();
     if (!res.ok) {
-      const { message, errors } = data;
+      let { message, errors } = data;
       const errorsContainer = document.querySelector("#errors-container");
       errorsContainer.innerHTML = "";
       if (res.status === 500) {

@@ -140,8 +140,5 @@ router.get(
   })
 );
 
-router.post("/", (req, res, next) => {
-  //for signing up
-});
 
 module.exports = router;
