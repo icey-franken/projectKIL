@@ -1,10 +1,12 @@
 # projectKIL - [Welcome to Destructables](https://destructable.herokuapp.com/)
-
 Destructables is a place where destroyers from all walks of life can come together and share their hard-earned destructive knowledge.
 
 Users can view projects created by others, create their own projects, and interact with the destructive community via discussion boards on each project. 
 
 Each project contains a number of steps and images to aid in your destructions, along with a list of supplies you may require.
+
+
+Check out the app live https://destructable.herokuapp.com/
 
 ## Technologies used
 
